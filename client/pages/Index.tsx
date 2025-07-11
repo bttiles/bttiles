@@ -272,7 +272,7 @@ export default function Index() {
                 Home
               </a>
               <a
-                href="#"
+                href="/categories"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
                 Categories
