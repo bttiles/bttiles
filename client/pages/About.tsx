@@ -335,7 +335,7 @@ export default function About() {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="#"
+                    href="/help"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Help Center
