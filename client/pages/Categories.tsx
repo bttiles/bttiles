@@ -221,6 +221,12 @@ export default function Categories() {
               Categories
             </a>
             <a
+              href="/blog"
+              className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
+            >
+              Blog
+            </a>
+            <a
               href="/about"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
