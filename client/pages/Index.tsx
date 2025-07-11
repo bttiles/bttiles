@@ -363,9 +363,10 @@ export default function Index() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
               {currentPageTextures.map((texture) => (
-                <div
+                <a
                   key={texture.id}
-                  className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group"
+                  href={`/texture/${texture.id}`}
+                  className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group block"
                 >
                   <div className="aspect-square overflow-hidden">
                     <img
@@ -382,7 +383,7 @@ export default function Index() {
                       {texture.category}
                     </p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 
