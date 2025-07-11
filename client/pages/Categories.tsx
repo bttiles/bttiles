@@ -323,7 +323,7 @@ export default function Categories() {
 
           {/* Categories Grid */}
           <section ref={observerRef}>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {filteredCategories.map((category, index) => (
                 <a
                   key={category.id}
@@ -401,7 +401,7 @@ export default function Categories() {
 
                   {/* Bottom Gradient */}
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-blue to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
+                </a>
               ))}
             </div>
 
