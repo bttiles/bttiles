@@ -11,6 +11,7 @@ import Categories from "./pages/Categories";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Help from "./pages/Help";
+import License from "./pages/License";
 import TextureDetail from "./pages/TextureDetail";
 import NotFound from "./pages/NotFound";
 
