@@ -96,4 +96,46 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  html {
+    @apply dark;
+  }
+}
+
+@layer utilities {
+  .bg-primary-blue {
+    background-color: rgb(31, 166, 250);
+  }
+
+  .hover\:bg-primary-blue-dark:hover {
+    background-color: rgb(25, 140, 210);
+  }
+
+  .text-primary-blue {
+    color: rgb(31, 166, 250);
+  }
+
+  .hover\:text-primary-blue:hover {
+    color: rgb(31, 166, 250);
+  }
+
+  .border-dark {
+    border-color: rgb(50, 50, 50);
+  }
+
+  .bg-dark {
+    background-color: rgb(17, 17, 17);
+  }
+
+  .bg-dark-lighter {
+    background-color: rgb(26, 26, 26);
+  }
+
+  .text-gray-light {
+    color: rgb(170, 170, 170);
+  }
+
+  .text-gray-lighter {
+    color: rgb(204, 204, 204);
+  }
 }
