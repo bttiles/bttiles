@@ -232,10 +232,7 @@ export default function Index() {
           </div>
 
           <nav className="hidden lg:flex items-center gap-6">
-            <a
-              href="#"
-              className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-            >
+            <a href="/" className="text-primary-blue text-sm font-medium">
               Home
             </a>
             <a
@@ -245,7 +242,7 @@ export default function Index() {
               Categories
             </a>
             <a
-              href="#"
+              href="/about"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
               About
