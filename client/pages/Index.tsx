@@ -268,10 +268,7 @@ export default function Index() {
         {isMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 border-t border-dark">
             <nav className="flex flex-col gap-4 mt-4">
-              <a
-                href="#"
-                className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-              >
+              <a href="/" className="text-primary-blue text-sm font-medium">
                 Home
               </a>
               <a
@@ -281,7 +278,7 @@ export default function Index() {
                 Categories
               </a>
               <a
-                href="#"
+                href="/about"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
                 About
