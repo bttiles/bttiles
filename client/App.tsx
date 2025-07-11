@@ -9,6 +9,7 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Categories from "./pages/Categories";
+import Blog from "./pages/Blog";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Help from "./pages/Help";
