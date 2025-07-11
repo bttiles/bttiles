@@ -323,11 +323,12 @@ export default function Categories() {
 
           {/* Categories Grid */}
           <section ref={observerRef}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {filteredCategories.map((category, index) => (
-                <div
+                <a
                   key={category.id}
-                  className={`group relative bg-dark-lighter rounded-2xl overflow-hidden border border-dark transition-all duration-500 hover:border-primary-blue hover:shadow-2xl hover:shadow-primary-blue/20 hover:-translate-y-2 cursor-pointer ${
+                  href="/"
+                  className={`group relative bg-dark-lighter rounded-2xl overflow-hidden border border-dark transition-all duration-500 hover:border-primary-blue hover:shadow-2xl hover:shadow-primary-blue/20 hover:-translate-y-2 cursor-pointer block ${
                     isVisible
                       ? "animate-in fade-in slide-in-from-bottom-8"
                       : "opacity-0"
