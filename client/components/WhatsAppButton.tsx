@@ -65,18 +65,6 @@ export default function WhatsAppButton() {
           <div className="absolute inset-0 rounded-full border-2 border-green-500 opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300"></div>
         </div>
       </div>
-
-      {/* Mobile Specific Styles */}
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .whatsapp-button {
-            bottom: 20px;
-            right: 20px;
-            width: 56px;
-            height: 56px;
-          }
-        }
-      `}</style>
     </>
   );
 }
