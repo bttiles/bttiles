@@ -494,7 +494,7 @@ export default function Index() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/contact"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Contact Us
