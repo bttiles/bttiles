@@ -434,6 +434,9 @@ export default function Index() {
             )}
           </section>
         </div>
+
+        {/* Testimonials Section */}
+        <Testimonials />
       </main>
 
       {/* Footer */}
