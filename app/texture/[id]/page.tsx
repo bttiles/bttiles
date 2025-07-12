@@ -10,17 +10,26 @@ import {
   Share,
   Heart,
   Eye,
+  Loader2,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { getTextureById, type Texture } from "../../../lib/temp-texture-data";
+import { useTexture } from "../../../hooks/useTextures";
 
 export default function TextureDetailPage() {
   const params = useParams();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const texture = getTextureById(params.id as string);
+  const { texture, loading, error } = useTexture(params.id as string);
 
-  if (!texture) {
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-dark text-white flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    );
+  }
+
+  if (error || !texture) {
     return (
       <div className="min-h-screen bg-dark text-white flex items-center justify-center">
         <div className="text-center">
@@ -120,6 +129,7 @@ export default function TextureDetailPage() {
                 src={texture.image}
                 alt={texture.name}
                 fill
+                priority
                 className="object-cover"
               />
             </div>
@@ -130,6 +140,16 @@ export default function TextureDetailPage() {
                 <span className="text-xs text-primary-blue bg-primary-blue/10 px-3 py-1 rounded-full">
                   {texture.category}
                 </span>
+                {texture.featured && (
+                  <span className="ml-2 text-xs text-yellow-500 bg-yellow-500/10 px-3 py-1 rounded-full">
+                    Featured
+                  </span>
+                )}
+                {texture.trending && (
+                  <span className="ml-2 text-xs text-green-500 bg-green-500/10 px-3 py-1 rounded-full">
+                    Trending
+                  </span>
+                )}
               </div>
 
               <h1 className="text-3xl font-bold text-white mb-4">
@@ -150,39 +170,45 @@ export default function TextureDetailPage() {
                 </div>
                 <div className="bg-dark-lighter p-4 rounded-lg border border-dark">
                   <h3 className="text-sm font-medium text-white mb-2">
-                    File Size
-                  </h3>
-                  <p className="text-primary-blue">{texture.fileSize}</p>
-                </div>
-                <div className="bg-dark-lighter p-4 rounded-lg border border-dark">
-                  <h3 className="text-sm font-medium text-white mb-2">
                     Format
                   </h3>
                   <p className="text-primary-blue">{texture.format}</p>
                 </div>
                 <div className="bg-dark-lighter p-4 rounded-lg border border-dark">
                   <h3 className="text-sm font-medium text-white mb-2">Views</h3>
-                  <p className="text-primary-blue">1,234</p>
+                  <div className="flex items-center text-primary-blue">
+                    <Eye className="w-4 h-4 mr-1" />
+                    {texture.views.toLocaleString()}
+                  </div>
+                </div>
+                <div className="bg-dark-lighter p-4 rounded-lg border border-dark">
+                  <h3 className="text-sm font-medium text-white mb-2">Likes</h3>
+                  <div className="flex items-center text-primary-blue">
+                    <Heart className="w-4 h-4 mr-1" />
+                    {texture.likes.toLocaleString()}
+                  </div>
                 </div>
               </div>
 
               {/* Tags */}
-              <div className="mb-6">
-                <h3 className="text-sm font-medium text-white mb-3">Tags</h3>
-                <div className="flex flex-wrap gap-2">
-                  {texture.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs text-gray-light bg-dark border border-dark px-3 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+              {texture.tags && texture.tags.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-sm font-medium text-white mb-3">Tags</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {texture.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs text-gray-light bg-dark border border-dark px-3 py-1 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Action Buttons */}
-              <div className="flex gap-4">
+              <div className="flex gap-4 flex-wrap">
                 <button
                   onClick={() => {
                     const message = encodeURIComponent(
@@ -224,6 +250,26 @@ export default function TextureDetailPage() {
                 The ultimate resource for high-quality tile textures. Perfect
                 for architects, designers, and 3D artists.
               </p>
+            </div>
+          </div>
+
+          <div className="border-t border-dark pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
+            <p className="text-xs text-gray-light">
+              © 2024 TileTextures. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <a
+                href="#"
+                className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+              >
+                Terms of Service
+              </a>
             </div>
           </div>
         </div>
