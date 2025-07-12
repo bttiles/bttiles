@@ -70,7 +70,7 @@ export default function TextureDetailPage() {
               href="/blog"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
-              Blog
+              Featured
             </Link>
             <Link
               href="/about"
