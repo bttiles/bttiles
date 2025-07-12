@@ -228,7 +228,7 @@ export default function HomePage() {
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
-              {currentPageTextures.map((texture) => (
+              {currentPageTextures.map((texture, index) => (
                 <Link
                   key={texture.id}
                   href={`/texture/${texture.id}`}
@@ -239,6 +239,7 @@ export default function HomePage() {
                       src={texture.image}
                       alt={texture.name}
                       fill
+                      priority={index < 4} // Priority loading for first 4 images
                       className="object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                   </div>
