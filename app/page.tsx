@@ -350,7 +350,7 @@ export default function HomePage() {
                 ))}
 
                 <button
-                  disabled={currentPage === totalPages}
+                  disabled={currentPage === (pagination?.total || 1)}
                   onClick={() =>
                     setCurrentPage(
                       Math.min(pagination?.total || 1, currentPage + 1),
