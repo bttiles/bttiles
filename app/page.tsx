@@ -35,10 +35,12 @@ export default function HomePage() {
   }, [searchQuery, selectedCategory]);
 
   const getPaginationButtons = () => {
+    if (!pagination) return [];
+
     const maxButtons = 5;
     const buttons = [];
     let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
-    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+    let endPage = Math.min(pagination.total, startPage + maxButtons - 1);
 
     if (endPage - startPage + 1 < maxButtons) {
       startPage = Math.max(1, endPage - maxButtons + 1);
@@ -49,6 +51,26 @@ export default function HomePage() {
     }
 
     return buttons;
+  };
+
+  const handleLike = async (textureId: string, e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation
+    try {
+      await likeTexture(textureId);
+      // Optionally refetch data or update local state
+    } catch (error) {
+      console.error("Failed to like texture:", error);
+    }
+  };
+
+  const handleSave = async (textureId: string, e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation
+    try {
+      await saveTexture(textureId);
+      // Optionally refetch data or update local state
+    } catch (error) {
+      console.error("Failed to save texture:", error);
+    }
   };
 
   return (
