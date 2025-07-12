@@ -1,45 +1,56 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Search, Menu, X, Heart } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import Testimonials from "@/Testimonials";
-import { textures, categories, type Texture } from "@/texture-data";
+import Testimonials from "../components/Testimonials";
+import { textures, categories, type Texture } from "../lib/temp-texture-data";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const itemsPerPage = 12;
 
-  // Use dynamic data
-  const { textures, loading, error, pagination, total } = useTextures({
-    category: selectedCategory === "all" ? undefined : selectedCategory,
-    search: searchQuery || undefined,
-    page: currentPage,
-    limit: 12,
-  });
+  const filteredTextures = useMemo(() => {
+    let filtered = textures;
 
-  // Categories from API data
-  const categories = useMemo(() => {
-    const uniqueCategories = Array.from(
-      new Set(textures.map((texture) => texture.category)),
-    );
-    return uniqueCategories.sort();
-  }, [textures]);
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(
+        (texture) => texture.category === selectedCategory,
+      );
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (texture) =>
+          texture.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          texture.category.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+    }
+
+    return filtered;
+  }, [searchQuery, selectedCategory]);
+
+  const totalPages = Math.ceil(filteredTextures.length / itemsPerPage);
+
+  const currentPageTextures = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredTextures.slice(startIndex, endIndex);
+  }, [filteredTextures, currentPage, itemsPerPage]);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, selectedCategory]);
 
   const getPaginationButtons = () => {
-    if (!pagination) return [];
-
     const maxButtons = 5;
     const buttons = [];
     let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
-    let endPage = Math.min(pagination.total, startPage + maxButtons - 1);
+    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
 
     if (endPage - startPage + 1 < maxButtons) {
       startPage = Math.max(1, endPage - maxButtons + 1);
@@ -50,26 +61,6 @@ export default function HomePage() {
     }
 
     return buttons;
-  };
-
-  const handleLike = async (textureId: string, e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation
-    try {
-      await likeTexture(textureId);
-      // Optionally refetch data or update local state
-    } catch (error) {
-      console.error("Failed to like texture:", error);
-    }
-  };
-
-  const handleSave = async (textureId: string, e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation
-    try {
-      await saveTexture(textureId);
-      // Optionally refetch data or update local state
-    } catch (error) {
-      console.error("Failed to save texture:", error);
-    }
   };
 
   return (
@@ -248,7 +239,7 @@ export default function HomePage() {
                       src={texture.image}
                       alt={texture.name}
                       fill
-                      priority={index < 4} // Priority loading for first 4 images
+                      priority={index < 4}
                       className="object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                   </div>
@@ -260,9 +251,9 @@ export default function HomePage() {
                       {texture.category}
                     </p>
                   </div>
-                ))}
-              </div>
-            )}
+                </Link>
+              ))}
+            </div>
 
             {/* Pagination */}
             {totalPages > 1 && (
@@ -382,7 +373,7 @@ export default function HomePage() {
                 </li>
                 <li>
                   <Link
-                    href="/license"
+                    href="#"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     License
