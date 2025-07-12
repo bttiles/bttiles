@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { getTextureById, type Texture } from "@/texture-data";
+import { getTextureById, type Texture } from "../../lib/temp-texture-data";
 
 export default function TextureDetailPage() {
   const params = useParams();
