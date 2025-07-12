@@ -2,54 +2,18 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import { Search, Menu, X, Download, Share, Heart, Eye } from "lucide-react";
+import {
+  Search,
+  Menu,
+  X,
+  MessageCircle,
+  Share,
+  Heart,
+  Eye,
+} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
-interface Texture {
-  id: number;
-  name: string;
-  category: string;
-  image: string;
-  description: string;
-  resolution: string;
-  fileSize: string;
-  format: string;
-  tags: string[];
-}
-
-const getTextureById = (id: string): Texture | null => {
-  const textures: Texture[] = [
-    {
-      id: 1,
-      name: "Smooth Concrete Panel Ceiling Texture",
-      category: "Ceiling Tile Textures",
-      image:
-        "https://images.pexels.com/photos/7380356/pexels-photo-7380356.jpeg",
-      description:
-        "High-quality smooth concrete panel texture perfect for modern ceiling designs. Features realistic surface details and professional lighting.",
-      resolution: "4096x4096",
-      fileSize: "15 MB",
-      format: "PNG, JPG",
-      tags: ["concrete", "ceiling", "modern", "smooth", "architectural"],
-    },
-    {
-      id: 2,
-      name: "Geometric Patterned Paver Texture",
-      category: "Square Tile Textures",
-      image:
-        "https://images.pexels.com/photos/4489336/pexels-photo-4489336.jpeg",
-      description:
-        "Beautiful geometric patterned paver texture in beige and black colors. Ideal for exterior and interior flooring applications.",
-      resolution: "4096x4096",
-      fileSize: "18 MB",
-      format: "PNG, JPG",
-      tags: ["geometric", "paver", "pattern", "beige", "black"],
-    },
-  ];
-
-  return textures.find((t) => t.id === parseInt(id)) || null;
-};
+import { getTextureById, type Texture } from "@/texture-data";
 
 export default function TextureDetailPage() {
   const params = useParams();
