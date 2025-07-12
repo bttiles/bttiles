@@ -13,35 +13,22 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const itemsPerPage = 12;
 
-  const filteredTextures = useMemo(() => {
-    let filtered = textures;
+  // Use dynamic data
+  const { textures, loading, error, pagination, total } = useTextures({
+    category: selectedCategory === "all" ? undefined : selectedCategory,
+    search: searchQuery || undefined,
+    page: currentPage,
+    limit: 12,
+  });
 
-    if (selectedCategory !== "all") {
-      filtered = filtered.filter(
-        (texture) => texture.category === selectedCategory,
-      );
-    }
-
-    if (searchQuery) {
-      filtered = filtered.filter(
-        (texture) =>
-          texture.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          texture.category.toLowerCase().includes(searchQuery.toLowerCase()),
-      );
-    }
-
-    return filtered;
-  }, [searchQuery, selectedCategory]);
-
-  const totalPages = Math.ceil(filteredTextures.length / itemsPerPage);
-
-  const currentPageTextures = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return filteredTextures.slice(startIndex, endIndex);
-  }, [filteredTextures, currentPage, itemsPerPage]);
+  // Categories from API data
+  const categories = useMemo(() => {
+    const uniqueCategories = Array.from(
+      new Set(textures.map((texture) => texture.category)),
+    );
+    return uniqueCategories.sort();
+  }, [textures]);
 
   useEffect(() => {
     setCurrentPage(1);
