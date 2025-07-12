@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Search, Menu, X, Heart } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Testimonials from "../components/Testimonials";
@@ -12,34 +12,45 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const itemsPerPage = 12;
 
-  // Use dynamic data
-  const { textures, loading, error, pagination, total } = useTextures({
-    category: selectedCategory === "all" ? undefined : selectedCategory,
-    search: searchQuery || undefined,
-    page: currentPage,
-    limit: 12,
-  });
+  const filteredTextures = useMemo(() => {
+    let filtered = textures;
 
-  // Categories from API data
-  const categories = useMemo(() => {
-    const uniqueCategories = Array.from(
-      new Set(textures.map((texture) => texture.category)),
-    );
-    return uniqueCategories.sort();
-  }, [textures]);
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(
+        (texture) => texture.category === selectedCategory,
+      );
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (texture) =>
+          texture.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          texture.category.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+    }
+
+    return filtered;
+  }, [searchQuery, selectedCategory]);
+
+  const totalPages = Math.ceil(filteredTextures.length / itemsPerPage);
+
+  const currentPageTextures = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredTextures.slice(startIndex, endIndex);
+  }, [filteredTextures, currentPage, itemsPerPage]);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, selectedCategory]);
 
   const getPaginationButtons = () => {
-    if (!pagination) return [];
-
     const maxButtons = 5;
     const buttons = [];
     let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
-    let endPage = Math.min(pagination.total, startPage + maxButtons - 1);
+    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
 
     if (endPage - startPage + 1 < maxButtons) {
       startPage = Math.max(1, endPage - maxButtons + 1);
@@ -50,26 +61,6 @@ export default function HomePage() {
     }
 
     return buttons;
-  };
-
-  const handleLike = async (textureId: string, e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation
-    try {
-      await likeTexture(textureId);
-      // Optionally refetch data or update local state
-    } catch (error) {
-      console.error("Failed to like texture:", error);
-    }
-  };
-
-  const handleSave = async (textureId: string, e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation
-    try {
-      await saveTexture(textureId);
-      // Optionally refetch data or update local state
-    } catch (error) {
-      console.error("Failed to save texture:", error);
-    }
   };
 
   return (
@@ -232,95 +223,40 @@ export default function HomePage() {
           {/* Textures Grid */}
           <section>
             <h3 className="text-lg font-medium text-white mb-6">
-              <span>{total}</span>
+              <span>{filteredTextures.length}</span>
               <span> Tile Textures</span>
             </h3>
 
-            {/* Loading State */}
-            {loading && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
-                {Array.from({ length: 12 }).map((_, index) => (
-                  <div
-                    key={index}
-                    className="bg-dark-lighter rounded-lg overflow-hidden border border-dark animate-pulse"
-                  >
-                    <div className="aspect-square bg-gray-700"></div>
-                    <div className="p-4">
-                      <div className="h-4 bg-gray-700 rounded mb-2"></div>
-                      <div className="h-3 bg-gray-700 rounded w-3/4"></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Error State */}
-            {error && (
-              <div className="text-center py-16">
-                <div className="text-red-400 mb-4">
-                  <X className="w-16 h-16 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">
-                    Failed to load textures
-                  </h3>
-                  <p className="text-gray-light">{error}</p>
-                </div>
-                <button
-                  onClick={() => window.location.reload()}
-                  className="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-primary-blue-dark transition-colors"
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+              {currentPageTextures.map((texture, index) => (
+                <Link
+                  key={texture.id}
+                  href={`/texture/${texture.id}`}
+                  className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group block"
                 >
-                  Try Again
-                </button>
-              </div>
-            )}
-
-            {/* Textures Grid */}
-            {!loading && !error && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
-                {textures.map((texture, index) => (
-                  <div
-                    key={texture._id}
-                    className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group relative"
-                  >
-                    <Link href={`/texture/${texture._id}`} className="block">
-                      <div className="aspect-square overflow-hidden relative">
-                        <Image
-                          src={texture.image}
-                          alt={texture.name}
-                          fill
-                          priority={index < 4}
-                          className="object-cover group-hover:scale-105 transition-transform duration-200"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <h4 className="text-sm font-medium text-white mb-2 leading-snug">
-                          {texture.name}
-                        </h4>
-                        <p className="text-xs text-gray-light mb-2">
-                          {texture.category}
-                        </p>
-                        <div className="flex items-center justify-between text-xs text-gray-400">
-                          <span>{texture.views} views</span>
-                          <span>{texture.likes} likes</span>
-                        </div>
-                      </div>
-                    </Link>
-
-                    {/* Interaction Buttons */}
-                    <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button
-                        onClick={(e) => handleLike(texture._id, e)}
-                        className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500 transition-colors"
-                      >
-                        <Heart className="w-4 h-4" />
-                      </button>
-                    </div>
+                  <div className="aspect-square overflow-hidden relative">
+                    <Image
+                      src={texture.image}
+                      alt={texture.name}
+                      fill
+                      priority={index < 4}
+                      className="object-cover group-hover:scale-105 transition-transform duration-200"
+                    />
                   </div>
-                ))}
-              </div>
-            )}
+                  <div className="p-4">
+                    <h4 className="text-sm font-medium text-white mb-2 leading-snug">
+                      {texture.name}
+                    </h4>
+                    <p className="text-xs text-gray-light">
+                      {texture.category}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
 
             {/* Pagination */}
-            {pagination && pagination.total > 1 && (
+            {totalPages > 1 && (
               <div className="flex justify-center items-center gap-3 mb-10">
                 <button
                   disabled={currentPage === 1}
@@ -349,11 +285,9 @@ export default function HomePage() {
                 ))}
 
                 <button
-                  disabled={currentPage === (pagination?.total || 1)}
+                  disabled={currentPage === totalPages}
                   onClick={() =>
-                    setCurrentPage(
-                      Math.min(pagination?.total || 1, currentPage + 1),
-                    )
+                    setCurrentPage(Math.min(totalPages, currentPage + 1))
                   }
                   className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
                     currentPage === totalPages
@@ -439,7 +373,7 @@ export default function HomePage() {
                 </li>
                 <li>
                   <Link
-                    href="/license"
+                    href="#"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     License
