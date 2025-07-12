@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import connectDB from "@/lib/mongodb";
-import Texture from "@/lib/models/Texture";
+import connectDB from "../../../lib/mongodb";
+import Texture from "../../../lib/models/Texture";
 
 export async function GET(request: NextRequest) {
   try {
