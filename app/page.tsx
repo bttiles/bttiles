@@ -1,207 +1,45 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, Heart } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Testimonials from "@/Testimonials";
-
-interface Texture {
-  id: number;
-  name: string;
-  category: string;
-  image: string;
-}
-
-const categories = [
-  "Acoustic Tile Textures",
-  "Ceiling Tile Textures",
-  "Herringbone Tile Textures",
-  "Hexagonal Tile Textures",
-  "Laminate Tile Textures",
-  "Marble Tile Textures",
-  "Mosaic Tile Textures",
-  "Penny Round Tile Textures",
-  "Slate Tile Textures",
-  "Square Tile Textures",
-  "Stone Tile Textures",
-  "Terracotta Tile Textures",
-  "Terrazzo Tile Textures",
-  "Yubi Tile Textures",
-  "Zellige Tile Textures",
-];
-
-const textures: Texture[] = [
-  {
-    id: 1,
-    name: "Smooth Concrete Panel Ceiling Texture",
-    category: "Ceiling Tile Textures",
-    image: "https://images.pexels.com/photos/7380356/pexels-photo-7380356.jpeg",
-  },
-  {
-    id: 2,
-    name: "Geometric Patterned Paver Texture, Beige & Black",
-    category: "Square Tile Textures",
-    image: "https://images.pexels.com/photos/4489336/pexels-photo-4489336.jpeg",
-  },
-  {
-    id: 3,
-    name: "Patterned Aggregate Concrete Paver Texture",
-    category: "Stone Tile Textures",
-    image: "https://images.pexels.com/photos/6603943/pexels-photo-6603943.jpeg",
-  },
-  {
-    id: 4,
-    name: "Brushed Clay Tile Texture",
-    category: "Terracotta Tile Textures",
-    image: "https://images.pexels.com/photos/6023580/pexels-photo-6023580.jpeg",
-  },
-  {
-    id: 5,
-    name: "Hexagonal White Marble Tile",
-    category: "Hexagonal Tile Textures",
-    image: "https://images.pexels.com/photos/6175107/pexels-photo-6175107.jpeg",
-  },
-  {
-    id: 6,
-    name: "Mosaic Glass Tile Blue Pattern",
-    category: "Mosaic Tile Textures",
-    image:
-      "https://images.pexels.com/photos/14579397/pexels-photo-14579397.jpeg",
-  },
-  {
-    id: 7,
-    name: "Herringbone Wood Tile Floor",
-    category: "Herringbone Tile Textures",
-    image: "https://images.pexels.com/photos/7746947/pexels-photo-7746947.jpeg",
-  },
-  {
-    id: 8,
-    name: "Penny Round Ceramic Tile White",
-    category: "Penny Round Tile Textures",
-    image: "https://images.pexels.com/photos/7086367/pexels-photo-7086367.jpeg",
-  },
-  {
-    id: 9,
-    name: "Natural Slate Tile Dark Gray",
-    category: "Slate Tile Textures",
-    image: "https://images.pexels.com/photos/6788528/pexels-photo-6788528.jpeg",
-  },
-  {
-    id: 10,
-    name: "Laminate Wood Tile Oak",
-    category: "Laminate Tile Textures",
-    image:
-      "https://images.pexels.com/photos/11285345/pexels-photo-11285345.png",
-  },
-  {
-    id: 11,
-    name: "Terrazzo Tile Speckled Pattern",
-    category: "Terrazzo Tile Textures",
-    image: "https://images.pexels.com/photos/4977440/pexels-photo-4977440.jpeg",
-  },
-  {
-    id: 12,
-    name: "Zellige Handmade Tile Green",
-    category: "Zellige Tile Textures",
-    image: "https://images.pexels.com/photos/2084238/pexels-photo-2084238.jpeg",
-  },
-  {
-    id: 13,
-    name: "Acoustic Foam Tile Texture",
-    category: "Acoustic Tile Textures",
-    image: "https://images.pexels.com/photos/1660916/pexels-photo-1660916.jpeg",
-  },
-  {
-    id: 14,
-    name: "Yubi Finger Tile Pattern",
-    category: "Yubi Tile Textures",
-    image:
-      "https://images.pexels.com/photos/12969405/pexels-photo-12969405.jpeg",
-  },
-  {
-    id: 15,
-    name: "Carrara Marble Tile Veined",
-    category: "Marble Tile Textures",
-    image: "https://images.pexels.com/photos/4604566/pexels-photo-4604566.jpeg",
-  },
-  {
-    id: 16,
-    name: "Square Ceramic Tile White",
-    category: "Square Tile Textures",
-    image: "https://images.pexels.com/photos/7245511/pexels-photo-7245511.jpeg",
-  },
-  {
-    id: 17,
-    name: "Travertine Stone Tile Beige",
-    category: "Stone Tile Textures",
-    image: "https://images.pexels.com/photos/4705853/pexels-photo-4705853.jpeg",
-  },
-  {
-    id: 18,
-    name: "Subway Tile White Glossy",
-    category: "Square Tile Textures",
-    image: "https://images.pexels.com/photos/7534571/pexels-photo-7534571.jpeg",
-  },
-  {
-    id: 19,
-    name: "Moroccan Mosaic Tile Pattern",
-    category: "Mosaic Tile Textures",
-    image:
-      "https://images.pexels.com/photos/32891809/pexels-photo-32891809.jpeg",
-  },
-  {
-    id: 20,
-    name: "Hexagonal Cement Tile Black",
-    category: "Hexagonal Tile Textures",
-    image: "https://images.pexels.com/photos/8580731/pexels-photo-8580731.jpeg",
-  },
-];
+import { textures, categories, type Texture } from "@/texture-data";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const itemsPerPage = 12;
 
-  const filteredTextures = useMemo(() => {
-    let filtered = textures;
+  // Use dynamic data
+  const { textures, loading, error, pagination, total } = useTextures({
+    category: selectedCategory === "all" ? undefined : selectedCategory,
+    search: searchQuery || undefined,
+    page: currentPage,
+    limit: 12,
+  });
 
-    if (selectedCategory !== "all") {
-      filtered = filtered.filter(
-        (texture) => texture.category === selectedCategory,
-      );
-    }
-
-    if (searchQuery) {
-      filtered = filtered.filter(
-        (texture) =>
-          texture.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          texture.category.toLowerCase().includes(searchQuery.toLowerCase()),
-      );
-    }
-
-    return filtered;
-  }, [searchQuery, selectedCategory]);
-
-  const totalPages = Math.ceil(filteredTextures.length / itemsPerPage);
-
-  const currentPageTextures = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return filteredTextures.slice(startIndex, endIndex);
-  }, [filteredTextures, currentPage, itemsPerPage]);
+  // Categories from API data
+  const categories = useMemo(() => {
+    const uniqueCategories = Array.from(
+      new Set(textures.map((texture) => texture.category)),
+    );
+    return uniqueCategories.sort();
+  }, [textures]);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, selectedCategory]);
 
   const getPaginationButtons = () => {
+    if (!pagination) return [];
+
     const maxButtons = 5;
     const buttons = [];
     let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
-    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+    let endPage = Math.min(pagination.total, startPage + maxButtons - 1);
 
     if (endPage - startPage + 1 < maxButtons) {
       startPage = Math.max(1, endPage - maxButtons + 1);
@@ -212,6 +50,26 @@ export default function HomePage() {
     }
 
     return buttons;
+  };
+
+  const handleLike = async (textureId: string, e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation
+    try {
+      await likeTexture(textureId);
+      // Optionally refetch data or update local state
+    } catch (error) {
+      console.error("Failed to like texture:", error);
+    }
+  };
+
+  const handleSave = async (textureId: string, e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation
+    try {
+      await saveTexture(textureId);
+      // Optionally refetch data or update local state
+    } catch (error) {
+      console.error("Failed to save texture:", error);
+    }
   };
 
   return (
@@ -250,7 +108,7 @@ export default function HomePage() {
               href="/blog"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
-              Blog
+              Featured
             </Link>
             <Link
               href="/about"
@@ -292,7 +150,7 @@ export default function HomePage() {
                 href="/blog"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
-                Blog
+                Featured
               </Link>
               <Link
                 href="/about"
@@ -379,7 +237,7 @@ export default function HomePage() {
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
-              {currentPageTextures.map((texture) => (
+              {currentPageTextures.map((texture, index) => (
                 <Link
                   key={texture.id}
                   href={`/texture/${texture.id}`}
@@ -390,6 +248,7 @@ export default function HomePage() {
                       src={texture.image}
                       alt={texture.name}
                       fill
+                      priority={index < 4} // Priority loading for first 4 images
                       className="object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                   </div>
@@ -401,9 +260,9 @@ export default function HomePage() {
                       {texture.category}
                     </p>
                   </div>
-                </Link>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             {/* Pagination */}
             {totalPages > 1 && (

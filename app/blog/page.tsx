@@ -1,80 +1,76 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Search,
-  Menu,
-  X,
-  Calendar,
-  User,
-  Clock,
-  ArrowRight,
-  Tag,
-  TrendingUp,
-  Lightbulb,
-  Sparkles,
-} from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import { Search, Menu, X, Star, TrendingUp, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  image: string;
-  category: string;
-  author: string;
-  date: string;
-  readTime: string;
-  tags: string[];
-  featured: boolean;
-}
-
-const blogPosts: BlogPost[] = [
-  {
-    id: 1,
-    title: "2024 Tile Trends: Bold Patterns and Natural Textures",
-    excerpt:
-      "Discover the hottest tile trends for 2024, from geometric patterns to organic textures that bring nature indoors.",
-    content: "",
-    image: "https://images.pexels.com/photos/6175107/pexels-photo-6175107.jpeg",
-    category: "Trends",
-    author: "Sarah Johnson",
-    date: "2024-01-15",
-    readTime: "5 min read",
-    tags: ["trends", "2024", "patterns", "natural"],
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "The Ultimate Guide to Tile Care and Maintenance",
-    excerpt:
-      "Learn professional tips for keeping your tiles looking pristine with proper cleaning techniques and maintenance schedules.",
-    content: "",
-    image: "https://images.pexels.com/photos/4604566/pexels-photo-4604566.jpeg",
-    category: "Care Tips",
-    author: "Mike Chen",
-    date: "2024-01-10",
-    readTime: "8 min read",
-    tags: ["maintenance", "cleaning", "care", "tips"],
-    featured: false,
-  },
-];
+import { textures, categories, type Texture } from "@/texture-data";
 
 export default function BlogPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedFilter, setSelectedFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
 
-  const featuredPosts = blogPosts.filter((post) => post.featured);
+  // Create featured and trending texture selections
+  const featuredTextures = useMemo(() => {
+    // Select some textures as featured (every 3rd texture)
+    return textures.filter((texture, index) => index % 3 === 0);
+  }, []);
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  const trendingTextures = useMemo(() => {
+    // Select some textures as trending (every 4th texture starting from index 1)
+    return textures.filter((texture, index) => (index + 1) % 4 === 0);
+  }, []);
+
+  const filteredTextures = useMemo(() => {
+    let filtered = textures;
+
+    if (selectedFilter === "featured") {
+      filtered = featuredTextures;
+    } else if (selectedFilter === "trending") {
+      filtered = trendingTextures;
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (texture) =>
+          texture.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          texture.category.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+    }
+
+    return filtered;
+  }, [searchQuery, selectedFilter, featuredTextures, trendingTextures]);
+
+  const totalPages = Math.ceil(filteredTextures.length / itemsPerPage);
+
+  const currentPageTextures = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredTextures.slice(startIndex, endIndex);
+  }, [filteredTextures, currentPage, itemsPerPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedFilter]);
+
+  const getPaginationButtons = () => {
+    const maxButtons = 5;
+    const buttons = [];
+    let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+
+    if (endPage - startPage + 1 < maxButtons) {
+      startPage = Math.max(1, endPage - maxButtons + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      buttons.push(i);
+    }
+
+    return buttons;
   };
 
   return (
@@ -91,7 +87,7 @@ export default function BlogPage() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <input
                 type="text"
-                placeholder="Search blog posts..."
+                placeholder="Search featured textures..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 bg-dark border border-dark text-white text-sm rounded-lg focus:outline-none focus:border-primary-blue transition-colors"
@@ -116,7 +112,7 @@ export default function BlogPage() {
               href="/blog"
               className="text-primary-blue text-sm font-medium"
             >
-              Blog
+              Featured
             </Link>
             <Link
               href="/about"
@@ -161,7 +157,7 @@ export default function BlogPage() {
                 href="/blog"
                 className="text-primary-blue text-sm font-medium"
               >
-                Blog
+                Featured
               </Link>
               <Link
                 href="/about"
@@ -186,79 +182,224 @@ export default function BlogPage() {
               Home
             </Link>
             <span className="mx-2">/</span>
-            <span>Blog</span>
+            <span>Featured Textures</span>
           </nav>
 
           {/* Page Header */}
           <div className="mb-16 text-center">
             <h1 className="text-4xl font-bold text-white mb-6">
-              Tile Trends & Tips
+              Featured & Trending Textures
             </h1>
             <p className="text-lg text-gray-light leading-relaxed max-w-3xl mx-auto">
-              Stay updated with the latest tile trends, expert care tips, and
-              exciting new arrivals in our comprehensive design blog.
+              Discover our hand-picked selection of premium tile textures. From
+              trending designs to customer favorites, find inspiration for your
+              next project.
             </p>
           </div>
 
-          {/* Featured Posts */}
-          {featuredPosts.length > 0 && (
-            <section className="mb-16">
-              <h2 className="text-2xl font-semibold text-white mb-8 flex items-center gap-2">
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap gap-3 mb-12 justify-center">
+            <button
+              onClick={() => setSelectedFilter("all")}
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                selectedFilter === "all"
+                  ? "bg-primary-blue text-white shadow-lg shadow-primary-blue/30"
+                  : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
+              }`}
+            >
+              All Textures
+            </button>
+            <button
+              onClick={() => setSelectedFilter("featured")}
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                selectedFilter === "featured"
+                  ? "bg-primary-blue text-white shadow-lg shadow-primary-blue/30"
+                  : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
+              }`}
+            >
+              <Star className="w-4 h-4" />
+              Featured ({featuredTextures.length})
+            </button>
+            <button
+              onClick={() => setSelectedFilter("trending")}
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                selectedFilter === "trending"
+                  ? "bg-primary-blue text-white shadow-lg shadow-primary-blue/30"
+                  : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
+              }`}
+            >
+              <TrendingUp className="w-4 h-4" />
+              Trending ({trendingTextures.length})
+            </button>
+          </div>
+
+          {/* Textures Grid */}
+          <section>
+            <h2 className="text-2xl font-semibold text-white mb-8 flex items-center gap-2">
+              {selectedFilter === "featured" && (
+                <Star className="w-6 h-6 text-primary-blue" />
+              )}
+              {selectedFilter === "trending" && (
+                <TrendingUp className="w-6 h-6 text-primary-blue" />
+              )}
+              {selectedFilter === "all" && (
                 <Sparkles className="w-6 h-6 text-primary-blue" />
-                Featured Posts
-              </h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {featuredPosts.slice(0, 2).map((post) => (
-                  <article
-                    key={post.id}
-                    className="group bg-dark-lighter rounded-xl overflow-hidden border border-dark hover:border-primary-blue transition-all duration-300 hover:-translate-y-1"
-                  >
-                    <div className="aspect-[16/9] overflow-hidden relative">
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-xs text-primary-blue bg-primary-blue/10 px-3 py-1 rounded-full">
-                          {post.category}
-                        </span>
-                        <span className="text-xs text-yellow-400 bg-yellow-400/10 px-3 py-1 rounded-full">
-                          Featured
-                        </span>
+              )}
+              {selectedFilter === "featured"
+                ? "Featured Textures"
+                : selectedFilter === "trending"
+                  ? "Trending Textures"
+                  : "All Premium Textures"}{" "}
+              ({filteredTextures.length})
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              {currentPageTextures.map((texture, index) => (
+                <Link
+                  key={texture.id}
+                  href={`/texture/${texture.id}`}
+                  className="group bg-dark-lighter rounded-xl overflow-hidden border border-dark hover:border-primary-blue transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-blue/20 cursor-pointer block"
+                >
+                  <div className="aspect-[4/3] overflow-hidden relative">
+                    <Image
+                      src={texture.image}
+                      alt={texture.name}
+                      fill
+                      priority={index < 3}
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    {/* Badge for featured/trending */}
+                    {selectedFilter !== "all" && (
+                      <div className="absolute top-4 right-4 z-10">
+                        {selectedFilter === "featured" ? (
+                          <div className="bg-yellow-500 text-black text-xs px-3 py-1 rounded-full font-medium flex items-center gap-1">
+                            <Star className="w-3 h-3" />
+                            Featured
+                          </div>
+                        ) : (
+                          <div className="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-medium flex items-center gap-1">
+                            <TrendingUp className="w-3 h-3" />
+                            Trending
+                          </div>
+                        )}
                       </div>
-                      <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-blue transition-colors">
-                        {post.title}
-                      </h3>
-                      <p className="text-gray-light mb-4 leading-relaxed">
-                        {post.excerpt}
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-xs text-primary-blue bg-primary-blue/10 px-3 py-1 rounded-full">
+                        {texture.category}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-primary-blue transition-colors">
+                      {texture.name}
+                    </h3>
+                    {texture.description && (
+                      <p className="text-gray-light mb-4 text-sm leading-relaxed line-clamp-3">
+                        {texture.description}
                       </p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4 text-sm text-gray-light">
-                          <div className="flex items-center gap-1">
-                            <User className="w-4 h-4" />
-                            {post.author}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Calendar className="w-4 h-4" />
-                            {formatDate(post.date)}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
-                            {post.readTime}
-                          </div>
-                        </div>
-                        <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary-blue group-hover:translate-x-1 transition-all duration-300" />
+                    )}
+                    {texture.tags && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {texture.tags.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-xs text-gray-400 bg-dark border border-dark px-2 py-1 rounded"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
-                    </div>
-                  </article>
-                ))}
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* No Results */}
+            {filteredTextures.length === 0 && (
+              <div className="text-center py-16">
+                <div className="w-24 h-24 bg-dark-lighter rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Search className="w-12 h-12 text-gray-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3">
+                  No textures found
+                </h3>
+                <p className="text-gray-light">
+                  Try adjusting your search or filter criteria
+                </p>
               </div>
-            </section>
-          )}
+            )}
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-3 mb-10">
+                <button
+                  disabled={currentPage === 1}
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
+                    currentPage === 1
+                      ? "text-gray-500 cursor-not-allowed opacity-50"
+                      : "text-white hover:border-primary-blue cursor-pointer"
+                  } bg-dark-lighter`}
+                >
+                  Previous
+                </button>
+
+                {getPaginationButtons().map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${
+                      currentPage === page
+                        ? "bg-primary-blue text-white border-primary-blue"
+                        : "bg-dark-lighter text-white hover:border-primary-blue"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+
+                <button
+                  disabled={currentPage === totalPages}
+                  onClick={() =>
+                    setCurrentPage(Math.min(totalPages, currentPage + 1))
+                  }
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
+                    currentPage === totalPages
+                      ? "text-gray-500 cursor-not-allowed opacity-50"
+                      : "text-white hover:border-primary-blue cursor-pointer"
+                  } bg-dark-lighter`}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+          </section>
+
+          {/* Newsletter Signup */}
+          <section className="mt-20">
+            <div className="bg-gradient-to-r from-dark-lighter via-primary-blue/10 to-dark-lighter rounded-2xl p-8 border border-dark text-center">
+              <h2 className="text-2xl font-semibold text-white mb-4">
+                Stay Updated with New Textures
+              </h2>
+              <p className="text-gray-light mb-6 max-w-2xl mx-auto">
+                Be the first to know about our latest texture releases, trending
+                designs, and exclusive collections. Get notifications about new
+                additions to our library.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 bg-dark border border-dark rounded-lg text-white focus:outline-none focus:border-primary-blue transition-colors"
+                />
+                <button className="bg-primary-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-blue-dark transition-colors">
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
 
@@ -274,6 +415,118 @@ export default function BlogPage() {
                 The ultimate resource for high-quality tile textures. Perfect
                 for architects, designers, and 3D artists.
               </p>
+            </div>
+
+            <div>
+              <h5 className="text-sm font-medium text-white mb-3">
+                Categories
+              </h5>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/categories"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Ceramic Tiles
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/categories"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Stone Tiles
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/categories"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Mosaic Tiles
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-sm font-medium text-white mb-3">Support</h5>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/help"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Help Center
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/license"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    License
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-sm font-medium text-white mb-3">Connect</h5>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Twitter
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    LinkedIn
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-dark pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
+            <p className="text-xs text-gray-light">
+              © 2024 TileTextures. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <a
+                href="#"
+                className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+              >
+                Terms of Service
+              </a>
             </div>
           </div>
         </div>
