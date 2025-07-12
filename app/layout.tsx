@@ -3,14 +3,26 @@ import "./globals.css";
 import { Toaster } from "@/ui/toaster";
 import { Toaster as Sonner } from "@/ui/sonner";
 import { TooltipProvider } from "@/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import WhatsAppButton from "@/WhatsAppButton";
 import { ReactQueryProvider } from "./providers";
 
 export const metadata: Metadata = {
-  title: "TileTextures - High-Quality Tile Textures for 3D Artists",
+  title: "TileTextures - Premium Tile & Marble Textures | Order Custom Designs",
   description:
-    "Browse a variety of tile textures, including ceramic, and mosaic, with styles such as square, hexagonal, and patterned. Perfect for floors, walls, and decorative surfaces.",
+    "Explore our premium collection of tile and marble textures. From ceramic to mosaic, hexagonal to herringbone - contact us to order custom tiles for your project.",
+  keywords:
+    "tile textures, marble textures, ceramic tiles, mosaic tiles, hexagonal tiles, custom tile orders, architectural materials",
+  openGraph: {
+    title: "TileTextures - Premium Tile & Marble Textures",
+    description:
+      "Explore and order premium tile textures for your architectural projects",
+    type: "website",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

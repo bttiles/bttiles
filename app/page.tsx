@@ -1,10 +1,7 @@
 "use client";
-
 import { useState, useEffect, useMemo } from "react";
 import { Search, Menu, X } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import Testimonials from "@/Testimonials";
+import Testimonials from "../components/Testimonials";
 
 interface Texture {
   id: number;
@@ -158,7 +155,7 @@ const textures: Texture[] = [
   },
 ];
 
-export default function HomePage() {
+export default function Index() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -237,27 +234,27 @@ export default function HomePage() {
           </div>
 
           <nav className="hidden lg:flex items-center gap-6">
-            <Link href="/" className="text-primary-blue text-sm font-medium">
+            <a href="/" className="text-primary-blue text-sm font-medium">
               Home
-            </Link>
-            <Link
+            </a>
+            <a
               href="/categories"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
               Categories
-            </Link>
-            <Link
+            </a>
+            <a
               href="/blog"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
               Blog
-            </Link>
-            <Link
+            </a>
+            <a
               href="/about"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
               About
-            </Link>
+            </a>
             <button className="bg-primary-blue text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-blue-dark transition-colors">
               Sign In
             </button>
@@ -279,27 +276,27 @@ export default function HomePage() {
         {isMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 border-t border-dark">
             <nav className="flex flex-col gap-4 mt-4">
-              <Link href="/" className="text-primary-blue text-sm font-medium">
+              <a href="/" className="text-primary-blue text-sm font-medium">
                 Home
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/categories"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
                 Categories
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/blog"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
                 Blog
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/about"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
                 About
-              </Link>
+              </a>
               <button className="bg-primary-blue text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-blue-dark transition-colors self-start">
                 Sign In
               </button>
@@ -313,13 +310,13 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 py-6">
           {/* Breadcrumb */}
           <nav className="text-sm text-gray-light mb-10">
-            <Link href="/" className="text-primary-blue hover:underline">
+            <a href="#" className="text-primary-blue hover:underline">
               Home
-            </Link>
+            </a>
             <span className="mx-2">/</span>
-            <Link href="/" className="text-primary-blue hover:underline">
+            <a href="#" className="text-primary-blue hover:underline">
               Textures
-            </Link>
+            </a>
             <span className="mx-2">/</span>
             <span>Tile</span>
           </nav>
@@ -380,17 +377,16 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
               {currentPageTextures.map((texture) => (
-                <Link
+                <a
                   key={texture.id}
                   href={`/texture/${texture.id}`}
                   className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group block"
                 >
-                  <div className="aspect-square overflow-hidden relative">
-                    <Image
+                  <div className="aspect-square overflow-hidden">
+                    <img
                       src={texture.image}
                       alt={texture.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-200"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                   </div>
                   <div className="p-4">
@@ -401,7 +397,7 @@ export default function HomePage() {
                       {texture.category}
                     </p>
                   </div>
-                </Link>
+                </a>
               ))}
             </div>
 
@@ -476,28 +472,28 @@ export default function HomePage() {
               </h5>
               <ul className="space-y-2">
                 <li>
-                  <Link
-                    href="/categories"
+                  <a
+                    href="#"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Ceramic Tiles
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link
-                    href="/categories"
+                  <a
+                    href="#"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Stone Tiles
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link
-                    href="/categories"
+                  <a
+                    href="#"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Mosaic Tiles
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -506,28 +502,28 @@ export default function HomePage() {
               <h5 className="text-sm font-medium text-white mb-3">Support</h5>
               <ul className="space-y-2">
                 <li>
-                  <Link
+                  <a
                     href="/help"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Help Center
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link
+                  <a
                     href="/contact"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Contact Us
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link
-                    href="/license"
+                  <a
+                    href="#"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     License
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
