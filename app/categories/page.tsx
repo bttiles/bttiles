@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Search, Menu, X, ArrowRight, Grid3X3, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { textures, categories as textureCategories } from "@/texture-data";
 
 interface Category {
   id: number;
