@@ -1,15 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import {
-  Search,
-  Menu,
-  X,
-  ArrowRight,
-  Grid3X3,
-  Eye,
-  Download,
-} from "lucide-react";
+import { Search, Menu, X, ArrowRight, Grid3X3, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
