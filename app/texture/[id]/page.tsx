@@ -51,14 +51,10 @@ const getTextureById = (id: string): Texture | null => {
   return textures.find((t) => t.id === parseInt(id)) || null;
 };
 
-export default async function TextureDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+export default function TextureDetailPage() {
+  const params = useParams();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const texture = getTextureById(id);
+  const texture = getTextureById(params.id as string);
 
   if (!texture) {
     return (
