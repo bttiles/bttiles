@@ -57,7 +57,7 @@ export default async function TextureDetailPage({
 }) {
   const { id } = await params;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const texture = getTextureById(params.id);
+  const texture = getTextureById(id);
 
   if (!texture) {
     return (
