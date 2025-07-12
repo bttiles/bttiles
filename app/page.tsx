@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, Heart } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Testimonials from "@/Testimonials";
-import { textures, categories, type Texture } from "@/texture-data";
+import { useTextures, type TextureData } from "@/useTextures";
+import { likeTexture, saveTexture, getSessionId } from "@/session";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
