@@ -3,6 +3,5 @@
   "/page": "app/page.js",
   "/texture/[id]/page": "app/texture/[id]/page.js",
   "/categories/page": "app/categories/page.js",
-  "/about/page": "app/about/page.js",
   "/blog/page": "app/blog/page.js"
 }

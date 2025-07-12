@@ -70,7 +70,7 @@ export default function TextureDetailPage() {
               href="/blog"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
-              Blog
+              Featured
             </Link>
             <Link
               href="/about"
@@ -170,7 +170,7 @@ export default function TextureDetailPage() {
               <div className="mb-6">
                 <h3 className="text-sm font-medium text-white mb-3">Tags</h3>
                 <div className="flex flex-wrap gap-2">
-                  {texture.tags.map((tag) => (
+                  {texture.tags?.map((tag) => (
                     <span
                       key={tag}
                       className="text-xs text-gray-light bg-dark border border-dark px-3 py-1 rounded-full"

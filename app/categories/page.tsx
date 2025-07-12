@@ -1,165 +1,70 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Search, Menu, X, ArrowRight, Grid3X3, Eye } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import { Search, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { textures, categories as textureCategories } from "@/texture-data";
-
-interface Category {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-  textureCount: number;
-  featured: boolean;
-}
-
-// Calculate actual texture counts from shared data
-const getTextureCountForCategory = (categoryName: string): number => {
-  return textures.filter((texture) => texture.category === categoryName).length;
-};
-
-const categories: Category[] = [
-  {
-    id: 1,
-    name: "Acoustic Tile Textures",
-    description: "Sound-absorbing tiles for studios and offices",
-    image: "https://images.pexels.com/photos/1660916/pexels-photo-1660916.jpeg",
-    textureCount: getTextureCountForCategory("Acoustic Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 2,
-    name: "Ceiling Tile Textures",
-    description: "Professional ceiling solutions and panels",
-    image: "https://images.pexels.com/photos/7380356/pexels-photo-7380356.jpeg",
-    textureCount: getTextureCountForCategory("Ceiling Tile Textures"),
-    featured: true,
-  },
-  {
-    id: 3,
-    name: "Herringbone Tile Textures",
-    description: "Classic zigzag patterns for floors and walls",
-    image: "https://images.pexels.com/photos/7746947/pexels-photo-7746947.jpeg",
-    textureCount: getTextureCountForCategory("Herringbone Tile Textures"),
-    featured: true,
-  },
-  {
-    id: 4,
-    name: "Hexagonal Tile Textures",
-    description: "Geometric six-sided tile designs",
-    image: "https://images.pexels.com/photos/6175107/pexels-photo-6175107.jpeg",
-    textureCount: getTextureCountForCategory("Hexagonal Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 5,
-    name: "Laminate Tile Textures",
-    description: "Durable synthetic material finishes",
-    image:
-      "https://images.pexels.com/photos/11285345/pexels-photo-11285345.png",
-    textureCount: getTextureCountForCategory("Laminate Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 6,
-    name: "Marble Tile Textures",
-    description: "Luxury natural stone with elegant veining",
-    image: "https://images.pexels.com/photos/4604566/pexels-photo-4604566.jpeg",
-    textureCount: getTextureCountForCategory("Marble Tile Textures"),
-    featured: true,
-  },
-  {
-    id: 7,
-    name: "Mosaic Tile Textures",
-    description: "Small decorative tile arrangements",
-    image:
-      "https://images.pexels.com/photos/14579397/pexels-photo-14579397.jpeg",
-    textureCount: getTextureCountForCategory("Mosaic Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 8,
-    name: "Penny Round Tile Textures",
-    description: "Small circular tiles for detailed surfaces",
-    image: "https://images.pexels.com/photos/7086367/pexels-photo-7086367.jpeg",
-    textureCount: getTextureCountForCategory("Penny Round Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 9,
-    name: "Slate Tile Textures",
-    description: "Natural stone with rustic appeal",
-    image: "https://images.pexels.com/photos/6788528/pexels-photo-6788528.jpeg",
-    textureCount: getTextureCountForCategory("Slate Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 10,
-    name: "Square Tile Textures",
-    description: "Classic square patterns and layouts",
-    image: "https://images.pexels.com/photos/4489336/pexels-photo-4489336.jpeg",
-    textureCount: getTextureCountForCategory("Square Tile Textures"),
-    featured: true,
-  },
-  {
-    id: 11,
-    name: "Stone Tile Textures",
-    description: "Natural stone finishes and textures",
-    image: "https://images.pexels.com/photos/6603943/pexels-photo-6603943.jpeg",
-    textureCount: getTextureCountForCategory("Stone Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 12,
-    name: "Terracotta Tile Textures",
-    description: "Earthy clay tiles with warm tones",
-    image: "https://images.pexels.com/photos/6023580/pexels-photo-6023580.jpeg",
-    textureCount: getTextureCountForCategory("Terracotta Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 13,
-    name: "Terrazzo Tile Textures",
-    description: "Composite material with decorative chips",
-    image: "https://images.pexels.com/photos/4977440/pexels-photo-4977440.jpeg",
-    textureCount: getTextureCountForCategory("Terrazzo Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 14,
-    name: "Yubi Tile Textures",
-    description: "Textured finger-like surface patterns",
-    image:
-      "https://images.pexels.com/photos/12969405/pexels-photo-12969405.jpeg",
-    textureCount: getTextureCountForCategory("Yubi Tile Textures"),
-    featured: false,
-  },
-  {
-    id: 15,
-    name: "Zellige Tile Textures",
-    description: "Handmade glazed terra cotta tiles",
-    image: "https://images.pexels.com/photos/2084238/pexels-photo-2084238.jpeg",
-    textureCount: getTextureCountForCategory("Zellige Tile Textures"),
-    featured: false,
-  },
-];
+import {
+  textures,
+  categories as textureCategories,
+  type Texture,
+} from "@/texture-data";
 
 export default function CategoriesPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
 
-  const filteredCategories = categories.filter((category) => {
-    const matchesSearch = category.name
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
-    const matchesFilter =
-      selectedFilter === "all" ||
-      (selectedFilter === "featured" && category.featured);
-    return matchesSearch && matchesFilter;
-  });
+  const filteredTextures = useMemo(() => {
+    let filtered = textures;
+
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(
+        (texture) => texture.category === selectedCategory,
+      );
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (texture) =>
+          texture.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          texture.category.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+    }
+
+    return filtered;
+  }, [searchQuery, selectedCategory]);
+
+  const totalPages = Math.ceil(filteredTextures.length / itemsPerPage);
+
+  const currentPageTextures = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredTextures.slice(startIndex, endIndex);
+  }, [filteredTextures, currentPage, itemsPerPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory]);
+
+  const getPaginationButtons = () => {
+    const maxButtons = 5;
+    const buttons = [];
+    let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+
+    if (endPage - startPage + 1 < maxButtons) {
+      startPage = Math.max(1, endPage - maxButtons + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      buttons.push(i);
+    }
+
+    return buttons;
+  };
 
   return (
     <div className="min-h-screen bg-dark text-white">
@@ -175,7 +80,7 @@ export default function CategoriesPage() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <input
                 type="text"
-                placeholder="Search categories..."
+                placeholder="Search tile textures..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 bg-dark border border-dark text-white text-sm rounded-lg focus:outline-none focus:border-primary-blue transition-colors"
@@ -200,7 +105,7 @@ export default function CategoriesPage() {
               href="/blog"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
-              Blog
+              Featured
             </Link>
             <Link
               href="/about"
@@ -242,6 +147,12 @@ export default function CategoriesPage() {
                 Categories
               </Link>
               <Link
+                href="/blog"
+                className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
+              >
+                Featured
+              </Link>
+              <Link
                 href="/about"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
@@ -269,89 +180,154 @@ export default function CategoriesPage() {
 
           {/* Page Header */}
           <div className="mb-16 text-center">
-            <h1 className="text-5xl font-bold text-white mb-6">
-              Tile Categories
+            <h1 className="text-4xl font-bold text-white mb-6">
+              Browse by Category
             </h1>
-            <p className="text-lg text-gray-light leading-relaxed max-w-3xl mx-auto mb-8">
-              Explore our comprehensive collection of tile texture categories
+            <p className="text-lg text-gray-light leading-relaxed max-w-3xl mx-auto">
+              Explore our comprehensive collection of {textures.length} premium
+              tile textures organized by category. Find the perfect texture for
+              your project.
             </p>
-
-            {/* Filter Buttons */}
-            <div className="flex justify-center gap-4 mb-8">
-              <button
-                onClick={() => setSelectedFilter("all")}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                  selectedFilter === "all"
-                    ? "bg-primary-blue text-white"
-                    : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
-                }`}
-              >
-                All Categories
-              </button>
-              <button
-                onClick={() => setSelectedFilter("featured")}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                  selectedFilter === "featured"
-                    ? "bg-primary-blue text-white"
-                    : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
-                }`}
-              >
-                Featured
-              </button>
-            </div>
           </div>
 
-          {/* Categories Grid */}
-          <section>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {filteredCategories.map((category) => (
-                <Link
-                  key={category.id}
-                  href="/"
-                  className="group relative bg-dark-lighter rounded-2xl overflow-hidden border border-dark transition-all duration-500 hover:border-primary-blue hover:shadow-2xl hover:-translate-y-2 cursor-pointer block"
-                >
-                  {/* Featured Badge */}
-                  {category.featured && (
-                    <div className="absolute top-4 right-4 z-10 bg-primary-blue text-white text-xs px-3 py-1 rounded-full font-medium">
-                      Featured
-                    </div>
-                  )}
+          {/* Categories Section */}
+          <section className="mb-10">
+            <h3 className="text-lg font-medium text-white mb-6">
+              <span>{textureCategories.length}</span>
+              <span> Tile Categories</span>
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-6">
+              <button
+                onClick={() => setSelectedCategory("all")}
+                className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${
+                  selectedCategory === "all"
+                    ? "bg-primary-blue text-white"
+                    : "bg-dark-lighter text-white"
+                }`}
+              >
+                All Categories ({textures.length})
+              </button>
+              {textureCategories.map((category, index) => {
+                const count = textures.filter(
+                  (texture) => texture.category === category,
+                ).length;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${
+                      selectedCategory === category
+                        ? "bg-primary-blue text-white"
+                        : "bg-dark-lighter text-white"
+                    }`}
+                  >
+                    {category} ({count})
+                  </button>
+                );
+              })}
+            </div>
+          </section>
 
-                  {/* Image Container */}
-                  <div className="relative aspect-[4/3] overflow-hidden">
+          {/* Textures Grid */}
+          <section>
+            <h3 className="text-lg font-medium text-white mb-6">
+              <span>{filteredTextures.length}</span>
+              <span> Tile Textures</span>
+              {selectedCategory !== "all" && (
+                <span className="text-primary-blue">
+                  {" "}
+                  in {selectedCategory}
+                </span>
+              )}
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+              {currentPageTextures.map((texture, index) => (
+                <Link
+                  key={texture.id}
+                  href={`/texture/${texture.id}`}
+                  className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group block"
+                >
+                  <div className="aspect-square overflow-hidden relative">
                     <Image
-                      src={category.image}
-                      alt={category.name}
+                      src={texture.image}
+                      alt={texture.name}
                       fill
-                      className="object-cover transition-all duration-700 group-hover:scale-110"
+                      priority={index < 4} // Priority loading for first 4 images
+                      className="object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                   </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-lg font-semibold text-white leading-tight group-hover:text-primary-blue transition-colors duration-300">
-                        {category.name}
-                      </h3>
-                      <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary-blue group-hover:translate-x-1 transition-all duration-300 flex-shrink-0 ml-2" />
-                    </div>
-
-                    <p className="text-sm text-gray-light mb-4 leading-relaxed">
-                      {category.description}
+                  <div className="p-4">
+                    <h4 className="text-sm font-medium text-white mb-2 leading-snug">
+                      {texture.name}
+                    </h4>
+                    <p className="text-xs text-gray-light">
+                      {texture.category}
                     </p>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Eye className="w-4 h-4 text-primary-blue" />
-                        <span className="text-sm font-medium text-white">
-                          {category.textureCount} textures
-                        </span>
-                      </div>
-                    </div>
                   </div>
                 </Link>
               ))}
             </div>
+
+            {/* No Results */}
+            {filteredTextures.length === 0 && (
+              <div className="text-center py-16">
+                <div className="w-24 h-24 bg-dark-lighter rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Search className="w-12 h-12 text-gray-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3">
+                  No textures found
+                </h3>
+                <p className="text-gray-light">
+                  Try adjusting your search or filter criteria
+                </p>
+              </div>
+            )}
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-3 mb-10">
+                <button
+                  disabled={currentPage === 1}
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
+                    currentPage === 1
+                      ? "text-gray-500 cursor-not-allowed opacity-50"
+                      : "text-white hover:border-primary-blue cursor-pointer"
+                  } bg-dark-lighter`}
+                >
+                  Previous
+                </button>
+
+                {getPaginationButtons().map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${
+                      currentPage === page
+                        ? "bg-primary-blue text-white border-primary-blue"
+                        : "bg-dark-lighter text-white hover:border-primary-blue"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+
+                <button
+                  disabled={currentPage === totalPages}
+                  onClick={() =>
+                    setCurrentPage(Math.min(totalPages, currentPage + 1))
+                  }
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
+                    currentPage === totalPages
+                      ? "text-gray-500 cursor-not-allowed opacity-50"
+                      : "text-white hover:border-primary-blue cursor-pointer"
+                  } bg-dark-lighter`}
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </section>
         </div>
       </main>
@@ -368,6 +344,118 @@ export default function CategoriesPage() {
                 The ultimate resource for high-quality tile textures. Perfect
                 for architects, designers, and 3D artists.
               </p>
+            </div>
+
+            <div>
+              <h5 className="text-sm font-medium text-white mb-3">
+                Categories
+              </h5>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/categories"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Ceramic Tiles
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/categories"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Stone Tiles
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/categories"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Mosaic Tiles
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-sm font-medium text-white mb-3">Support</h5>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/help"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Help Center
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/license"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    License
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-sm font-medium text-white mb-3">Connect</h5>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Twitter
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                  >
+                    LinkedIn
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-dark pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
+            <p className="text-xs text-gray-light">
+              © 2024 TileTextures. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <a
+                href="#"
+                className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+              >
+                Terms of Service
+              </a>
             </div>
           </div>
         </div>
