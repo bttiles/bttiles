@@ -352,7 +352,9 @@ export default function HomePage() {
                 <button
                   disabled={currentPage === totalPages}
                   onClick={() =>
-                    setCurrentPage(Math.min(totalPages, currentPage + 1))
+                    setCurrentPage(
+                      Math.min(pagination?.total || 1, currentPage + 1),
+                    )
                   }
                   className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
                     currentPage === totalPages
