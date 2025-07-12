@@ -4,9 +4,9 @@ import { useState, useEffect, useMemo } from "react";
 import { Search, Menu, X, Heart } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import Testimonials from "@/Testimonials";
-import { useTextures, type TextureData } from "@/hooks/useTextures";
-import { likeTexture, saveTexture, getSessionId } from "@/lib/session";
+import Testimonials from "../components/Testimonials";
+import { useTextures, type TextureData } from "../hooks/useTextures";
+import { likeTexture, saveTexture, getSessionId } from "../lib/session";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
