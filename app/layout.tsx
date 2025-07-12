@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     "Explore our premium collection of tile and marble textures. From ceramic to mosaic, hexagonal to herringbone - contact us to order custom tiles for your project.",
   keywords:
     "tile textures, marble textures, ceramic tiles, mosaic tiles, hexagonal tiles, custom tile orders, architectural materials",
+  viewport: "width=device-width, initial-scale=1",
   openGraph: {
     title: "TileTextures - Premium Tile & Marble Textures",
     description:
