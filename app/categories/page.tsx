@@ -8,7 +8,7 @@ import {
   textures,
   categories as textureCategories,
   type Texture,
-} from "@/texture-data";
+} from "../lib/temp-texture-data";
 
 export default function CategoriesPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
