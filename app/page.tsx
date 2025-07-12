@@ -237,33 +237,88 @@ export default function HomePage() {
               <span> Tile Textures</span>
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
-              {currentPageTextures.map((texture, index) => (
-                <Link
-                  key={texture.id}
-                  href={`/texture/${texture.id}`}
-                  className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group block"
+            {/* Loading State */}
+            {loading && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+                {Array.from({ length: 12 }).map((_, index) => (
+                  <div
+                    key={index}
+                    className="bg-dark-lighter rounded-lg overflow-hidden border border-dark animate-pulse"
+                  >
+                    <div className="aspect-square bg-gray-700"></div>
+                    <div className="p-4">
+                      <div className="h-4 bg-gray-700 rounded mb-2"></div>
+                      <div className="h-3 bg-gray-700 rounded w-3/4"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Error State */}
+            {error && (
+              <div className="text-center py-16">
+                <div className="text-red-400 mb-4">
+                  <X className="w-16 h-16 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">
+                    Failed to load textures
+                  </h3>
+                  <p className="text-gray-light">{error}</p>
+                </div>
+                <button
+                  onClick={() => window.location.reload()}
+                  className="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-primary-blue-dark transition-colors"
                 >
-                  <div className="aspect-square overflow-hidden relative">
-                    <Image
-                      src={texture.image}
-                      alt={texture.name}
-                      fill
-                      priority={index < 4} // Priority loading for first 4 images
-                      className="object-cover group-hover:scale-105 transition-transform duration-200"
-                    />
+                  Try Again
+                </button>
+              </div>
+            )}
+
+            {/* Textures Grid */}
+            {!loading && !error && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+                {textures.map((texture, index) => (
+                  <div
+                    key={texture._id}
+                    className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group relative"
+                  >
+                    <Link href={`/texture/${texture._id}`} className="block">
+                      <div className="aspect-square overflow-hidden relative">
+                        <Image
+                          src={texture.image}
+                          alt={texture.name}
+                          fill
+                          priority={index < 4}
+                          className="object-cover group-hover:scale-105 transition-transform duration-200"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="text-sm font-medium text-white mb-2 leading-snug">
+                          {texture.name}
+                        </h4>
+                        <p className="text-xs text-gray-light mb-2">
+                          {texture.category}
+                        </p>
+                        <div className="flex items-center justify-between text-xs text-gray-400">
+                          <span>{texture.views} views</span>
+                          <span>{texture.likes} likes</span>
+                        </div>
+                      </div>
+                    </Link>
+
+                    {/* Interaction Buttons */}
+                    <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button
+                        onClick={(e) => handleLike(texture._id, e)}
+                        className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500 transition-colors"
+                      >
+                        <Heart className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="p-4">
-                    <h4 className="text-sm font-medium text-white mb-2 leading-snug">
-                      {texture.name}
-                    </h4>
-                    <p className="text-xs text-gray-light">
-                      {texture.category}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             {/* Pagination */}
             {totalPages > 1 && (
