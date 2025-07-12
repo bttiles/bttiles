@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import connectDB from "@/mongodb";
-import Texture from "@/models/Texture";
-import UserInteraction from "@/models/UserInteraction";
+import connectDB from "@/lib/mongodb";
+import Texture from "@/lib/models/Texture";
+import UserInteraction from "@/lib/models/UserInteraction";
 import mongoose from "mongoose";
 
 export async function POST(
