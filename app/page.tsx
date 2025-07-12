@@ -233,7 +233,7 @@ export default function HomePage() {
           {/* Textures Grid */}
           <section>
             <h3 className="text-lg font-medium text-white mb-6">
-              <span>{filteredTextures.length}</span>
+              <span>{total}</span>
               <span> Tile Textures</span>
             </h3>
 
