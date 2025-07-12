@@ -1,7 +1,10 @@
 "use client";
+
 import { useState, useEffect, useMemo } from "react";
 import { Search, Menu, X } from "lucide-react";
-import Testimonials from "../components/Testimonials";
+import Link from "next/link";
+import Image from "next/image";
+import Testimonials from "@/Testimonials";
 
 interface Texture {
   id: number;
@@ -155,7 +158,7 @@ const textures: Texture[] = [
   },
 ];
 
-export default function Index() {
+export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -234,27 +237,27 @@ export default function Index() {
           </div>
 
           <nav className="hidden lg:flex items-center gap-6">
-            <a href="/" className="text-primary-blue text-sm font-medium">
+            <Link href="/" className="text-primary-blue text-sm font-medium">
               Home
-            </a>
-            <a
+            </Link>
+            <Link
               href="/categories"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
               Categories
-            </a>
-            <a
+            </Link>
+            <Link
               href="/blog"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
               Blog
-            </a>
-            <a
+            </Link>
+            <Link
               href="/about"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
               About
-            </a>
+            </Link>
             <button className="bg-primary-blue text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-blue-dark transition-colors">
               Sign In
             </button>
@@ -276,27 +279,27 @@ export default function Index() {
         {isMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 border-t border-dark">
             <nav className="flex flex-col gap-4 mt-4">
-              <a href="/" className="text-primary-blue text-sm font-medium">
+              <Link href="/" className="text-primary-blue text-sm font-medium">
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/categories"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
                 Categories
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/blog"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
                 Blog
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/about"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
                 About
-              </a>
+              </Link>
               <button className="bg-primary-blue text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-blue-dark transition-colors self-start">
                 Sign In
               </button>
@@ -310,13 +313,13 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-6 py-6">
           {/* Breadcrumb */}
           <nav className="text-sm text-gray-light mb-10">
-            <a href="#" className="text-primary-blue hover:underline">
+            <Link href="/" className="text-primary-blue hover:underline">
               Home
-            </a>
+            </Link>
             <span className="mx-2">/</span>
-            <a href="#" className="text-primary-blue hover:underline">
+            <Link href="/" className="text-primary-blue hover:underline">
               Textures
-            </a>
+            </Link>
             <span className="mx-2">/</span>
             <span>Tile</span>
           </nav>
@@ -377,16 +380,17 @@ export default function Index() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
               {currentPageTextures.map((texture) => (
-                <a
+                <Link
                   key={texture.id}
                   href={`/texture/${texture.id}`}
                   className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group block"
                 >
-                  <div className="aspect-square overflow-hidden">
-                    <img
+                  <div className="aspect-square overflow-hidden relative">
+                    <Image
                       src={texture.image}
                       alt={texture.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                   </div>
                   <div className="p-4">
@@ -397,7 +401,7 @@ export default function Index() {
                       {texture.category}
                     </p>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -472,28 +476,28 @@ export default function Index() {
               </h5>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/categories"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Ceramic Tiles
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/categories"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Stone Tiles
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/categories"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Mosaic Tiles
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -502,28 +506,28 @@ export default function Index() {
               <h5 className="text-sm font-medium text-white mb-3">Support</h5>
               <ul className="space-y-2">
                 <li>
-                  <a
+                  <Link
                     href="/help"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Help Center
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="/contact"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/license"
                     className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                   >
                     License
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

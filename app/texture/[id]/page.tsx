@@ -2,54 +2,18 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import { Search, Menu, X, Download, Share, Heart, Eye } from "lucide-react";
+import {
+  Search,
+  Menu,
+  X,
+  MessageCircle,
+  Share,
+  Heart,
+  Eye,
+} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
-interface Texture {
-  id: number;
-  name: string;
-  category: string;
-  image: string;
-  description: string;
-  resolution: string;
-  fileSize: string;
-  format: string;
-  tags: string[];
-}
-
-const getTextureById = (id: string): Texture | null => {
-  const textures: Texture[] = [
-    {
-      id: 1,
-      name: "Smooth Concrete Panel Ceiling Texture",
-      category: "Ceiling Tile Textures",
-      image:
-        "https://images.pexels.com/photos/7380356/pexels-photo-7380356.jpeg",
-      description:
-        "High-quality smooth concrete panel texture perfect for modern ceiling designs. Features realistic surface details and professional lighting.",
-      resolution: "4096x4096",
-      fileSize: "15 MB",
-      format: "PNG, JPG",
-      tags: ["concrete", "ceiling", "modern", "smooth", "architectural"],
-    },
-    {
-      id: 2,
-      name: "Geometric Patterned Paver Texture",
-      category: "Square Tile Textures",
-      image:
-        "https://images.pexels.com/photos/4489336/pexels-photo-4489336.jpeg",
-      description:
-        "Beautiful geometric patterned paver texture in beige and black colors. Ideal for exterior and interior flooring applications.",
-      resolution: "4096x4096",
-      fileSize: "18 MB",
-      format: "PNG, JPG",
-      tags: ["geometric", "paver", "pattern", "beige", "black"],
-    },
-  ];
-
-  return textures.find((t) => t.id === parseInt(id)) || null;
-};
+import { getTextureById, type Texture } from "@/texture-data";
 
 export default function TextureDetailPage() {
   const params = useParams();
@@ -219,9 +183,20 @@ export default function TextureDetailPage() {
 
               {/* Action Buttons */}
               <div className="flex gap-4">
-                <button className="bg-primary-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-blue-dark transition-colors flex items-center gap-2">
-                  <Download className="w-4 h-4" />
-                  Download
+                <button
+                  onClick={() => {
+                    const message = encodeURIComponent(
+                      `Hi! I'm interested in ordering the ${texture.name} tile texture. Can you provide more details about pricing and availability?`,
+                    );
+                    window.open(
+                      `https://wa.me/+1234567890?text=${message}`,
+                      "_blank",
+                    );
+                  }}
+                  className="bg-primary-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-blue-dark transition-colors flex items-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Contact Us to Order
                 </button>
                 <button className="border border-dark text-white px-6 py-3 rounded-lg font-semibold hover:border-primary-blue transition-colors flex items-center gap-2">
                   <Heart className="w-4 h-4" />

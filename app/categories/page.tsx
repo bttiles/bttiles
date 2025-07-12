@@ -1,17 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import {
-  Search,
-  Menu,
-  X,
-  ArrowRight,
-  Grid3X3,
-  Eye,
-  Download,
-} from "lucide-react";
+import { Search, Menu, X, ArrowRight, Grid3X3, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { textures, categories as textureCategories } from "@/texture-data";
 
 interface Category {
   id: number;
@@ -22,13 +15,18 @@ interface Category {
   featured: boolean;
 }
 
+// Calculate actual texture counts from shared data
+const getTextureCountForCategory = (categoryName: string): number => {
+  return textures.filter((texture) => texture.category === categoryName).length;
+};
+
 const categories: Category[] = [
   {
     id: 1,
     name: "Acoustic Tile Textures",
     description: "Sound-absorbing tiles for studios and offices",
     image: "https://images.pexels.com/photos/1660916/pexels-photo-1660916.jpeg",
-    textureCount: 45,
+    textureCount: getTextureCountForCategory("Acoustic Tile Textures"),
     featured: false,
   },
   {
@@ -36,7 +34,7 @@ const categories: Category[] = [
     name: "Ceiling Tile Textures",
     description: "Professional ceiling solutions and panels",
     image: "https://images.pexels.com/photos/7380356/pexels-photo-7380356.jpeg",
-    textureCount: 67,
+    textureCount: getTextureCountForCategory("Ceiling Tile Textures"),
     featured: true,
   },
   {
@@ -44,7 +42,7 @@ const categories: Category[] = [
     name: "Herringbone Tile Textures",
     description: "Classic zigzag patterns for floors and walls",
     image: "https://images.pexels.com/photos/7746947/pexels-photo-7746947.jpeg",
-    textureCount: 89,
+    textureCount: getTextureCountForCategory("Herringbone Tile Textures"),
     featured: true,
   },
   {
@@ -52,7 +50,7 @@ const categories: Category[] = [
     name: "Hexagonal Tile Textures",
     description: "Geometric six-sided tile designs",
     image: "https://images.pexels.com/photos/6175107/pexels-photo-6175107.jpeg",
-    textureCount: 56,
+    textureCount: getTextureCountForCategory("Hexagonal Tile Textures"),
     featured: false,
   },
   {
@@ -61,7 +59,7 @@ const categories: Category[] = [
     description: "Durable synthetic material finishes",
     image:
       "https://images.pexels.com/photos/11285345/pexels-photo-11285345.png",
-    textureCount: 78,
+    textureCount: getTextureCountForCategory("Laminate Tile Textures"),
     featured: false,
   },
   {
@@ -69,8 +67,82 @@ const categories: Category[] = [
     name: "Marble Tile Textures",
     description: "Luxury natural stone with elegant veining",
     image: "https://images.pexels.com/photos/4604566/pexels-photo-4604566.jpeg",
-    textureCount: 134,
+    textureCount: getTextureCountForCategory("Marble Tile Textures"),
     featured: true,
+  },
+  {
+    id: 7,
+    name: "Mosaic Tile Textures",
+    description: "Small decorative tile arrangements",
+    image:
+      "https://images.pexels.com/photos/14579397/pexels-photo-14579397.jpeg",
+    textureCount: getTextureCountForCategory("Mosaic Tile Textures"),
+    featured: false,
+  },
+  {
+    id: 8,
+    name: "Penny Round Tile Textures",
+    description: "Small circular tiles for detailed surfaces",
+    image: "https://images.pexels.com/photos/7086367/pexels-photo-7086367.jpeg",
+    textureCount: getTextureCountForCategory("Penny Round Tile Textures"),
+    featured: false,
+  },
+  {
+    id: 9,
+    name: "Slate Tile Textures",
+    description: "Natural stone with rustic appeal",
+    image: "https://images.pexels.com/photos/6788528/pexels-photo-6788528.jpeg",
+    textureCount: getTextureCountForCategory("Slate Tile Textures"),
+    featured: false,
+  },
+  {
+    id: 10,
+    name: "Square Tile Textures",
+    description: "Classic square patterns and layouts",
+    image: "https://images.pexels.com/photos/4489336/pexels-photo-4489336.jpeg",
+    textureCount: getTextureCountForCategory("Square Tile Textures"),
+    featured: true,
+  },
+  {
+    id: 11,
+    name: "Stone Tile Textures",
+    description: "Natural stone finishes and textures",
+    image: "https://images.pexels.com/photos/6603943/pexels-photo-6603943.jpeg",
+    textureCount: getTextureCountForCategory("Stone Tile Textures"),
+    featured: false,
+  },
+  {
+    id: 12,
+    name: "Terracotta Tile Textures",
+    description: "Earthy clay tiles with warm tones",
+    image: "https://images.pexels.com/photos/6023580/pexels-photo-6023580.jpeg",
+    textureCount: getTextureCountForCategory("Terracotta Tile Textures"),
+    featured: false,
+  },
+  {
+    id: 13,
+    name: "Terrazzo Tile Textures",
+    description: "Composite material with decorative chips",
+    image: "https://images.pexels.com/photos/4977440/pexels-photo-4977440.jpeg",
+    textureCount: getTextureCountForCategory("Terrazzo Tile Textures"),
+    featured: false,
+  },
+  {
+    id: 14,
+    name: "Yubi Tile Textures",
+    description: "Textured finger-like surface patterns",
+    image:
+      "https://images.pexels.com/photos/12969405/pexels-photo-12969405.jpeg",
+    textureCount: getTextureCountForCategory("Yubi Tile Textures"),
+    featured: false,
+  },
+  {
+    id: 15,
+    name: "Zellige Tile Textures",
+    description: "Handmade glazed terra cotta tiles",
+    image: "https://images.pexels.com/photos/2084238/pexels-photo-2084238.jpeg",
+    textureCount: getTextureCountForCategory("Zellige Tile Textures"),
+    featured: false,
   },
 ];
 
@@ -270,7 +342,7 @@ export default function CategoriesPage() {
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Download className="w-4 h-4 text-primary-blue" />
+                        <Eye className="w-4 h-4 text-primary-blue" />
                         <span className="text-sm font-medium text-white">
                           {category.textureCount} textures
                         </span>
