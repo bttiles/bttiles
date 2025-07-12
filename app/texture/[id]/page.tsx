@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useParams } from "next/navigation";
 import { Search, Menu, X, Download, Share, Heart, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
