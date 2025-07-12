@@ -183,9 +183,20 @@ export default function TextureDetailPage() {
 
               {/* Action Buttons */}
               <div className="flex gap-4">
-                <button className="bg-primary-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-blue-dark transition-colors flex items-center gap-2">
-                  <Download className="w-4 h-4" />
-                  Download
+                <button
+                  onClick={() => {
+                    const message = encodeURIComponent(
+                      `Hi! I'm interested in ordering the ${texture.name} tile texture. Can you provide more details about pricing and availability?`,
+                    );
+                    window.open(
+                      `https://wa.me/+1234567890?text=${message}`,
+                      "_blank",
+                    );
+                  }}
+                  className="bg-primary-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-blue-dark transition-colors flex items-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Contact Us to Order
                 </button>
                 <button className="border border-dark text-white px-6 py-3 rounded-lg font-semibold hover:border-primary-blue transition-colors flex items-center gap-2">
                   <Heart className="w-4 h-4" />
