@@ -321,7 +321,7 @@ export default function HomePage() {
             )}
 
             {/* Pagination */}
-            {totalPages > 1 && (
+            {pagination && pagination.total > 1 && (
               <div className="flex justify-center items-center gap-3 mb-10">
                 <button
                   disabled={currentPage === 1}
