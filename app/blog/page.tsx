@@ -4,7 +4,11 @@ import { useState, useEffect, useMemo } from "react";
 import { Search, Menu, X, Star, TrendingUp, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { textures, categories, type Texture } from "../lib/temp-texture-data";
+import {
+  textures,
+  categories,
+  type Texture,
+} from "../../lib/temp-texture-data";
 
 export default function BlogPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
