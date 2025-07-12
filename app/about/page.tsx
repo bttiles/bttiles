@@ -155,9 +155,11 @@ export default function AboutPage() {
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary-blue mb-2">
-                      50k+
+                      500+
                     </div>
-                    <div className="text-sm text-gray-light">Downloads</div>
+                    <div className="text-sm text-gray-light">
+                      Projects Completed
+                    </div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary-blue mb-2">
