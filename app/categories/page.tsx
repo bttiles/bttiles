@@ -262,7 +262,7 @@ export default function CategoriesPage() {
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Download className="w-4 h-4 text-primary-blue" />
+                        <Eye className="w-4 h-4 text-primary-blue" />
                         <span className="text-sm font-medium text-white">
                           {category.textureCount} textures
                         </span>
