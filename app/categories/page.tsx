@@ -4,11 +4,10 @@ import { useState, useEffect, useMemo } from "react";
 import { Search, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  textures,
-  categories as textureCategories,
-  type Texture,
-} from "../../lib/temp-texture-data";
+import { useTextures } from "../../hooks/useTextures";
+import { categories as textureCategories } from "../../lib/temp-texture-data";
+import { useCategories } from "../../hooks/useCategories";
+import Footer from "@/ui/Footer";
 
 export default function CategoriesPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,34 +15,27 @@ export default function CategoriesPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+  const [visibleCount, setVisibleCount] = useState(12);
+  const { categories, loading: catLoading, error: catError } = useCategories();
 
-  const filteredTextures = useMemo(() => {
-    let filtered = textures;
 
-    if (selectedCategory !== "all") {
-      filtered = filtered.filter(
-        (texture) => texture.category === selectedCategory,
-      );
-    }
 
-    if (searchQuery) {
-      filtered = filtered.filter(
-        (texture) =>
-          texture.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          texture.category.toLowerCase().includes(searchQuery.toLowerCase()),
-      );
-    }
+  const { textures, loading, error, pagination } = useTextures({
+    category: selectedCategory !== "all" ? selectedCategory : undefined,
+    search: searchQuery || undefined,
+    page: currentPage,
+    limit: itemsPerPage,
+  });
 
-    return filtered;
-  }, [searchQuery, selectedCategory]);
 
-  const totalPages = Math.ceil(filteredTextures.length / itemsPerPage);
+  const totalPages = pagination?.total || 1;
+
 
   const currentPageTextures = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return filteredTextures.slice(startIndex, endIndex);
-  }, [filteredTextures, currentPage, itemsPerPage]);
+    return textures.slice(startIndex, endIndex);
+  }, [textures, currentPage, itemsPerPage]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -102,7 +94,7 @@ export default function CategoriesPage() {
               Categories
             </Link>
             <Link
-              href="/blog"
+              href="/featured"
               className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
             >
               Featured
@@ -147,7 +139,7 @@ export default function CategoriesPage() {
                 Categories
               </Link>
               <Link
-                href="/blog"
+                href="/featured"
                 className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
               >
                 Featured
@@ -180,58 +172,70 @@ export default function CategoriesPage() {
 
           {/* Page Header */}
           <div className="mb-16 text-center">
-            <h1 className="text-4xl font-bold text-white mb-6">
-              Browse by Category
-            </h1>
-            <p className="text-lg text-gray-light leading-relaxed max-w-3xl mx-auto">
-              Explore our comprehensive collection of {textures.length} premium
-              tile textures organized by category. Find the perfect texture for
-              your project.
+            <h1 className="text-4xl font-bold text-white mb-4">All Tile Texture Categories</h1>
+            <p className="text-base text-gray-light max-w-2xl mx-auto">
+              Dive deep into {categories.length} detailed categories to find the right texture for your specific needs.
             </p>
+
           </div>
 
           {/* Categories Section */}
           <section className="mb-10">
             <h3 className="text-lg font-medium text-white mb-6">
-              <span>{textureCategories.length}</span>
-              <span> Tile Categories</span>
+              {catLoading ? "Loading..." : `${categories.length} Tile Categories`}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-6">
-              <button
+
+            {/* Grid for all category cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {/* All Categories Card */}
+              <div
                 onClick={() => setSelectedCategory("all")}
-                className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${
-                  selectedCategory === "all"
-                    ? "bg-primary-blue text-white"
-                    : "bg-dark-lighter text-white"
-                }`}
+                className={`cursor-pointer p-5 rounded-xl border transition hover:border-primary-blue bg-dark-lighter hover:bg-primary-blue group ${selectedCategory === "all" ? "ring-2 ring-primary-blue" : ""
+                  }`}
               >
-                All Categories ({textures.length})
-              </button>
-              {textureCategories.map((category, index) => {
-                const count = textures.filter(
-                  (texture) => texture.category === category,
-                ).length;
-                return (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${
-                      selectedCategory === category
-                        ? "bg-primary-blue text-white"
-                        : "bg-dark-lighter text-white"
+                <h4 className="text-white text-base font-semibold group-hover:text-white">
+                  All Categories
+                </h4>
+                <p className="text-gray-light text-sm mt-1">View everything together</p>
+              </div>
+
+              {/* Dynamic Categories */}
+              {categories.slice(0, visibleCount).map((category) => (
+                <div
+                  key={category._id}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className={`cursor-pointer p-5 rounded-xl border transition hover:border-primary-blue bg-dark-lighter hover:bg-primary-blue group ${selectedCategory === category.name ? "ring-2 ring-primary-blue" : ""
                     }`}
-                  >
-                    {category} ({count})
-                  </button>
-                );
-              })}
+                >
+                  <h4 className="text-white text-base font-semibold group-hover:text-white">
+                    {category.name}
+                  </h4>
+                  <p className="text-gray-light text-sm mt-1">
+                    {category.description}
+                  </p>
+                </div>
+              ))}
             </div>
+
+            {/* Show More Button */}
+            {categories.length > visibleCount && (
+              <div className="flex justify-center mt-8">
+                <button
+                  onClick={() => setVisibleCount((prev) => prev + 12)}
+                  className="px-5 py-2 text-sm font-medium rounded-full border border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white transition-all"
+                >
+                  Show More Categories
+                </button>
+              </div>
+            )}
           </section>
+
+
 
           {/* Textures Grid */}
           <section>
             <h3 className="text-lg font-medium text-white mb-6">
-              <span>{filteredTextures.length}</span>
+              <span>{textures.length}</span>
               <span> Tile Textures</span>
               {selectedCategory !== "all" && (
                 <span className="text-primary-blue">
@@ -242,10 +246,10 @@ export default function CategoriesPage() {
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
-              {currentPageTextures.map((texture, index) => (
+              {textures?.map((texture, index) => (
                 <Link
-                  key={texture.id}
-                  href={`/texture/${texture.id}`}
+                  key={texture._id}
+                  href={`/texture/${texture._id}`}
                   className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group block"
                 >
                   <div className="aspect-square overflow-hidden relative">
@@ -253,7 +257,7 @@ export default function CategoriesPage() {
                       src={texture.image}
                       alt={texture.name}
                       fill
-                      priority={index < 4} // Priority loading for first 4 images
+                      priority={index < 4}
                       className="object-cover group-hover:scale-105 transition-transform duration-200"
                     />
                   </div>
@@ -267,10 +271,11 @@ export default function CategoriesPage() {
                   </div>
                 </Link>
               ))}
+
             </div>
 
             {/* No Results */}
-            {filteredTextures.length === 0 && (
+            {textures.length === 0 && (
               <div className="text-center py-16">
                 <div className="w-24 h-24 bg-dark-lighter rounded-full flex items-center justify-center mx-auto mb-6">
                   <Search className="w-12 h-12 text-gray-400" />
@@ -290,11 +295,10 @@ export default function CategoriesPage() {
                 <button
                   disabled={currentPage === 1}
                   onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
-                    currentPage === 1
-                      ? "text-gray-500 cursor-not-allowed opacity-50"
-                      : "text-white hover:border-primary-blue cursor-pointer"
-                  } bg-dark-lighter`}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${currentPage === 1
+                    ? "text-gray-500 cursor-not-allowed opacity-50"
+                    : "text-white hover:border-primary-blue cursor-pointer"
+                    } bg-dark-lighter`}
                 >
                   Previous
                 </button>
@@ -303,11 +307,10 @@ export default function CategoriesPage() {
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${
-                      currentPage === page
-                        ? "bg-primary-blue text-white border-primary-blue"
-                        : "bg-dark-lighter text-white hover:border-primary-blue"
-                    }`}
+                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${currentPage === page
+                      ? "bg-primary-blue text-white border-primary-blue"
+                      : "bg-dark-lighter text-white hover:border-primary-blue"
+                      }`}
                   >
                     {page}
                   </button>
@@ -318,11 +321,10 @@ export default function CategoriesPage() {
                   onClick={() =>
                     setCurrentPage(Math.min(totalPages, currentPage + 1))
                   }
-                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
-                    currentPage === totalPages
-                      ? "text-gray-500 cursor-not-allowed opacity-50"
-                      : "text-white hover:border-primary-blue cursor-pointer"
-                  } bg-dark-lighter`}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${currentPage === totalPages
+                    ? "text-gray-500 cursor-not-allowed opacity-50"
+                    : "text-white hover:border-primary-blue cursor-pointer"
+                    } bg-dark-lighter`}
                 >
                   Next
                 </button>
@@ -332,134 +334,7 @@ export default function CategoriesPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-dark-lighter border-t border-dark px-6 py-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-            <div>
-              <h4 className="text-lg font-semibold text-primary-blue mb-6">
-                TileTextures
-              </h4>
-              <p className="text-sm text-gray-light leading-relaxed">
-                The ultimate resource for high-quality tile textures. Perfect
-                for architects, designers, and 3D artists.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="text-sm font-medium text-white mb-3">
-                Categories
-              </h5>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/categories"
-                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-                  >
-                    Ceramic Tiles
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/categories"
-                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-                  >
-                    Stone Tiles
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/categories"
-                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-                  >
-                    Mosaic Tiles
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h5 className="text-sm font-medium text-white mb-3">Support</h5>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/help"
-                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-                  >
-                    Help Center
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/license"
-                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-                  >
-                    License
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h5 className="text-sm font-medium text-white mb-3">Connect</h5>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-                  >
-                    Twitter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-                  >
-                    Instagram
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-                  >
-                    LinkedIn
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-dark pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-            <p className="text-xs text-gray-light">
-              © 2024 TileTextures. All rights reserved.
-            </p>
-            <div className="flex gap-6">
-              <a
-                href="#"
-                className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-xs text-gray-light hover:text-primary-blue transition-colors"
-              >
-                Terms of Service
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
