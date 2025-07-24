@@ -2,17 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { CategoryForm } from "../../../../components/admin/CategoryForm";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-// import { CategoryForm } from "../../../../components/admin/CategoryForm";
-
-import { TextureForm } from "../../../../components/admin/TextureForm";
-import { CategoryForm } from "@/admin/CategoryForm";
 
 interface Category {
   _id: string;
   name: string;
-  description?: string;
+  description: string;
+  image: string;
+  imagePublicId: string;
+  isActive: boolean;
+  sortOrder: number;
 }
 
 export default function EditCategory() {
@@ -27,7 +28,6 @@ export default function EditCategory() {
   const fetchCategory = async () => {
     try {
       const response = await fetch(`/api/categories/${params.id}`);
-    //   h(`/api/textures/${params.id}`); 
       const data = await response.json();
 
       if (data.success) {
@@ -69,8 +69,7 @@ export default function EditCategory() {
         <p className="text-muted-foreground">Update category information.</p>
       </div>
 
-     <CategoryForm initialData={category} categoryId={category._id} />
-
+      <CategoryForm initialData={category} categoryId={category._id} />
     </div>
   );
 }

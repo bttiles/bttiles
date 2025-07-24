@@ -1,104 +1,15 @@
 "use client";
-
-import { useState } from "react";
-import { Search, Menu, X, Users, Target, Award, Globe } from "lucide-react";
+import { Users, Target, Award, Globe } from "lucide-react";
 import Link from "next/link";
 import Footer from "@/ui/Footer";
+import Header from "@/ui/Header";
 
 export default function AboutPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-dark text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-dark-lighter border-b border-dark z-50 px-6 py-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="text-lg font-semibold text-primary-blue">
-            TileTextures
-          </div>
-
-          <div className="flex-1 max-w-2xl mx-6 relative">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <input
-                type="text"
-                placeholder="Search tile textures..."
-                className="w-full pl-10 pr-4 py-2 bg-dark border border-dark text-white text-sm rounded-lg focus:outline-none focus:border-primary-blue transition-colors"
-              />
-            </div>
-          </div>
-
-          <nav className="hidden lg:flex items-center gap-6">
-            <Link
-              href="/"
-              className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/categories"
-              className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-            >
-              Categories
-            </Link>
-            <Link
-              href="/featured"
-              className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-            >
-              Featured
-            </Link>
-            <Link
-              href="/about"
-              className="text-primary-blue text-sm font-medium"
-            >
-              About
-            </Link>
-            <button className="bg-primary-blue text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-blue-dark transition-colors">
-              Sign In
-            </button>
-          </nav>
-
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-white"
-          >
-            {isMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-dark">
-            <nav className="flex flex-col gap-4 mt-4">
-              <Link
-                href="/"
-                className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/categories"
-                className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-              >
-                Categories
-              </Link>
-              <Link
-                href="/about"
-                className="text-primary-blue text-sm font-medium"
-              >
-                About
-              </Link>
-              <button className="bg-primary-blue text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-blue-dark transition-colors self-start">
-                Sign In
-              </button>
-            </nav>
-          </div>
-        )}
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="pt-20">
@@ -115,7 +26,7 @@ export default function AboutPage() {
           {/* Page Header */}
           <div className="mb-16 text-center">
             <h1 className="text-4xl font-bold text-white mb-6">
-              About TileTextures
+              About Bismillah Tuff Tiles
             </h1>
             <p className="text-lg text-gray-light leading-relaxed max-w-3xl mx-auto">
               We're passionate about providing high-quality tile textures for
@@ -132,7 +43,7 @@ export default function AboutPage() {
                   Our Mission
                 </h2>
                 <p className="text-gray-light leading-relaxed mb-4">
-                  At TileTextures, we believe that great design starts with
+                  At Bismillah Tuff Tiles, we believe that great design starts with
                   great materials. Our curated collection of tile textures helps
                   bring architectural visions to life, whether you're designing
                   a modern kitchen, a traditional bathroom, or a cutting-edge
@@ -184,7 +95,7 @@ export default function AboutPage() {
           {/* Features Section */}
           <section className="mb-16">
             <h2 className="text-2xl font-semibold text-white mb-10 text-center">
-              Why Choose TileTextures?
+              Why Choose Bismillah Tuff Tiles?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
@@ -248,7 +159,7 @@ export default function AboutPage() {
                 Ready to Get Started?
               </h2>
               <p className="text-gray-light mb-8 max-w-2xl mx-auto">
-                Join thousands of designers who trust TileTextures for their
+                Join thousands of designers who trust Bismillah Tuff Tiles for their
                 projects. Browse our collection and discover the perfect
                 textures for your next design.
               </p>
@@ -259,9 +170,9 @@ export default function AboutPage() {
                 >
                   Browse Textures
                 </Link>
-                <button className="border border-dark text-white px-8 py-3 rounded-lg text-sm font-semibold hover:border-primary-blue transition-colors">
+                <Link href="/contact" className="border border-dark text-white px-8 py-3 rounded-lg text-sm font-semibold hover:border-primary-blue transition-colors">
                   Contact Us
-                </button>
+                </Link>
               </div>
             </div>
           </section>

@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import connectDB from "../../../lib/mongodb";
 import Texture from "../../../lib/models/Texture";
 import { authOptions } from "../../../lib/auth";
+import Category from "../../../lib/models/Category"; 
 
 export async function GET(request: NextRequest) {
   try {
@@ -71,13 +72,14 @@ export async function GET(request: NextRequest) {
   }
 }
 
+
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 
     if (!session || session.user.role !== "admin") {
       return NextResponse.json(
-        { success: false, error: "Unauthorized" },
+        { success: false, error: "Unauthorized" },  
         { status: 401 },
       );
     }
@@ -85,6 +87,16 @@ export async function POST(request: NextRequest) {
     await connectDB();
 
     const body = await request.json();
+
+    // ✅ Validate if category exists in the database
+    const existingCategory = await Category.findOne({ name: body.category });
+    if (!existingCategory) {
+      return NextResponse.json(
+        { success: false, error: `Category "${body.category}" does not exist.` },
+        { status: 400 }
+      );
+    }
+
     const texture = new Texture(body);
     await texture.save();
 

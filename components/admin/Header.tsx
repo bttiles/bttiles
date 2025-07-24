@@ -11,10 +11,10 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
-import { LogOut, User, Settings } from "lucide-react";
+import { LogOut, User, Settings, Menu } from "lucide-react";
 import Link from "next/link";
 
-export function Header() {
+export function Header({ toggleMenu }: { toggleMenu: () => void }) {
   const { data: session } = useSession();
 
   const handleSignOut = () => {
@@ -22,12 +22,19 @@ export function Header() {
   };
 
   return (
-    <header className="bg-background border-b px-6 py-4">
+    <header className="bg-background border-b px-6 py-4 sticky top-0 z-50">
       <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-semibold">Admin Panel</h2>
-        </div>
-        <div className="flex items-center space-x-4">
+        {/* Mobile Menu Button */}
+        <button
+          onClick={toggleMenu}
+          className="lg:hidden text-muted-foreground mr-2"
+        >
+          <Menu className="h-6 w-6" />
+        </button>
+
+        <h2 className="text-2xl font-semibold hidden lg:block">Admin Panel</h2>
+
+        <div className="flex items-center space-x-4 ml-auto">
           <Button asChild variant="outline" size="sm">
             <Link href="/" target="_blank">
               View Site

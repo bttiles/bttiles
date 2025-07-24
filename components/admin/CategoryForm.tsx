@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
-import { Button } from "../ui/button";
+import { Switch } from "../ui/switch";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -13,6 +15,7 @@ interface CategoryFormData {
   name: string;
   description: string;
   isActive: boolean;
+  sortOrder: number;
 }
 
 interface CategoryFormProps {
@@ -28,6 +31,7 @@ export function CategoryForm({ initialData, categoryId }: CategoryFormProps) {
     name: initialData?.name || "",
     description: initialData?.description || "",
     isActive: initialData?.isActive ?? true,
+    sortOrder: initialData?.sortOrder || 0,
   });
 
   const handleInputChange = (field: keyof CategoryFormData, value: any) => {
@@ -38,7 +42,7 @@ export function CategoryForm({ initialData, categoryId }: CategoryFormProps) {
     e.preventDefault();
 
     if (!formData.name || !formData.description) {
-      toast.error("Please fill all required fields");
+      toast.error("Please fill in all required fields");
       return;
     }
 
@@ -52,7 +56,9 @@ export function CategoryForm({ initialData, categoryId }: CategoryFormProps) {
 
       const response = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formData),
       });
 
@@ -60,14 +66,14 @@ export function CategoryForm({ initialData, categoryId }: CategoryFormProps) {
 
       if (result.success) {
         toast.success(
-          `Category ${categoryId ? "updated" : "created"} successfully`
+          `Category ${categoryId ? "updated" : "created"} successfully`,
         );
         router.push("/admin/categories");
       } else {
-        toast.error(result.error || "Something went wrong");
+        toast.error(result.error || "Failed to save category");
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error("Error saving category:", error);
       toast.error("Failed to save category");
     } finally {
       setLoading(false);
@@ -76,39 +82,110 @@ export function CategoryForm({ initialData, categoryId }: CategoryFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="name">Name *</Label>
-          <Input
-            id="name"
-            value={formData.name}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-            placeholder="Category name"
-            required
-          />
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* Main Form */}
+        <div className="lg:col-span-2 space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Basic Information</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Name *</Label>
+                <Input
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  placeholder="Enter category name"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="description">Description *</Label>
+                <Textarea
+                  id="description"
+                  value={formData.description}
+                  onChange={(e) =>
+                    handleInputChange("description", e.target.value)
+                  }
+                  placeholder="Enter category description"
+                  rows={4}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="sortOrder">Sort Order</Label>
+                <Input
+                  id="sortOrder"
+                  type="number"
+                  value={formData.sortOrder}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "sortOrder",
+                      parseInt(e.target.value) || 0,
+                    )
+                  }
+                  placeholder="0"
+                />
+                <p className="text-sm text-muted-foreground">
+                  Lower numbers appear first
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="description">Description *</Label>
-          <Textarea
-            id="description"
-            value={formData.description}
-            onChange={(e) => handleInputChange("description", e.target.value)}
-            placeholder="Description"
-            required
-          />
+        {/* Sidebar */}
+        <div className="space-y-6">
+          {/* Settings */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Settings</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label htmlFor="isActive">Active</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Category is visible to users
+                  </p>
+                </div>
+                <Switch
+                  id="isActive"
+                  checked={formData.isActive}
+                  onCheckedChange={(checked) =>
+                    handleInputChange("isActive", checked)
+                  }
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Actions */}
+          <Card>
+            <CardContent className="pt-6">
+              <div className="space-y-2">
+                <Button type="submit" className="w-full" disabled={loading}>
+                  {loading ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : null}
+                  {categoryId ? "Update Category" : "Create Category"}
+                </Button>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => router.back()}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </div>
-
-      <div className="flex gap-4">
-        <Button type="submit" disabled={loading}>
-          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {categoryId ? "Update Category" : "Create Category"}
-        </Button>
-
-        <Button type="button" variant="outline" onClick={() => router.back()}>
-          Cancel
-        </Button>
       </div>
     </form>
   );

@@ -2,12 +2,21 @@
 
 import { useState, useEffect, useCallback } from "react";
 
+export interface TextureImage {
+  url: string;
+  alt?: string;
+  isPrimary?: boolean;
+  _id?: string;
+}
+
+
 export interface TextureData {
   _id: string;
   name: string;
   description: string;
   category: string;
-  image: string;
+  image: string; // this is the primary image url
+  images?: TextureImage[]; // updated to correct object type
   resolution: string;
   format: string;
   tags: string[];

@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "+1234567890"; // Replace with your actual WhatsApp business number
+    const phoneNumber = "+923176697001"; // Replace with your actual WhatsApp business number
     const message = encodeURIComponent(
       "Hi! I'm interested in your tile textures. Can you help me?",
     );

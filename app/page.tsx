@@ -1,24 +1,20 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Search, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Testimonials from "../components/Testimonials";
 import { useTextures } from "../hooks/useTextures";
 import { useCategories } from "../hooks/useCategories";
+import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(7);
-  const { categories, loading: catLoading, error: catError } = useCategories();
-
-
   const itemsPerPage = 12;
+  const { categories } = useCategories();
 
   const { textures, loading, error, pagination } = useTextures({
     category: selectedCategory !== "all" ? selectedCategory : undefined,
@@ -53,96 +49,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-dark text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-dark-lighter border-b border-dark z-50 px-6 py-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="text-lg font-semibold text-primary-blue">
-            TileTextures
-          </div>
-
-          <div className="flex-1 max-w-2xl mx-6 relative">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <input
-                type="text"
-                placeholder="Search tile textures..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-dark border border-dark text-white text-sm rounded-lg focus:outline-none focus:border-primary-blue transition-colors"
-              />
-            </div>
-          </div>
-
-          <nav className="hidden lg:flex items-center gap-6">
-            <Link href="/" className="text-primary-blue text-sm font-medium">
-              Home
-            </Link>
-            <Link
-              href="/categories"
-              className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-            >
-              Categories
-            </Link>
-            <Link
-              href="/featured"
-              className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-            >
-              Featured
-            </Link>
-            <Link
-              href="/about"
-              className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-            >
-              About
-            </Link>
-            <button className="bg-primary-blue text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-blue-dark transition-colors">
-              Sign In
-            </button>
-          </nav>
-
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-white"
-          >
-            {isMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-dark">
-            <nav className="flex flex-col gap-4 mt-4">
-              <Link href="/" className="text-primary-blue text-sm font-medium">
-                Home
-              </Link>
-              <Link
-                href="/categories"
-                className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-              >
-                Categories
-              </Link>
-              <Link
-                href="/featured"
-                className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-              >
-                Featured
-              </Link>
-              <Link
-                href="/about"
-                className="text-gray-lighter text-sm hover:text-primary-blue transition-colors"
-              >
-                About
-              </Link>
-              <button className="bg-primary-blue text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-blue-dark transition-colors self-start">
-                Sign In
-              </button>
-            </nav>
-          </div>
-        )}
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="pt-20">
@@ -163,7 +70,7 @@ export default function HomePage() {
           {/* Page Header */}
           <div className="mb-10">
             <h1 className="text-3xl font-medium text-white mb-3">
-              Tile Textures
+              Bismillah Tuff Tiles
             </h1>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl">
               Browse a variety of tile textures, including ceramic, and mosaic,
@@ -177,48 +84,35 @@ export default function HomePage() {
           {/* Categories Section */}
           <section className="mb-10">
             <h3 className="text-lg font-medium text-white mb-6">
-              <span>{catLoading ? "Loading..." : categories.length}</span>
+              <span>{categories.length}</span>
               <span> Tile Categories</span>
             </h3>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-6">
               <button
                 onClick={() => setSelectedCategory("all")}
                 className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${selectedCategory === "all"
-                    ? "bg-primary-blue text-white"
-                    : "bg-dark-lighter text-white"
+                  ? "bg-primary-blue text-white"
+                  : "bg-dark-lighter text-white"
                   }`}
               >
                 All Categories
               </button>
-
-              {categories.slice(0, visibleCount).map((category, index) => (
+              {categories.map((category) => (
                 <button
-                  key={index}
+                  key={category._id}
                   onClick={() => setSelectedCategory(category.name)}
                   className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${selectedCategory === category.name
-                      ? "bg-primary-blue text-white"
-                      : "bg-dark-lighter text-white"
+                    ? "bg-primary-blue text-white"
+                    : "bg-dark-lighter text-white"
                     }`}
                 >
                   {category.name}
                 </button>
               ))}
             </div>
-
-            {/* Show More Button */}
-            {categories.length > visibleCount && (
-              <div className="flex justify-center">
-                <button
-                  onClick={() => setVisibleCount(visibleCount + 12)}
-                  className="px-5 py-2 text-sm font-medium rounded-full border border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white transition-all"
-                >
-                  Show More Categories
-                </button>
-              </div>
-            )}
           </section>
 
+          {/* Textures Grid */}
           <section>
             <h3 className="text-lg font-medium text-white mb-6">
               {loading ? (
@@ -250,31 +144,33 @@ export default function HomePage() {
                   <p className="text-gray-light">Failed to load textures</p>
                 </div>
               ) : textures.length > 0 ? (
-                textures.map((texture, index) => (
-                  <Link
-                    key={texture._id}
-                    href={`/texture/${texture._id}`}
-                    className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group block"
-                  >
-                    <div className="aspect-square overflow-hidden relative">
-                      <Image
-                        src={texture.image}
-                        alt={texture.name}
-                        fill
-                        priority={index < 4}
-                        className="object-cover group-hover:scale-105 transition-transform duration-200"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h4 className="text-sm font-medium text-white mb-2 leading-snug">
-                        {texture.name}
-                      </h4>
-                      <p className="text-xs text-gray-light">
-                        {texture.category}
-                      </p>
-                    </div>
-                  </Link>
-                ))
+                [...textures] // clone the array
+                  .sort(() => Math.random() - 0.5) // shuffle it
+                  .map((texture, index) => (
+                    <Link
+                      key={texture._id}
+                      href={`/texture/${texture._id}`}
+                      className="bg-dark-lighter rounded-lg overflow-hidden border border-dark transition-all duration-200 hover:border-primary-blue hover:-translate-y-1 cursor-pointer group block"
+                    >
+                      <div className="aspect-square overflow-hidden relative">
+                        <Image
+                          src={texture.image}
+                          alt={texture.name}
+                          fill
+                          priority={index < 4}
+                          className="object-cover group-hover:scale-105 transition-transform duration-200"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="text-sm font-medium text-white mb-2 leading-snug">
+                          {texture.name}
+                        </h4>
+                        <p className="text-xs text-gray-light">
+                          {texture.category}
+                        </p>
+                      </div>
+                    </Link>
+                  ))
               ) : (
                 <div className="col-span-full text-center py-8">
                   <p className="text-gray-light">No textures found</p>
@@ -329,6 +225,7 @@ export default function HomePage() {
         {/* Testimonials Section */}
         <Testimonials />
       </main>
+
       {/* Footer */}
       <Footer />
     </div>

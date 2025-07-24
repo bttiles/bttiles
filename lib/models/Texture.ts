@@ -1,4 +1,3 @@
-// lib/models/Texture.ts
 import mongoose from "mongoose";
 
 const TextureSchema = new mongoose.Schema(
@@ -15,31 +14,34 @@ const TextureSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: [
-        "Acoustic Tile Textures",
-        "Ceiling Tile Textures",
-        "Herringbone Tile Textures",
-        "Hexagonal Tile Textures",
-        "Laminate Tile Textures",
-        "Marble Tile Textures",
-        "Mosaic Tile Textures",
-        "Penny Round Tile Textures",
-        "Slate Tile Textures",
-        "Square Tile Textures",
-        "Stone Tile Textures",
-        "Terracotta Tile Textures",
-        "Terrazzo Tile Textures",
-        "Yubi Tile Textures",
-        "Zellige Tile Textures",
-      ],
+      trim: true,
     },
     image: {
       type: String,
-      required: true,
+      required: true, // Primary image
     },
     imagePublicId: {
       type: String,
     },
+    images: [
+      {
+        url: {
+          type: String,
+          required: true,
+        },
+        publicId: {
+          type: String,
+        },
+        alt: {
+          type: String,
+          default: "",
+        },
+        isPrimary: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
     resolution: {
       type: String,
       default: "4096x4096",

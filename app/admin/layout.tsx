@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Sidebar } from "../../components/admin/Sidebar";
 import { Header } from "../../components/admin/Header";
 import { Loader2 } from "lucide-react";
@@ -15,6 +15,7 @@ export default function AdminLayout({
   const { data: session, status } = useSession();
   const router = useRouter();
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // 👈
 
   useEffect(() => {
     if (status === "loading") return;
@@ -60,10 +61,10 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Sidebar />
-      <div className="lg:pl-64">
-        <Header />
+    <div className="min-h-screen bg-background flex">
+      <Sidebar isOpen={mobileMenuOpen} setIsOpen={setMobileMenuOpen} />
+      <div className="flex-1 lg:pl-64">
+        <Header toggleMenu={() => setMobileMenuOpen(!mobileMenuOpen)} />
         <main className="p-6">{children}</main>
       </div>
     </div>

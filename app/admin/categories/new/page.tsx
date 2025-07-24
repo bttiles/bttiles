@@ -1,7 +1,6 @@
 "use client";
 
-import { CategoryForm } from "@/admin/CategoryForm";
-
+import { CategoryForm } from "../../../../components/admin/CategoryForm";
 
 export default function NewCategory() {
   return (
@@ -9,7 +8,7 @@ export default function NewCategory() {
       <div>
         <h1 className="text-3xl font-bold">Add New Category</h1>
         <p className="text-muted-foreground">
-          Create a new category for your texture collection.
+          Create a new category for organizing textures.
         </p>
       </div>
 

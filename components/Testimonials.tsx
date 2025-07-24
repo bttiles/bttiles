@@ -11,75 +11,86 @@ interface Testimonial {
   avatar: string;
   project: string;
 }
-
 const testimonials: Testimonial[] = [
-  {
+    {
     id: 1,
-    name: "Sarah Martinez",
-    role: "Lead Architect",
-    company: "Modern Spaces Design",
+    name: "Ali Raza",
+    role: "3D Artist",
+    company: "Pixel Craft Studios",
     content:
-      "TileTextures has completely transformed our workflow. The quality of their textures is unmatched, and the variety allows us to bring any vision to life. Our clients are consistently impressed with the realistic renders we can now produce.",
+      "Using Bismillah Tuff Tiles has made a huge difference in my renders. The textures are seamless and perfect for architectural walkthroughs. The quality is top-notch.",
     rating: 5,
-    avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
-    project: "Luxury Hotel Renovation",
+    avatar: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg",
+    project: "Model Town Lahore Villas",
   },
   {
     id: 2,
-    name: "Marcus Chen",
-    role: "3D Visualization Artist",
-    company: "Render Studio Pro",
+    name: "Ayesha Khan",
+    role: "Senior Architect",
+    company: "DesignHaus Karachi",
     content:
-      "The seamless nature of these textures saves me hours of work. Every texture tiles perfectly and the resolution is fantastic for close-up shots. This is now my go-to source for all tile materials.",
+      "Bismillah Tuff Tiles has significantly improved the quality of our presentations. Their realistic textures save us time and impress our clients during every project pitch.",
+    rating: 5,
+    avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+    project: "Clifton Heights Residential Towers",
+  },
+  {
+    id: 2,
+    name: "Ali Raza",
+    role: "3D Artist",
+    company: "Pixel Craft Studios",
+    content:
+      "Using Bismillah Tuff Tiles has made a huge difference in my renders. The textures are seamless and perfect for architectural walkthroughs. The quality is top-notch.",
     rating: 5,
     avatar: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg",
-    project: "Residential Complex Visualization",
+    project: "Model Town Lahore Villas",
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
+    name: "Zainab Fatima",
     role: "Interior Designer",
-    company: "Creative Interiors LLC",
+    company: "Zest Interiors Islamabad",
     content:
-      "I love how easy it is to find exactly what I need. The categorization is perfect and the search function actually works! The customer service is exceptional too - they helped me find the perfect marble texture for my project.",
+      "I’m really impressed by their categorization. It's super easy to find specific textures like marble, terracotta, or wood. Plus, their customer service is very responsive.",
     rating: 5,
     avatar: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg",
-    project: "Boutique Restaurant Design",
+    project: "Islamabad Café Redesign",
   },
   {
     id: 4,
-    name: "David Kim",
+    name: "Hamza Javed",
     role: "Game Environment Artist",
-    company: "Indie Game Studios",
+    company: "PlayPixel Interactive",
     content:
-      "These textures work brilliantly in game engines. The variety of tile types means I can create diverse environments without repetition. The licensing is clear and commercial-friendly which is crucial for our projects.",
+      "The textures from Bismillah Tuff Tiles integrate perfectly into Unreal Engine. They’re sharp, high-res, and give a local feel to our game environments.",
     rating: 5,
     avatar: "https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg",
-    project: "Fantasy RPG Environment",
+    project: "Lahore Cityscape Game Map",
   },
   {
     id: 5,
-    name: "Lisa Thompson",
-    role: "Product Designer",
-    company: "Home Renovation Co.",
+    name: "Sara Nawaz",
+    role: "Renovation Consultant",
+    company: "Urban Touch Renovations",
     content:
-      "The care tips in their blog have been invaluable! Not only do they provide amazing textures, but they also educate us on proper tile maintenance. This comprehensive approach sets them apart from competitors.",
+      "I often recommend Bismillah Tuff Tiles to my clients for both indoor and outdoor use. Their texture previewing tool is super helpful during planning stages.",
     rating: 5,
     avatar: "https://images.pexels.com/photos/712521/pexels-photo-712521.jpeg",
-    project: "Kitchen Renovation Project",
+    project: "DHA Karachi Modern Villa",
   },
   {
     id: 6,
-    name: "Alex Johnson",
-    role: "Architectural Visualization",
-    company: "Vision Architecture",
+    name: "Usman Qureshi",
+    role: "Project Architect",
+    company: "Qureshi & Co.",
     content:
-      "The quality-to-price ratio is incredible. We've saved thousands compared to other texture libraries while getting better results. The new arrivals keep our presentations fresh and current with trends.",
+      "For commercial projects, cost matters. Bismillah Tuff Tiles delivers premium quality textures at a great price, with regular updates that match industry trends.",
     rating: 5,
     avatar: "https://images.pexels.com/photos/556669/pexels-photo-556669.jpeg",
-    project: "Commercial Office Complex",
+    project: "Gulberg Business Center",
   },
 ];
+
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -122,7 +133,7 @@ export default function Testimonials() {
           What Our Clients Say
         </h2>
         <p className="text-lg text-gray-light max-w-2xl mx-auto">
-          Join thousands of satisfied professionals who trust TileTextures for
+          Join thousands of satisfied professionals who trust Bismillah Tuff Tiles for
           their projects
         </p>
       </div>
@@ -211,40 +222,6 @@ export default function Testimonials() {
       </div>
 
       {/* Thumbnail Preview */}
-      <div className="mt-12 max-w-6xl mx-auto">
-        <div className="flex gap-4 justify-center overflow-x-auto pb-4">
-          {testimonials.map((testimonial, index) => (
-            <button
-              key={testimonial.id}
-              onClick={() => goToTestimonial(index)}
-              className={`flex-shrink-0 p-4 rounded-lg border transition-all duration-300 min-w-[280px] ${
-                index === currentIndex
-                  ? "border-primary-blue bg-primary-blue/10"
-                  : "border-dark bg-dark-lighter hover:border-gray-600"
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <img
-                  src={testimonial.avatar}
-                  alt={testimonial.name}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div className="text-left">
-                  <h5 className="text-white text-sm font-medium">
-                    {testimonial.name}
-                  </h5>
-                  <p className="text-gray-light text-xs">
-                    {testimonial.company}
-                  </p>
-                </div>
-              </div>
-              <p className="text-gray-light text-xs mt-2 line-clamp-2 text-left">
-                {testimonial.content}
-              </p>
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* Trust Indicators */}
       <div className="mt-16 text-center">

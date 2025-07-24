@@ -1,4 +1,3 @@
-// app/api/textures/[id]route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import connectDB from "../../../../lib/mongodb";
@@ -118,11 +117,12 @@ export async function DELETE(
     }
 
     // Soft delete by setting isActive to false
-    const texture = await Texture.findByIdAndUpdate(
-      id,
-      { isActive: false },
-      { new: true },
-    );
+    // const texture = await Texture.findByIdAndUpdate(
+    //   id,
+    //   { isActive: false },
+    //   { new: true },
+    // );
+    const texture = await Texture.findByIdAndDelete(id);
 
     if (!texture) {
       return NextResponse.json(

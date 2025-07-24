@@ -45,6 +45,7 @@ import {
   Trash,
   Star,
   TrendingUp,
+  Activity,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -146,6 +147,28 @@ export default function AdminTextures() {
       toast.error("Failed to update texture");
     }
   };
+
+  const toggleActive = async (id: string, isActive: boolean) => {
+    try {
+      const response = await fetch(`/api/textures/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isActive: !isActive }),
+      });
+
+      if (response.ok) {
+        toast.success(
+          `Texture ${!isActive ? "activated" : "deactivated"} successfully`,
+        );
+        fetchTextures();
+      } else {
+        toast.error("Failed to update texture");
+      }
+    } catch (error) {
+      console.error("Error updating texture:", error);
+      toast.error("Failed to update texture");
+    }
+  }
 
   const toggleTrending = async (id: string, trending: boolean) => {
     try {
@@ -331,15 +354,26 @@ export default function AdminTextures() {
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           onClick={() =>
+                            toggleActive(texture._id, texture.isActive) // ✅ correct for active/inactive
+                          }
+                        >
+                          <Activity className="mr-2 h-4 w-4" />
+                          {texture.isActive
+                            ? "InActive"
+                            : "Active"}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() =>
                             toggleFeature(texture._id, texture.featured)
                           }
                         >
                           <Star className="mr-2 h-4 w-4" />
                           {texture.featured ? "Unfeature" : "Feature"}
                         </DropdownMenuItem>
+
                         <DropdownMenuItem
                           onClick={() =>
-                            toggleTrending(texture._id, texture.trending)
+                            toggleTrending(texture._id, texture.trending) // ✅ correct for trending
                           }
                         >
                           <TrendingUp className="mr-2 h-4 w-4" />
@@ -347,6 +381,7 @@ export default function AdminTextures() {
                             ? "Remove trending"
                             : "Mark trending"}
                         </DropdownMenuItem>
+
                         <DropdownMenuItem
                           onClick={() => setDeleteId(texture._id)}
                           className="text-destructive"

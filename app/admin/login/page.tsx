@@ -57,7 +57,7 @@ export default function AdminLogin() {
           <div className="mx-auto bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
             <Lock className="h-6 w-6 text-primary" />
           </div>
-          <CardTitle className="text-2xl">TileTextures Admin</CardTitle>
+          <CardTitle className="text-2xl">BT Tuff Tiles Admin</CardTitle>
           <p className="text-muted-foreground">Sign in to your admin account</p>
         </CardHeader>
         <CardContent>
