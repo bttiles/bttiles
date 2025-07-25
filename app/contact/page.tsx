@@ -2,9 +2,12 @@
 import Footer from "@/ui/Footer";
 import Header from "@/ui/Header";
 import dynamic from "next/dynamic";
-const Map = dynamic(() => import("@/ui/Map"), {
+const MapComponent = dynamic(() => import('@/ui/MapComponent'), {
   ssr: false,
+  loading: () => <p className="text-center text-white">Loading map...</p>,
 });
+import emailjs from '@emailjs/browser';
+
 import {
   Mail,
   Phone,
@@ -25,13 +28,36 @@ export default function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" });
-  };
+ const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+
+  // template_s049n3i
+  // service_9i5yssl
+  // vryewsJJafpDWlMcQ
+  emailjs.send(
+    'service_kr3tn84', // ✅ Your service ID
+    'template_c7qzzom', // ✅ Your template ID
+    {
+      from_name: formData.name,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    },
+    'vryewsJJafpDWlMcQ' 
+  ).then(
+    (result) => {
+      console.log(result.text);
+      alert('Message sent successfully!');
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    },
+    (error) => {
+      console.error(error.text);
+      alert('Failed to send message. Please try again later.');
+    }
+  );
+};
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -243,7 +269,7 @@ export default function Contact() {
             <h2 className="text-2xl font-semibold text-white mb-6 text-center">
               Our Location
             </h2>
-            <Map />
+            <MapComponent />
 
           </div>
 

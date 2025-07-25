@@ -1,14 +1,5 @@
 {
-  "/page": "app/page.js",
-  "/api/categories/route": "app/api/categories/route.js",
-  "/api/textures/route": "app/api/textures/route.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/api/admin/textures/route": "app/api/admin/textures/route.js",
-  "/texture/[id]/page": "app/texture/[id]/page.js",
-  "/api/textures/[id]/route": "app/api/textures/[id]/route.js",
-  "/api/textures/[id]/like/route": "app/api/textures/[id]/like/route.js",
-  "/api/categories/[id]/route": "app/api/categories/[id]/route.js",
-  "/admin/categories/page": "app/admin/categories/page.js",
-  "/admin/textures/page": "app/admin/textures/page.js",
-  "/admin/textures/new/page": "app/admin/textures/new/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js"
 }
