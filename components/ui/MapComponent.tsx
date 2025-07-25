@@ -9,10 +9,11 @@ const MapComponent = () => {
   useEffect(() => {
     const map = new maplibregl.Map({
       container: mapContainer.current!,
-      style: "https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json", // Dark theme
+      style: `https://api.maptiler.com/maps/streets/style.json?key=PriFgHyuJLxhkxz7Ffuf`,
       center: [67.1279106, 24.9718567],
       zoom: 15,
     });
+
 
     map.addControl(new maplibregl.NavigationControl());
 
