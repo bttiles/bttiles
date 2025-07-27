@@ -74,13 +74,14 @@ export default function HomePage() {
               Bismillah Tuff Tiles - Quality Construction Materials Since Years
             </h2>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl mb-4">
-              Leading manufacturer and supplier of high-quality tuff tiles, pavers, GRC jali, and construction materials in Pakistan.
-              Our premium ceramic tiles, marble textures, and decorative surfaces are perfect for residential and commercial projects.
-              Available in various styles including square, hexagonal, herringbone, and custom patterned designs.
+              Leading <strong>tuff tiles manufacturer in Pakistan</strong> specializing in premium pavers, <Link href="/categories" className="text-primary-blue hover:underline">GRC jali designs</Link>, and construction materials.
+              Our high-quality <Link href="/featured" className="text-primary-blue hover:underline">ceramic tiles</Link>, marble textures, and decorative surfaces are ideal for residential villas, commercial plazas, and industrial projects.
+              Available in multiple styles: square pavers, hexagonal tiles, herringbone patterns, interlocking designs, and custom architectural elements.
             </p>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl">
-              Serving major cities across Pakistan including Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, and Multan.
-              Contact us for wholesale rates and bulk orders. Free delivery available for large orders.
+              <strong>Nationwide delivery across Pakistan</strong> including major cities: <em>Lahore tiles supplier</em>, <em>Karachi pavers dealer</em>, <em>Islamabad construction materials</em>,
+              Rawalpindi tuff tiles, Faisalabad ceramic tiles, Multan building materials, Sialkot pavers, and Gujranwala tiles distributor.
+              <Link href="/contact" className="text-primary-blue hover:underline">Contact us for wholesale rates</Link> and bulk order discounts. Free delivery for orders above 1000 sq ft.
             </p>
           </div>
 
@@ -231,24 +232,27 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-white mb-4">Premium Tuff Tiles</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">Premium Tuff Tiles Manufacturing</h3>
                 <p className="text-gray-light text-sm">
-                  High-quality tuff tiles manufactured with precision for durability and aesthetic appeal.
-                  Perfect for outdoor pathways, driveways, and commercial spaces.
+                  <strong>High-quality tuff tiles Pakistan</strong> manufactured with German technology for superior durability and aesthetic appeal.
+                  Ideal for <em>outdoor pathways, parking areas, driveways, garden landscapes</em>, and commercial plaza flooring.
+                  <Link href="/categories" className="text-primary-blue hover:underline">View all tile categories</Link>.
                 </p>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-white mb-4">GRC Jali Designs</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">GRC Jali & Decorative Elements</h3>
                 <p className="text-gray-light text-sm">
-                  Intricate GRC (Glass Reinforced Concrete) jali patterns for modern architectural designs.
-                  Custom designs available for unique project requirements.
+                  Intricate <strong>GRC (Glass Reinforced Concrete) jali patterns</strong> for modern architectural designs in Pakistan.
+                  Custom laser-cut designs, geometric patterns, traditional motifs available for mosques, homes, and commercial buildings.
+                  <Link href="/featured" className="text-primary-blue hover:underline">See featured designs</Link>.
                 </p>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-white mb-4">Standard Pavers</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">Standard & Interlocking Pavers</h3>
                 <p className="text-gray-light text-sm">
-                  Durable standard pavers for residential and commercial use.
-                  Available in multiple colors and finishes to match your design vision.
+                  Durable <strong>concrete pavers and interlocking tiles</strong> for residential and commercial use in Pakistan.
+                  Available in 20+ colors, multiple finishes, anti-slip surfaces for pool areas, and heavy-duty industrial applications.
+                  <Link href="/help" className="text-primary-blue hover:underline">Installation guide</Link>.
                 </p>
               </div>
             </div>
@@ -262,27 +266,31 @@ export default function HomePage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">Manufacturing Excellence</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">ISO Certified Manufacturing Excellence</h3>
                 <p className="text-gray-light text-sm mb-4">
-                  State-of-the-art manufacturing facility in Pakistan producing tiles that meet international quality standards.
-                  Our experienced team ensures consistent quality and timely delivery.
+                  <strong>State-of-the-art tile manufacturing facility in Pakistan</strong> with ISO 9001:2015 certification, producing
+                  <em>premium tuff tiles that exceed international quality standards</em>. Our German machinery and experienced craftsmen
+                  ensure consistent quality, precise dimensions, and reliable delivery schedules across Pakistan.
                 </p>
-                <h3 className="text-lg font-semibold text-white mb-3">Wide Product Range</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">Comprehensive Product Portfolio</h3>
                 <p className="text-gray-light text-sm">
-                  From ceramic tiles to marble textures, pavers to decorative jali - we offer comprehensive construction materials
-                  for all your building needs.
+                  From <Link href="/categories" className="text-primary-blue hover:underline">ceramic floor tiles</Link> to natural stone textures,
+                  decorative pavers to architectural jali - we manufacture <strong>500+ tile designs</strong> covering all construction material needs
+                  for residential homes, commercial complexes, and industrial projects in Pakistan.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">Competitive Pricing</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">Factory Direct Pricing Pakistan</h3>
                 <p className="text-gray-light text-sm mb-4">
-                  Direct manufacturer pricing with special wholesale rates for bulk orders.
-                  Best value for money without compromising on quality.
+                  <strong>Direct manufacturer pricing</strong> with up to 40% savings on retail rates. Special wholesale discounts for
+                  <em>bulk orders above 5000 sq ft</em>. Competitive rates for contractors, builders, and architects across Pakistan.
+                  <Link href="/contact" className="text-primary-blue hover:underline">Get wholesale quote</Link>.
                 </p>
-                <h3 className="text-lg font-semibold text-white mb-3">Nationwide Delivery</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">Pakistan-wide Express Delivery</h3>
                 <p className="text-gray-light text-sm">
-                  Reliable delivery across Pakistan including major cities.
-                  Free delivery available for orders above minimum quantity.
+                  <strong>Fastest tile delivery in Pakistan</strong> - same day dispatch from our warehouse. Serving all major cities:
+                  Lahore (2 days), Karachi (3 days), Islamabad (1 day), with <em>free delivery for orders above 2000 sq ft</em>.
+                  Professional installation services available.
                 </p>
               </div>
             </div>
