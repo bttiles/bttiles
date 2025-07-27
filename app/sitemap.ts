@@ -5,7 +5,7 @@ import Category from '../lib/models/Category'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://bttufftiles.vercel.app'
-  
+
   // Static pages
   const staticPages = [
     {
@@ -48,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     await connectDB()
-    
+
     // Get all textures
     const textures = await Texture.find({}, 'slug updatedAt').lean()
     const texturePages = textures.map((texture) => ({
@@ -60,12 +60,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Get all categories
     const categories = await Category.find({}, 'slug updatedAt').lean()
-    const categoryPages = categories.map((category) => ({
-      url: `${baseUrl}/categories?category=${encodeURIComponent(category.name)}`,
-      lastModified: category.updatedAt || new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
+const categoryPages = categories
+  .filter((category) => category.name && category.name.trim() !== "")
+  .map((category) => ({
+    url: `${baseUrl}/categories?category=${encodeURIComponent(category.name)}`,
+    lastModified: category.updatedAt?.toISOString() || new Date().toISOString(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
 
     return [...staticPages, ...texturePages, ...categoryPages]
   } catch (error) {
