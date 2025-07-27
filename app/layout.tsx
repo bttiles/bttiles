@@ -11,23 +11,27 @@ import LocalSEO from "@/LocalSEO";
 import "leaflet/dist/leaflet.css";
 
 export const metadata: Metadata = genMeta({
-  title: "Bismillah Tuff Tiles - Premium Tuff Tiles & Pavers Manufacturer Pakistan",
-  description: "Leading manufacturer of premium tuff tiles, pavers, GRC jali, and construction materials in Pakistan. High-quality ceramic tiles, marble textures, and custom designs for residential and commercial projects. Contact us for wholesale rates.",
+  title: "Bismillah Tuff Tiles - #1 Tuff Tiles & Pavers Manufacturer Pakistan | Factory Direct Prices",
+  description: "🏭 Leading tuff tiles manufacturer in Pakistan since 2010. ✅ Premium pavers, GRC jali, ceramic tiles ✅ ISO certified quality ✅ Lahore, Karachi, Islamabad delivery ✅ Wholesale rates ✅ Free installation guide. Call +92-317-6697001 for bulk discounts.",
   keywords: [
-    'tuff tiles pakistan',
-    'pavers manufacturer',
-    'tiles supplier pakistan',
-    'grc jali',
-    'construction materials pakistan',
-    'ceramic tiles lahore',
-    'marble textures islamabad',
-    'floor tiles karachi',
-    'wall tiles rawalpindi',
-    'outdoor pavers',
-    'interior tiles',
-    'wholesale tiles',
-    'building materials',
-    'architectural tiles'
+    'tuff tiles manufacturer pakistan',
+    'pavers supplier lahore karachi islamabad',
+    'tiles factory pakistan wholesale',
+    'grc jali designs pakistan',
+    'construction materials rawalpindi faisalabad',
+    'ceramic tiles multan sialkot gujranwala',
+    'marble textures flooring pakistan',
+    'interlocking tiles parking commercial',
+    'outdoor pavers driveways pathways',
+    'interior wall floor tiles pakistan',
+    'building materials supplier pakistan',
+    'architectural decorative tiles',
+    'concrete pavers heavy duty industrial',
+    'bismillah tuff tiles factory direct',
+    'pakistani tile manufacturers exporters',
+    'anti slip tiles pool deck outdoor',
+    'garden landscape tiles pakistan',
+    'plaza commercial flooring solutions'
   ],
   url: "https://bttufftiles.vercel.app"
 });
