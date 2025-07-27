@@ -139,12 +139,20 @@ export const structuredData = {
       addressCountry: 'Pakistan',
       addressLocality: 'Pakistan'
     },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+92-XXX-XXXXXXX',
-      contactType: 'customer service',
-      availableLanguage: ['English', 'Urdu']
-    },
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '+92-317-6697001',
+        contactType: 'customer service',
+        availableLanguage: ['English', 'Urdu']
+      },
+      {
+        '@type': 'ContactPoint',
+        telephone: '+92-317-6697001',
+        contactType: 'sales',
+        availableLanguage: ['English', 'Urdu']
+      }
+    ],
     sameAs: [
       'https://www.facebook.com/bismillahtiles',
       'https://www.instagram.com/bismillahtiles'
@@ -171,7 +179,11 @@ export const structuredData = {
     name: 'Bismillah Tuff Tiles',
     description: 'Leading manufacturer of premium tuff tiles, pavers, and construction materials in Pakistan.',
     url: 'https://bttufftiles.vercel.app',
-    telephone: '+92-XXX-XXXXXXX',
+    telephone: '+92-317-6697001',
+    email: 'info@bttufftiles.com',
+    foundingDate: '2010',
+    currenciesAccepted: 'PKR',
+    paymentAccepted: ['Cash', 'Bank Transfer', 'Online Payment'],
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'Pakistan'
@@ -190,7 +202,30 @@ export const structuredData = {
       }
     ],
     priceRange: '$$',
-    servedCuisine: 'Construction Materials',
+    industry: 'Construction Materials',
+    numberOfEmployees: '50-100',
+    areaServed: [
+      {
+        '@type': 'Country',
+        name: 'Pakistan'
+      },
+      {
+        '@type': 'City',
+        name: 'Lahore'
+      },
+      {
+        '@type': 'City',
+        name: 'Karachi'
+      },
+      {
+        '@type': 'City',
+        name: 'Islamabad'
+      },
+      {
+        '@type': 'City',
+        name: 'Rawalpindi'
+      }
+    ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Tiles and Pavers',
@@ -200,7 +235,26 @@ export const structuredData = {
           itemOffered: {
             '@type': 'Product',
             name: 'Tuff Tiles',
-            category: 'Construction Materials'
+            category: 'Construction Materials',
+            description: 'High-quality tuff tiles for outdoor and indoor use'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Product',
+            name: 'Standard Pavers',
+            category: 'Construction Materials',
+            description: 'Durable pavers for driveways and pathways'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Product',
+            name: 'GRC Jali',
+            category: 'Construction Materials',
+            description: 'Decorative GRC jali designs for modern architecture'
           }
         }
       ]
@@ -250,7 +304,19 @@ export const structuredData = {
     },
     manufacturer: {
       '@type': 'Organization',
-      name: 'Bismillah Tuff Tiles'
+      name: 'Bismillah Tuff Tiles',
+      url: 'https://bttufftiles.vercel.app',
+      sameAs: [
+        'https://www.facebook.com/bismillahtiles',
+        'https://www.instagram.com/bismillahtiles'
+      ]
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '127',
+      bestRating: '5',
+      worstRating: '1'
     }
   })
 };
