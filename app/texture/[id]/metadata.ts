@@ -1,9 +1,7 @@
 import { Metadata } from 'next'
 import connectDB from '../../../lib/mongodb'
-// import Texture from '../../../lib/models/Texture'
-import Texture, { ITexture } from '../../../lib/models/Texture';
+import Texture, { ITexture } from '../../../lib/models/Texture'
 import { generateMetadata as genMeta, structuredData } from '../../../lib/seo'
-// import type { ITexture } from '../../../lib/models/Texture'; // adjust path if needed
 
 interface Props {
     params: { id: string }
