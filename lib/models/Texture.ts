@@ -1,5 +1,31 @@
 import mongoose from "mongoose";
 
+export interface ITexture {
+  _id: string;
+  name: string;
+  description: string;
+  category: string;
+  image: string;
+  imagePublicId?: string;
+  images: {
+    url: string;
+    publicId?: string;
+    alt?: string;
+    isPrimary?: boolean;
+  }[];
+  resolution?: string;
+  format?: string;
+  tags?: string[];
+  featured?: boolean;
+  trending?: boolean;
+  likes?: number;
+  views?: number;
+  isActive?: boolean;
+  adminNotes?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 const TextureSchema = new mongoose.Schema(
   {
     name: {

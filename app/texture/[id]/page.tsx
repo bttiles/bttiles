@@ -21,6 +21,7 @@ import Image from "next/image";
 import { TextureImage, useTexture, useTextures } from "../../../hooks/useTextures";
 import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
+import { structuredData } from "../../../lib/seo";
 
 type ImageObject = {
   url: string;
@@ -192,6 +193,35 @@ Thank you!`,
 
   return (
     <div className="min-h-screen bg-dark text-white">
+      {/* Structured Data */}
+      {texture && (
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(structuredData.product({
+                name: texture.name,
+                description: texture.description,
+                image: texture.image,
+                category: texture.category,
+                sku: texture._id
+              })),
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(structuredData.breadcrumb([
+                { name: 'Home', url: 'https://bttufftiles.vercel.app' },
+                { name: 'Categories', url: 'https://bttufftiles.vercel.app/categories' },
+                { name: texture.category, url: `https://bttufftiles.vercel.app/categories?category=${encodeURIComponent(texture.category)}` },
+                { name: texture.name, url: `https://bttufftiles.vercel.app/texture/${texture._id}` }
+              ])),
+            }}
+          />
+        </>
+      )}
+
       {/* Header */}
       <Header />
       {/* Main Content */}

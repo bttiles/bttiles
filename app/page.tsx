@@ -8,6 +8,7 @@ import { useTextures } from "../hooks/useTextures";
 import { useCategories } from "../hooks/useCategories";
 import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
+import SEOFAQSection from "@/SEOFAQSection";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -69,15 +70,20 @@ export default function HomePage() {
 
           {/* Page Header */}
           <div className="mb-10">
-            <h1 className="text-3xl font-medium text-white mb-3">
-              Bismillah Tuff Tiles
+            <h1 className="text-4xl font-bold text-white mb-4">
+              Premium Tuff Tiles & Pavers Manufacturer in Pakistan
             </h1>
+            <h2 className="text-xl text-gray-300 mb-4">
+              Bismillah Tuff Tiles - Quality Construction Materials Since Years
+            </h2>
+            <p className="text-sm text-gray-light leading-relaxed max-w-4xl mb-4">
+              Leading manufacturer and supplier of high-quality tuff tiles, pavers, GRC jali, and construction materials in Pakistan.
+              Our premium ceramic tiles, marble textures, and decorative surfaces are perfect for residential and commercial projects.
+              Available in various styles including square, hexagonal, herringbone, and custom patterned designs.
+            </p>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl">
-              Browse a variety of tile textures, including ceramic, and mosaic,
-              with styles such as square, hexagonal, and patterned. Perfect for
-              floors, walls, and decorative surfaces. Compatible with Blender,
-              Maya, Cinema 4D, 3ds Max, Sketchup, Unity, Unreal Engine, and
-              more.
+              Serving major cities across Pakistan including Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, and Multan.
+              Contact us for wholesale rates and bulk orders. Free delivery available for large orders.
             </p>
           </div>
 
@@ -221,6 +227,72 @@ export default function HomePage() {
             )}
           </section>
         </div>
+
+        {/* SEO Content Sections */}
+        <section className="bg-dark-lighter py-16 mt-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-white mb-4">Premium Tuff Tiles</h3>
+                <p className="text-gray-light text-sm">
+                  High-quality tuff tiles manufactured with precision for durability and aesthetic appeal.
+                  Perfect for outdoor pathways, driveways, and commercial spaces.
+                </p>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-white mb-4">GRC Jali Designs</h3>
+                <p className="text-gray-light text-sm">
+                  Intricate GRC (Glass Reinforced Concrete) jali patterns for modern architectural designs.
+                  Custom designs available for unique project requirements.
+                </p>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-white mb-4">Standard Pavers</h3>
+                <p className="text-gray-light text-sm">
+                  Durable standard pavers for residential and commercial use.
+                  Available in multiple colors and finishes to match your design vision.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-3xl font-bold text-white text-center mb-8">
+              Why Choose Bismillah Tuff Tiles?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">Manufacturing Excellence</h3>
+                <p className="text-gray-light text-sm mb-4">
+                  State-of-the-art manufacturing facility in Pakistan producing tiles that meet international quality standards.
+                  Our experienced team ensures consistent quality and timely delivery.
+                </p>
+                <h3 className="text-lg font-semibold text-white mb-3">Wide Product Range</h3>
+                <p className="text-gray-light text-sm">
+                  From ceramic tiles to marble textures, pavers to decorative jali - we offer comprehensive construction materials
+                  for all your building needs.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-3">Competitive Pricing</h3>
+                <p className="text-gray-light text-sm mb-4">
+                  Direct manufacturer pricing with special wholesale rates for bulk orders.
+                  Best value for money without compromising on quality.
+                </p>
+                <h3 className="text-lg font-semibold text-white mb-3">Nationwide Delivery</h3>
+                <p className="text-gray-light text-sm">
+                  Reliable delivery across Pakistan including major cities.
+                  Free delivery available for orders above minimum quantity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <SEOFAQSection />
 
         {/* Testimonials Section */}
         <Testimonials />

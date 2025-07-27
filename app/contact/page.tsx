@@ -86,11 +86,13 @@ export default function Contact() {
 
           {/* Page Header */}
           <div className="mb-16 text-center animate-in fade-in slide-in-from-bottom-6 duration-700">
-            <h1 className="text-4xl font-bold text-white mb-6">Get in Touch</h1>
+            <h1 className="text-4xl font-bold text-white mb-6">
+              Contact Bismillah Tuff Tiles Pakistan - Get Expert Tile Consultation
+            </h1>
             <p className="text-lg text-gray-light leading-relaxed max-w-3xl mx-auto">
-              Have questions about our textures or need support? We're here to
-              help. Reach out to our team and we'll get back to you as soon as
-              possible.
+              Need expert advice on tuff tiles, pavers, or construction materials? Our experienced team
+              in Pakistan is ready to help you choose the perfect tiles for your project.
+              Contact us for pricing, samples, and technical support.
             </p>
           </div>
 
