@@ -305,8 +305,8 @@ export default function HomePage() {
         <Testimonials />
       </main>
 
-      {/* Footer */}
-      <Footer />
+      {/* SEO Footer */}
+      <SEOFooter />
     </div>
   );
 }
