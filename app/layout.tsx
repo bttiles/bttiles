@@ -118,15 +118,17 @@ export default function RootLayout({
       </head>
       <body>
         <LocalSEO />
-        <ReactQueryProvider>
-          <TooltipProvider>
-            <PerformanceOptimization />
-            <Toaster />
-            <Sonner />
-            <WhatsAppButton />
-            {children}
-          </TooltipProvider>
-        </ReactQueryProvider>
+        <ErrorBoundary>
+          <ReactQueryProvider>
+            <TooltipProvider>
+              <PerformanceOptimization />
+              <Toaster />
+              <Sonner />
+              <WhatsAppButton />
+              {children}
+            </TooltipProvider>
+          </ReactQueryProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
