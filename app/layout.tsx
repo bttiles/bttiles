@@ -67,6 +67,32 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData.localBusiness),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              "name": "Tuff Tiles Pakistan",
+              "description": "Premium tuff tiles manufactured by BT Tuff Tiles and Bismillah Tuff Tiles in Pakistan",
+              "brand": {
+                "@type": "Brand",
+                "name": "Bismillah Tuff Tiles"
+              },
+              "manufacturer": {
+                "@type": "Organization",
+                "name": "BT Tuff Tiles Pakistan"
+              },
+              "offers": {
+                "@type": "AggregateOffer",
+                "priceCurrency": "PKR",
+                "lowPrice": "50",
+                "highPrice": "500",
+                "availability": "https://schema.org/InStock"
+              }
+            }),
+          }}
+        />
         <link rel="canonical" href="https://bttufftiles.vercel.app" />
         <meta name="geo.region" content="PK" />
         <meta name="geo.placename" content="Pakistan" />
