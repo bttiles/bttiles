@@ -32,6 +32,8 @@ export function useCategories(options: UseCategoriesOptions = {}) {
   const [error, setError] = useState<string | null>(null);
 
   const fetchCategories = useCallback(async () => {
+    const controller = new AbortController();
+
     try {
       setLoading(true);
       setError(null);
@@ -41,7 +43,17 @@ export function useCategories(options: UseCategoriesOptions = {}) {
         params.append("includeInactive", "true");
       }
 
-      const response = await fetch(`/api/categories?${params.toString()}`);
+      const response = await fetch(`/api/categories?${params.toString()}`, {
+        signal: controller.signal,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const result: CategoriesResponse = await response.json();
 
       if (result.success) {
@@ -50,11 +62,16 @@ export function useCategories(options: UseCategoriesOptions = {}) {
         setError("Failed to fetch categories");
       }
     } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') {
+        return; // Ignore aborted requests
+      }
       setError("Network error occurred");
       console.error("Error fetching categories:", err);
     } finally {
       setLoading(false);
     }
+
+    return () => controller.abort();
   }, [options.includeInactive]);
 
   useEffect(() => {
