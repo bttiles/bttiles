@@ -8,6 +8,11 @@ export interface SEOProps {
   price?: string;
   availability?: string;
   category?: string;
+  location?: string;
+  brand?: string;
+  author?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 export function generateMetadata({
@@ -29,17 +34,22 @@ export function generateMetadata({
     description: description || 'Leading manufacturer of premium tuff tiles, pavers, and construction materials in Pakistan. High-quality ceramic tiles, marble textures, and custom designs for residential and commercial projects.',
     keywords: [
       'tuff tiles pakistan',
-      'pavers pakistan', 
-      'tiles manufacturer pakistan',
-      'construction materials',
-      'ceramic tiles',
-      'marble textures',
-      'bismillah tuff tiles',
-      'flooring solutions',
-      'wall tiles',
-      'outdoor pavers',
-      'interior tiles',
-      'architectural materials',
+      'pavers manufacturer pakistan',
+      'tiles supplier lahore karachi islamabad',
+      'construction materials rawalpindi',
+      'ceramic tiles sialkot gujranwala',
+      'marble textures faisalabad multan',
+      'bismillah tuff tiles factory',
+      'flooring solutions pakistan',
+      'wall tiles outdoor indoor',
+      'decorative pavers wholesale',
+      'GRC jali designs pakistan',
+      'architectural tiles building materials',
+      'concrete tiles cement pavers',
+      'interlocking tiles parking tiles',
+      'garden pathway tiles driveway pavers',
+      'commercial residential tiles',
+      'pakistani tile manufacturers exporters',
       ...keywords
     ].join(', '),
     openGraph: {
@@ -56,7 +66,9 @@ export function generateMetadata({
         }
       ],
       siteName: 'Bismillah Tuff Tiles',
-      locale: 'en_PK'
+      locale: 'en_PK',
+      countryName: 'Pakistan',
+      region: 'Punjab'
     },
     twitter: {
       card: 'summary_large_image',
@@ -76,7 +88,19 @@ export function generateMetadata({
     //     'max-snippet': -1,
     //   },
     // },
-    robots: "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+        'noimageindex': false,
+        'notranslate': false
+      },
+    },
 
     alternates: {
       canonical: url || baseUrl,
