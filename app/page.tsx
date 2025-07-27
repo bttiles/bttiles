@@ -9,7 +9,7 @@ import { useCategories } from "../hooks/useCategories";
 import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
 import SEOFAQSection from "@/SEOFAQSection";
-import Breadcrumb from "@/ui/Breadcrumb";
+import Breadcrumb from "@/ui/breadcrumb";
 import SEOFooter from "@/ui/SEOFooter";
 
 export default function HomePage() {
