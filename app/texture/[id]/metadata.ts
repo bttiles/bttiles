@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 }
 
-export function generateTextureStructuredData(texture: any) {
+export function generateTextureStructuredData(texture: ITexture) {
     return structuredData.product({
         name: texture.name,
         description: texture.description,
