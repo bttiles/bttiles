@@ -69,7 +69,7 @@ export default function HomePage() {
           {/* Page Header */}
           <div className="mb-10">
             <h1 className="text-4xl font-bold text-white mb-4">
-              Premium Tuff Tiles & Pavers Manufacturer in Pakistan
+              Tuff Tiles Pakistan - BT Tuff Tiles & Bismillah Tuff Tiles Manufacturer
             </h1>
             <h2 className="text-xl text-gray-300 mb-4">
               Bismillah Tuff Tiles - Quality Construction Materials Since Years
