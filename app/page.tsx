@@ -57,17 +57,13 @@ export default function HomePage() {
       <main className="pt-20">
         <div className="max-w-7xl mx-auto px-6 py-6">
           {/* Breadcrumb */}
-          <nav className="text-sm text-gray-light mb-10">
-            <Link href="/" className="text-primary-blue hover:underline">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <Link href="/" className="text-primary-blue hover:underline">
-              Textures
-            </Link>
-            <span className="mx-2">/</span>
-            <span>Tile</span>
-          </nav>
+          <Breadcrumb
+            items={[
+              { name: 'Home', href: '/' },
+              { name: 'Tuff Tiles Pakistan', href: '/categories' },
+              { name: selectedCategory !== 'all' ? selectedCategory : 'All Categories', href: '#', current: true }
+            ]}
+          />
 
           {/* Page Header */}
           <div className="mb-10">
