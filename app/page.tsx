@@ -71,9 +71,18 @@ export default function HomePage() {
             <h1 className="text-4xl font-bold text-white mb-4">
               Tuff Tiles Pakistan - BT Tuff Tiles & Bismillah Tuff Tiles Manufacturer
             </h1>
-            <h2 className="text-xl text-gray-300 mb-4">
+            <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-lg p-4 mb-6">
+              <h2 className="text-2xl font-bold text-primary-blue mb-2">
+                #1 Tuff Tiles | BT Tuff Tiles | Bismillah Tuff Tiles Pakistan
+              </h2>
+              <p className="text-white text-lg">
+                <strong>Best tuff tiles in Pakistan</strong> - Factory direct pricing on BT tuff tiles, Bismillah tuff tiles,
+                and premium pavers. Call +92-317-6697001 for instant quotes.
+              </p>
+            </div>
+            <h3 className="text-xl text-gray-300 mb-4">
               Bismillah Tuff Tiles - Quality Construction Materials Since Years
-            </h2>
+            </h3>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl mb-4">
               Leading <strong>tuff tiles manufacturer in Pakistan</strong> specializing in premium pavers, <Link href="/categories" className="text-primary-blue hover:underline">GRC jali designs</Link>, and construction materials.
               Our high-quality <Link href="/featured" className="text-primary-blue hover:underline">ceramic tiles</Link>, marble textures, and decorative surfaces are ideal for residential villas, commercial plazas, and industrial projects.

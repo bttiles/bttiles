@@ -3,6 +3,5 @@
   "/api/categories/route": "app/api/categories/route.js",
   "/api/textures/route": "app/api/textures/route.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/categories/page": "app/categories/page.js",
-  "/texture/[id]/page": "app/texture/[id]/page.js"
+  "/categories/page": "app/categories/page.js"
 }
