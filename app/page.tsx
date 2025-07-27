@@ -9,6 +9,7 @@ import { useCategories } from "../hooks/useCategories";
 import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
 import SEOFAQSection from "@/SEOFAQSection";
+import Breadcrumb from "@/ui/Breadcrumb";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
