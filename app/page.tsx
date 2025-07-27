@@ -161,10 +161,11 @@ export default function HomePage() {
                       <div className="aspect-square overflow-hidden relative">
                         <Image
                           src={texture.image}
-                          alt={texture.name}
+                          alt={`${texture.name} - Premium ${texture.category} tile texture manufactured by Bismillah Tuff Tiles Pakistan. High-quality ${texture.category.toLowerCase()} suitable for residential and commercial projects.`}
                           fill
                           priority={index < 4}
                           className="object-cover group-hover:scale-105 transition-transform duration-200"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
                       </div>
                       <div className="p-4">
