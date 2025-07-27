@@ -1,4 +1,4 @@
-// File: C:\Users\DEVELOPER\Desktop\NextJS_Tiles_Web\next_js_tiles_web\app\api\textures\route.ts
+// File: /app/code/app/api/textures/route.ts
 import * as entry from '../../../../../app/api/textures/route.js'
 import type { NextRequest } from 'next/server.js'
 

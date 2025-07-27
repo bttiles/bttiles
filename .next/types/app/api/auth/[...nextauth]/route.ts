@@ -1,4 +1,4 @@
-// File: C:\Users\DEVELOPER\Desktop\NextJS_Tiles_Web\next_js_tiles_web\app\api\auth\[...nextauth]\route.ts
+// File: /app/code/app/api/auth/[...nextauth]/route.ts
 import * as entry from '../../../../../../app/api/auth/[...nextauth]/route.js'
 import type { NextRequest } from 'next/server.js'
 
