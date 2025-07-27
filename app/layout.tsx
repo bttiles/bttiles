@@ -75,6 +75,19 @@ export default function RootLayout({
         <link rel="alternate" href="https://bttufftiles.vercel.app" hrefLang="en-pk" />
         <meta name="theme-color" content="#1a1a1a" />
         <meta name="msapplication-TileColor" content="#1a1a1a" />
+
+        {/* Performance & Core Web Vitals */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <meta name="format-detection" content="telephone=yes" />
+
+        {/* Business Verification */}
+        <meta name="google-site-verification" content="google1eab263bc7e7047f" />
+
+        {/* Additional SEO Meta Tags */}
+        <meta name="rating" content="General" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="language" content="English" />
       </head>
       <body>
         <LocalSEO />
