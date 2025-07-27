@@ -9,7 +9,6 @@ export interface TextureImage {
   _id?: string;
 }
 
-
 export interface TextureData {
   _id: string;
   name: string;
@@ -78,7 +77,7 @@ export function useTextures(options: UseTexturesOptions = {}) {
       const response = await fetch(`/api/textures?${params.toString()}`, {
         signal: controller.signal,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
@@ -96,7 +95,7 @@ export function useTextures(options: UseTexturesOptions = {}) {
         setError("Failed to fetch textures");
       }
     } catch (err) {
-      if (err instanceof Error && err.name === 'AbortError') {
+      if (err instanceof Error && err.name === "AbortError") {
         return; // Ignore aborted requests
       }
       setError("Network error occurred");

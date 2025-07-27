@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Script from 'next/script';
+import Link from "next/link";
+import Script from "next/script";
 
 interface BreadcrumbItem {
   name: string;
@@ -16,12 +16,14 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": items.map((item, index) => ({
+    itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
-      "position": index + 1,
-      "name": item.name,
-      "item": item.current ? undefined : `https://bttufftiles.vercel.app${item.href}`
-    }))
+      position: index + 1,
+      name: item.name,
+      item: item.current
+        ? undefined
+        : `https://bttufftiles.vercel.app${item.href}`,
+    })),
   };
 
   return (

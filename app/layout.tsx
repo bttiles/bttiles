@@ -12,29 +12,31 @@ import ErrorBoundary from "@/ErrorBoundary";
 import "leaflet/dist/leaflet.css";
 
 export const metadata: Metadata = genMeta({
-  title: "Bismillah Tuff Tiles - #1 Tuff Tiles & Pavers Manufacturer Pakistan | Factory Direct Prices",
-  description: "🏭 Leading tuff tiles manufacturer in Pakistan since 2010. ✅ Premium pavers, GRC jali, ceramic tiles ✅ ISO certified quality ✅ Lahore, Karachi, Islamabad delivery ✅ Wholesale rates ✅ Free installation guide. Call +92-317-6697001 for bulk discounts.",
+  title:
+    "Bismillah Tuff Tiles - #1 Tuff Tiles & Pavers Manufacturer Pakistan | Factory Direct Prices",
+  description:
+    "🏭 Leading tuff tiles manufacturer in Pakistan since 2010. ✅ Premium pavers, GRC jali, ceramic tiles ✅ ISO certified quality ✅ Lahore, Karachi, Islamabad delivery ✅ Wholesale rates ✅ Free installation guide. Call +92-317-6697001 for bulk discounts.",
   keywords: [
-    'tuff tiles manufacturer pakistan',
-    'pavers supplier lahore karachi islamabad',
-    'tiles factory pakistan wholesale',
-    'grc jali designs pakistan',
-    'construction materials rawalpindi faisalabad',
-    'ceramic tiles multan sialkot gujranwala',
-    'marble textures flooring pakistan',
-    'interlocking tiles parking commercial',
-    'outdoor pavers driveways pathways',
-    'interior wall floor tiles pakistan',
-    'building materials supplier pakistan',
-    'architectural decorative tiles',
-    'concrete pavers heavy duty industrial',
-    'bismillah tuff tiles factory direct',
-    'pakistani tile manufacturers exporters',
-    'anti slip tiles pool deck outdoor',
-    'garden landscape tiles pakistan',
-    'plaza commercial flooring solutions'
+    "tuff tiles manufacturer pakistan",
+    "pavers supplier lahore karachi islamabad",
+    "tiles factory pakistan wholesale",
+    "grc jali designs pakistan",
+    "construction materials rawalpindi faisalabad",
+    "ceramic tiles multan sialkot gujranwala",
+    "marble textures flooring pakistan",
+    "interlocking tiles parking commercial",
+    "outdoor pavers driveways pathways",
+    "interior wall floor tiles pakistan",
+    "building materials supplier pakistan",
+    "architectural decorative tiles",
+    "concrete pavers heavy duty industrial",
+    "bismillah tuff tiles factory direct",
+    "pakistani tile manufacturers exporters",
+    "anti slip tiles pool deck outdoor",
+    "garden landscape tiles pakistan",
+    "plaza commercial flooring solutions",
   ],
-  url: "https://bttufftiles.vercel.app"
+  url: "https://bttufftiles.vercel.app",
 });
 
 export const viewport = {
@@ -74,23 +76,24 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Product",
-              "name": "Tuff Tiles Pakistan",
-              "description": "Premium tuff tiles manufactured by BT Tuff Tiles and Bismillah Tuff Tiles in Pakistan",
-              "brand": {
+              name: "Tuff Tiles Pakistan",
+              description:
+                "Premium tuff tiles manufactured by BT Tuff Tiles and Bismillah Tuff Tiles in Pakistan",
+              brand: {
                 "@type": "Brand",
-                "name": "Bismillah Tuff Tiles"
+                name: "Bismillah Tuff Tiles",
               },
-              "manufacturer": {
+              manufacturer: {
                 "@type": "Organization",
-                "name": "BT Tuff Tiles Pakistan"
+                name: "BT Tuff Tiles Pakistan",
               },
-              "offers": {
+              offers: {
                 "@type": "AggregateOffer",
-                "priceCurrency": "PKR",
-                "lowPrice": "50",
-                "highPrice": "500",
-                "availability": "https://schema.org/InStock"
-              }
+                priceCurrency: "PKR",
+                lowPrice: "50",
+                highPrice: "500",
+                availability: "https://schema.org/InStock",
+              },
             }),
           }}
         />
@@ -99,7 +102,11 @@ export default function RootLayout({
         <meta name="geo.placename" content="Pakistan" />
         <meta name="geo.position" content="30.3753;69.3451" />
         <meta name="ICBM" content="30.3753, 69.3451" />
-        <link rel="alternate" href="https://bttufftiles.vercel.app" hrefLang="en-pk" />
+        <link
+          rel="alternate"
+          href="https://bttufftiles.vercel.app"
+          hrefLang="en-pk"
+        />
         <meta name="theme-color" content="#1a1a1a" />
         <meta name="msapplication-TileColor" content="#1a1a1a" />
 
@@ -109,7 +116,10 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=yes" />
 
         {/* Business Verification */}
-        <meta name="google-site-verification" content="google1eab263bc7e7047f" />
+        <meta
+          name="google-site-verification"
+          content="google1eab263bc7e7047f"
+        />
 
         {/* Additional SEO Meta Tags */}
         <meta name="rating" content="General" />

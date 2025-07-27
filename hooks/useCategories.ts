@@ -46,7 +46,7 @@ export function useCategories(options: UseCategoriesOptions = {}) {
       const response = await fetch(`/api/categories?${params.toString()}`, {
         signal: controller.signal,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
@@ -62,7 +62,7 @@ export function useCategories(options: UseCategoriesOptions = {}) {
         setError("Failed to fetch categories");
       }
     } catch (err) {
-      if (err instanceof Error && err.name === 'AbortError') {
+      if (err instanceof Error && err.name === "AbortError") {
         return; // Ignore aborted requests
       }
       setError("Network error occurred");

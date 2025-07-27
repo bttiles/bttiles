@@ -51,8 +51,8 @@ CategorySchema.pre("save", function (next) {
       .replace(/-+/g, "-")
       .replace(/^-+|-+$/g, "");
   }
-    next();
-  });
+  next();
+});
 
 export default mongoose.models.Category ||
   mongoose.model("Category", CategorySchema);
