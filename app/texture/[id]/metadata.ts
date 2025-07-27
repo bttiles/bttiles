@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             title,
             description,
             keywords: [
-                texture?.name.toLowerCase(),
+                texture.name.toLowerCase(),
                 texture.category.toLowerCase(),
                 'tiles pakistan',
                 'pavers',
