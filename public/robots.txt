@@ -3,5 +3,5 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-Sitemap: https://bttufftiles.vercel.app/sitemap.xml
-Host: https://bttufftiles.vercel.app
+Sitemap: https://bismillahtufftiles.vercel.app//sitemap.xml
+Host: https://bismillahtufftiles.vercel.app/

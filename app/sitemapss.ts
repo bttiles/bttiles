@@ -4,7 +4,7 @@ import Texture from '../lib/models/Texture'
 import Category from '../lib/models/Category'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://bttufftiles.vercel.app'
+  const baseUrl = 'https://bismillahtufftiles.vercel.app/'
 
   // Static pages
   const staticPages = [

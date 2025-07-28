@@ -42,10 +42,10 @@ export default function LocalSEO() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://bttufftiles.vercel.app/#localbusiness",
+    "@id": "https://bismillahtufftiles.vercel.app//#localbusiness",
     "name": businessInfo.name,
     "description": businessInfo.description,
-    "url": "https://bttufftiles.vercel.app",
+    "url": "https://bismillahtufftiles.vercel.app/",
     "telephone": businessInfo.contact.phone,
     "email": businessInfo.contact.email,
     "address": {
@@ -113,13 +113,13 @@ export default function LocalSEO() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://bttufftiles.vercel.app"
+        "item": "https://bismillahtufftiles.vercel.app/"
       },
       {
         "@type": "ListItem", 
         "position": 2,
         "name": "Tuff Tiles Pakistan",
-        "item": "https://bttufftiles.vercel.app/categories"
+        "item": "https://bismillahtufftiles.vercel.app//categories"
       }
     ]
   };

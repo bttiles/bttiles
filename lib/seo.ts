@@ -21,15 +21,15 @@ export function generateMetadata({
   availability,
   category
 }: SEOProps) {
-  const baseUrl = 'https://bttufftiles.vercel.app';
+  const baseUrl = 'https://bismillahtufftiles.vercel.app/';
   const defaultImage = `${baseUrl}/placeholder.svg`;
-  
+
   const metadata = {
     title: title || 'Bismillah Tuff Tiles - Premium Tiles, Pavers & Construction Materials Pakistan',
     description: description || 'Leading manufacturer of premium tuff tiles, pavers, and construction materials in Pakistan. High-quality ceramic tiles, marble textures, and custom designs for residential and commercial projects.',
     keywords: [
       'tuff tiles pakistan',
-      'pavers pakistan', 
+      'pavers pakistan',
       'tiles manufacturer pakistan',
       'construction materials',
       'ceramic tiles',
@@ -107,8 +107,8 @@ export const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Bismillah Tuff Tiles',
-    url: 'https://bttufftiles.vercel.app',
-    logo: 'https://bttufftiles.vercel.app/placeholder.svg',
+    url: 'https://bismillahtufftiles.vercel.app/',
+    logo: 'https://bismillahtufftiles.vercel.app/Logo.png',
     description: 'Leading manufacturer of premium tuff tiles, pavers, and construction materials in Pakistan.',
     address: {
       '@type': 'PostalAddress',
@@ -117,7 +117,7 @@ export const structuredData = {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+92-XXX-XXXXXXX',
+      telephone: '+92-317-6697001',
       contactType: 'customer service',
       availableLanguage: ['English', 'Urdu']
     },
@@ -126,16 +126,24 @@ export const structuredData = {
       'https://www.instagram.com/bismillahtiles'
     ]
   },
-  
+
   website: {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Bismillah Tuff Tiles',
-    url: 'https://bttufftiles.vercel.app',
+    url: 'https://bismillahtufftiles.vercel.app/',
     description: 'Premium tiles, pavers, and construction materials manufacturer in Pakistan',
+    publisher: {
+      "@type": "Organization",
+      name: "Bismillah Tuff Tiles",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://bismillahtufftiles.vercel.app/Logo.png"
+      }
+    },
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://bttufftiles.vercel.app/?search={search_term_string}',
+      target: 'https://bismillahtufftiles.vercel.app//?search={search_term_string}',
       'query-input': 'required name=search_term_string'
     }
   },
@@ -143,11 +151,11 @@ export const structuredData = {
   localBusiness: {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': 'https://bttufftiles.vercel.app/#business',
+    '@id': 'https://bismillahtufftiles.vercel.app//#business',
     name: 'Bismillah Tuff Tiles',
     description: 'Leading manufacturer of premium tuff tiles, pavers, and construction materials in Pakistan.',
-    url: 'https://bttufftiles.vercel.app',
-    telephone: '+92-XXX-XXXXXXX',
+    url: 'https://bismillahtufftiles.vercel.app/',
+    telephone: '+92-317-6697001',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'Pakistan'
@@ -183,7 +191,7 @@ export const structuredData = {
     }
   },
 
-  breadcrumb: (items: Array<{name: string, url: string}>) => ({
+  breadcrumb: (items: Array<{ name: string, url: string }>) => ({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: items.map((item, index) => ({

@@ -14,5 +14,5 @@ export const metadata: Metadata = genMeta({
     'building materials categories',
     'architectural tiles'
   ],
-  url: 'https://bttufftiles.vercel.app/categories'
+  url: 'https://bismillahtufftiles.vercel.app//categories'
 })

@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 require("dotenv").config({ path: ".env.local" });
 
 const MONGODB_URI = process.env.MONGODB_URI;
-const baseUrl = "https://bttufftiles.vercel.app";
+const baseUrl = "https://bismillahtufftiles.vercel.app/";
 
 // ✅ Define Texture & Category schema inline (no need to import TS files)
 const TextureSchema = new mongoose.Schema({}, { strict: false });

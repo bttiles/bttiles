@@ -212,10 +212,10 @@ Thank you!`,
             type="application/ld+json"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(structuredData.breadcrumb([
-                { name: 'Home', url: 'https://bttufftiles.vercel.app' },
-                { name: 'Categories', url: 'https://bttufftiles.vercel.app/categories' },
-                { name: texture.category, url: `https://bttufftiles.vercel.app/categories?category=${encodeURIComponent(texture.category)}` },
-                { name: texture.name, url: `https://bttufftiles.vercel.app/texture/${texture._id}` }
+                { name: 'Home', url: 'https://bismillahtufftiles.vercel.app/' },
+                { name: 'Categories', url: 'https://bismillahtufftiles.vercel.app//categories' },
+                { name: texture.category, url: `https://bismillahtufftiles.vercel.app//categories?category=${encodeURIComponent(texture.category)}` },
+                { name: texture.name, url: `https://bismillahtufftiles.vercel.app//texture/${texture._id}` }
               ])),
             }}
           />

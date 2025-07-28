@@ -29,7 +29,7 @@ export const metadata: Metadata = genMeta({
     'building materials',
     'architectural tiles'
   ],
-  url: "https://bttufftiles.vercel.app"
+  url: "https://bismillahtufftiles.vercel.app/"
 });
 
 export const viewport = {
@@ -63,12 +63,12 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData.localBusiness),
           }}
         />
-        <link rel="canonical" href="https://bttufftiles.vercel.app" />
+        <link rel="canonical" href="https://bismillahtufftiles.vercel.app/" />
         <meta name="geo.region" content="PK" />
         <meta name="geo.placename" content="Pakistan" />
         <meta name="geo.position" content="30.3753;69.3451" />
         <meta name="ICBM" content="30.3753, 69.3451" />
-        <link rel="alternate" href="https://bttufftiles.vercel.app" hrefLang="en-pk" />
+        <link rel="alternate" href="https://bismillahtufftiles.vercel.app/" hrefLang="en-pk" />
         <meta name="theme-color" content="#1a1a1a" />
         <meta name="msapplication-TileColor" content="#1a1a1a" />
       </head>

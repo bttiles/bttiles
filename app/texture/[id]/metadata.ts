@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                 ...(texture.tags || [])
             ],
             image: texture.image,
-            url: `https://bttufftiles.vercel.app/texture/${texture._id}`,
+            url: `https://bismillahtufftiles.vercel.app//texture/${texture._id}`,
             type: 'product',
             price: 'Contact for pricing',
             availability: 'in stock',
