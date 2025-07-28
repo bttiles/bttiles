@@ -204,7 +204,11 @@ Thank you!`,
                 description: texture.description,
                 image: texture.image,
                 category: texture.category,
-                sku: texture._id
+                sku: texture._id,
+                price: "Contact for pricing",
+                availability: "InStock",
+                likes: texture.likes,
+                views: texture.views
               })),
             }}
           />
