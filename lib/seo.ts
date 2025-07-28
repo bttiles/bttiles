@@ -341,7 +341,10 @@ export const structuredData = {
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
-      reviewCount: Math.max((product.likes || 0) + (product.views || 0) / 10, 5).toString(),
+      reviewCount: Math.max(
+        (product.likes || 0) + (product.views || 0) / 10,
+        5,
+      ).toString(),
       bestRating: "5",
       worstRating: "1",
     },
@@ -357,7 +360,8 @@ export const structuredData = {
           "@type": "Person",
           name: "Verified Customer",
         },
-        reviewBody: "High quality tiles with excellent finish. Great for both indoor and outdoor projects.",
+        reviewBody:
+          "High quality tiles with excellent finish. Great for both indoor and outdoor projects.",
         datePublished: "2024-01-15",
       },
       {
@@ -371,7 +375,8 @@ export const structuredData = {
           "@type": "Person",
           name: "Construction Professional",
         },
-        reviewBody: "Durable and well-made tiles. Good value for money and reliable supplier.",
+        reviewBody:
+          "Durable and well-made tiles. Good value for money and reliable supplier.",
         datePublished: "2024-01-10",
       },
     ],
