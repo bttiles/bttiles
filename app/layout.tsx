@@ -8,6 +8,7 @@ import { ReactQueryProvider } from "./providers";
 import { generateMetadata as genMeta, structuredData } from "../lib/seo";
 import PerformanceOptimization from "../components/PerformanceOptimization";
 import LocalSEO from "../components/LocalSEO";
+import LocalBusinessStructuredData from "../components/LocalBusinessStructuredData";
 import "leaflet/dist/leaflet.css";
 
 export const metadata: Metadata = genMeta({
