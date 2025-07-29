@@ -10,6 +10,7 @@ import Header from "../components/ui/Header";
 import Footer from "../components/ui/Footer";
 import SEOFAQSection from "../components/SEOFAQSection";
 import Breadcrumb from "../components/ui/Breadcrumb";
+import ProductCatalogStructuredData from "../components/ProductCatalogStructuredData";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
