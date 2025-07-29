@@ -9,6 +9,7 @@ import { useCategories } from "../hooks/useCategories";
 import Header from "@/ui/Header";
 import Footer from "@/ui/Footer";
 import SEOFAQSection from "@/SEOFAQSection";
+import { Breadcrumb } from "@/ui/breadcrumb";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,34 +57,77 @@ export default function HomePage() {
       <main className="pt-20">
         <div className="max-w-7xl mx-auto px-6 py-6">
           {/* Breadcrumb */}
-          <nav className="text-sm text-gray-light mb-10">
-            <Link href="/" className="text-primary-blue hover:underline">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <Link href="/" className="text-primary-blue hover:underline">
-              Textures
-            </Link>
-            <span className="mx-2">/</span>
-            <span>Tile</span>
-          </nav>
+          <Breadcrumb
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Tuff Tiles Pakistan", href: "/categories" },
+              {
+                name:
+                  selectedCategory !== "all"
+                    ? selectedCategory
+                    : "All Categories",
+                href: "#",
+                current: true,
+              },
+            ]}
+          />
 
           {/* Page Header */}
           <div className="mb-10">
             <h1 className="text-4xl font-bold text-white mb-4">
-              Premium Tuff Tiles & Pavers Manufacturer in Pakistan
+              Tuff Tiles Pakistan - BT Tuff Tiles & Bismillah Tuff Tiles
+              Manufacturer
             </h1>
-            <h2 className="text-xl text-gray-300 mb-4">
+            <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-lg p-4 mb-6">
+              <h2 className="text-2xl font-bold text-primary-blue mb-2">
+                #1 Tuff Tiles | BT Tuff Tiles | Bismillah Tuff Tiles Pakistan
+              </h2>
+              <p className="text-white text-lg">
+                <strong>Best tuff tiles in Pakistan</strong> - Factory direct
+                pricing on BT tuff tiles, Bismillah tuff tiles, and premium
+                pavers. Call +92-317-6697001 for instant quotes.
+              </p>
+            </div>
+            <h3 className="text-xl text-gray-300 mb-4">
               Bismillah Tuff Tiles - Quality Construction Materials Since Years
-            </h2>
+            </h3>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl mb-4">
-              Leading manufacturer and supplier of high-quality tuff tiles, pavers, GRC jali, and construction materials in Pakistan.
-              Our premium ceramic tiles, marble textures, and decorative surfaces are perfect for residential and commercial projects.
-              Available in various styles including square, hexagonal, herringbone, and custom patterned designs.
+              Leading <strong>tuff tiles manufacturer in Pakistan</strong>{" "}
+              specializing in premium pavers,{" "}
+              <Link
+                href="/categories"
+                className="text-primary-blue hover:underline"
+              >
+                GRC jali designs
+              </Link>
+              , and construction materials. Our high-quality{" "}
+              <Link
+                href="/featured"
+                className="text-primary-blue hover:underline"
+              >
+                ceramic tiles
+              </Link>
+              , marble textures, and decorative surfaces are ideal for
+              residential villas, commercial plazas, and industrial projects.
+              Available in multiple styles: square pavers, hexagonal tiles,
+              herringbone patterns, interlocking designs, and custom
+              architectural elements.
             </p>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl">
-              Serving major cities across Pakistan including Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, and Multan.
-              Contact us for wholesale rates and bulk orders. Free delivery available for large orders.
+              <strong>Nationwide delivery across Pakistan</strong> including
+              major cities: <em>Lahore tiles supplier</em>,{" "}
+              <em>Karachi pavers dealer</em>,{" "}
+              <em>Islamabad construction materials</em>, Rawalpindi tuff tiles,
+              Faisalabad ceramic tiles, Multan building materials, Sialkot
+              pavers, and Gujranwala tiles distributor.
+              <Link
+                href="/contact"
+                className="text-primary-blue hover:underline"
+              >
+                Contact us for wholesale rates
+              </Link>{" "}
+              and bulk order discounts. Free delivery for orders above 1000 sq
+              ft.
             </p>
           </div>
 
@@ -96,10 +140,11 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-6">
               <button
                 onClick={() => setSelectedCategory("all")}
-                className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${selectedCategory === "all"
-                  ? "bg-primary-blue text-white"
-                  : "bg-dark-lighter text-white"
-                  }`}
+                className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${
+                  selectedCategory === "all"
+                    ? "bg-primary-blue text-white"
+                    : "bg-dark-lighter text-white"
+                }`}
               >
                 All Categories
               </button>
@@ -107,10 +152,11 @@ export default function HomePage() {
                 <button
                   key={category._id}
                   onClick={() => setSelectedCategory(category.name)}
-                  className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${selectedCategory === category.name
-                    ? "bg-primary-blue text-white"
-                    : "bg-dark-lighter text-white"
-                    }`}
+                  className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${
+                    selectedCategory === category.name
+                      ? "bg-primary-blue text-white"
+                      : "bg-dark-lighter text-white"
+                  }`}
                 >
                   {category.name}
                 </button>
@@ -161,10 +207,11 @@ export default function HomePage() {
                       <div className="aspect-square overflow-hidden relative">
                         <Image
                           src={texture.image}
-                          alt={texture.name}
+                          alt={`${texture.name} - Premium ${texture.category} tile texture manufactured by Bismillah Tuff Tiles Pakistan. High-quality ${texture.category.toLowerCase()} suitable for residential and commercial projects.`}
                           fill
                           priority={index < 4}
                           className="object-cover group-hover:scale-105 transition-transform duration-200"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
                       </div>
                       <div className="p-4">
@@ -190,10 +237,11 @@ export default function HomePage() {
                 <button
                   disabled={currentPage === 1}
                   onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${currentPage === 1
-                    ? "text-gray-500 cursor-not-allowed opacity-50"
-                    : "text-white hover:border-primary-blue cursor-pointer"
-                    } bg-dark-lighter`}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
+                    currentPage === 1
+                      ? "text-gray-500 cursor-not-allowed opacity-50"
+                      : "text-white hover:border-primary-blue cursor-pointer"
+                  } bg-dark-lighter`}
                 >
                   Previous
                 </button>
@@ -202,10 +250,11 @@ export default function HomePage() {
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${currentPage === page
-                      ? "bg-primary-blue text-white border-primary-blue"
-                      : "bg-dark-lighter text-white hover:border-primary-blue"
-                      }`}
+                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${
+                      currentPage === page
+                        ? "bg-primary-blue text-white border-primary-blue"
+                        : "bg-dark-lighter text-white hover:border-primary-blue"
+                    }`}
                   >
                     {page}
                   </button>
@@ -216,10 +265,11 @@ export default function HomePage() {
                   onClick={() =>
                     setCurrentPage(Math.min(totalPages, currentPage + 1))
                   }
-                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${currentPage === totalPages
-                    ? "text-gray-500 cursor-not-allowed opacity-50"
-                    : "text-white hover:border-primary-blue cursor-pointer"
-                    } bg-dark-lighter`}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
+                    currentPage === totalPages
+                      ? "text-gray-500 cursor-not-allowed opacity-50"
+                      : "text-white hover:border-primary-blue cursor-pointer"
+                  } bg-dark-lighter`}
                 >
                   Next
                 </button>
@@ -233,24 +283,63 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-white mb-4">Premium Tuff Tiles</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">
+                  Premium Tuff Tiles Manufacturing
+                </h3>
                 <p className="text-gray-light text-sm">
-                  High-quality tuff tiles manufactured with precision for durability and aesthetic appeal.
-                  Perfect for outdoor pathways, driveways, and commercial spaces.
+                  <strong>High-quality tuff tiles Pakistan</strong> manufactured
+                  with German technology for superior durability and aesthetic
+                  appeal. Ideal for{" "}
+                  <em>
+                    outdoor pathways, parking areas, driveways, garden
+                    landscapes
+                  </em>
+                  , and commercial plaza flooring.
+                  <Link
+                    href="/categories"
+                    className="text-primary-blue hover:underline"
+                  >
+                    View all tile categories
+                  </Link>
+                  .
                 </p>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-white mb-4">GRC Jali Designs</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">
+                  GRC Jali & Decorative Elements
+                </h3>
                 <p className="text-gray-light text-sm">
-                  Intricate GRC (Glass Reinforced Concrete) jali patterns for modern architectural designs.
-                  Custom designs available for unique project requirements.
+                  Intricate{" "}
+                  <strong>GRC (Glass Reinforced Concrete) jali patterns</strong>{" "}
+                  for modern architectural designs in Pakistan. Custom laser-cut
+                  designs, geometric patterns, traditional motifs available for
+                  mosques, homes, and commercial buildings.
+                  <Link
+                    href="/featured"
+                    className="text-primary-blue hover:underline"
+                  >
+                    See featured designs
+                  </Link>
+                  .
                 </p>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-white mb-4">Standard Pavers</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">
+                  Standard & Interlocking Pavers
+                </h3>
                 <p className="text-gray-light text-sm">
-                  Durable standard pavers for residential and commercial use.
-                  Available in multiple colors and finishes to match your design vision.
+                  Durable{" "}
+                  <strong>concrete pavers and interlocking tiles</strong> for
+                  residential and commercial use in Pakistan. Available in 20+
+                  colors, multiple finishes, anti-slip surfaces for pool areas,
+                  and heavy-duty industrial applications.
+                  <Link
+                    href="/help"
+                    className="text-primary-blue hover:underline"
+                  >
+                    Installation guide
+                  </Link>
+                  .
                 </p>
               </div>
             </div>
@@ -264,27 +353,66 @@ export default function HomePage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">Manufacturing Excellence</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">
+                  ISO Certified Manufacturing Excellence
+                </h3>
                 <p className="text-gray-light text-sm mb-4">
-                  State-of-the-art manufacturing facility in Pakistan producing tiles that meet international quality standards.
-                  Our experienced team ensures consistent quality and timely delivery.
+                  <strong>
+                    State-of-the-art tile manufacturing facility in Pakistan
+                  </strong>{" "}
+                  with ISO 9001:2015 certification, producing
+                  <em>
+                    premium tuff tiles that exceed international quality
+                    standards
+                  </em>
+                  . Our German machinery and experienced craftsmen ensure
+                  consistent quality, precise dimensions, and reliable delivery
+                  schedules across Pakistan.
                 </p>
-                <h3 className="text-lg font-semibold text-white mb-3">Wide Product Range</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">
+                  Comprehensive Product Portfolio
+                </h3>
                 <p className="text-gray-light text-sm">
-                  From ceramic tiles to marble textures, pavers to decorative jali - we offer comprehensive construction materials
-                  for all your building needs.
+                  From{" "}
+                  <Link
+                    href="/categories"
+                    className="text-primary-blue hover:underline"
+                  >
+                    ceramic floor tiles
+                  </Link>{" "}
+                  to natural stone textures, decorative pavers to architectural
+                  jali - we manufacture <strong>500+ tile designs</strong>{" "}
+                  covering all construction material needs for residential
+                  homes, commercial complexes, and industrial projects in
+                  Pakistan.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-3">Competitive Pricing</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">
+                  Factory Direct Pricing Pakistan
+                </h3>
                 <p className="text-gray-light text-sm mb-4">
-                  Direct manufacturer pricing with special wholesale rates for bulk orders.
-                  Best value for money without compromising on quality.
+                  <strong>Direct manufacturer pricing</strong> with up to 40%
+                  savings on retail rates. Special wholesale discounts for
+                  <em>bulk orders above 5000 sq ft</em>. Competitive rates for
+                  contractors, builders, and architects across Pakistan.
+                  <Link
+                    href="/contact"
+                    className="text-primary-blue hover:underline"
+                  >
+                    Get wholesale quote
+                  </Link>
+                  .
                 </p>
-                <h3 className="text-lg font-semibold text-white mb-3">Nationwide Delivery</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">
+                  Pakistan-wide Express Delivery
+                </h3>
                 <p className="text-gray-light text-sm">
-                  Reliable delivery across Pakistan including major cities.
-                  Free delivery available for orders above minimum quantity.
+                  <strong>Fastest tile delivery in Pakistan</strong> - same day
+                  dispatch from our warehouse. Serving all major cities: Lahore
+                  (2 days), Karachi (3 days), Islamabad (1 day), with{" "}
+                  <em>free delivery for orders above 2000 sq ft</em>.
+                  Professional installation services available.
                 </p>
               </div>
             </div>
@@ -298,8 +426,8 @@ export default function HomePage() {
         <Testimonials />
       </main>
 
-      {/* Footer */}
-      <Footer />
+      {/* SEO Footer */}
+      <SEOFooter />
     </div>
   );
 }

@@ -37,8 +37,7 @@ const CategorySchema = new mongoose.Schema(
   },
 );
 
-// Create indexes
-CategorySchema.index({ slug: 1 });
+// Create indexes (slug already has unique index from schema definition)
 CategorySchema.index({ isActive: 1 });
 CategorySchema.index({ sortOrder: 1 });
 
@@ -52,8 +51,8 @@ CategorySchema.pre("save", function (next) {
       .replace(/-+/g, "-")
       .replace(/^-+|-+$/g, "");
   }
-    next();
-  });
+  next();
+});
 
 export default mongoose.models.Category ||
   mongoose.model("Category", CategorySchema);

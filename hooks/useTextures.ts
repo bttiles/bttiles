@@ -9,7 +9,6 @@ export interface TextureImage {
   _id?: string;
 }
 
-
 export interface TextureData {
   _id: string;
   name: string;
@@ -60,6 +59,8 @@ export function useTextures(options: UseTexturesOptions = {}) {
   const [total, setTotal] = useState(0);
 
   const fetchTextures = useCallback(async () => {
+    const controller = new AbortController();
+
     try {
       setLoading(true);
       setError(null);
@@ -73,7 +74,17 @@ export function useTextures(options: UseTexturesOptions = {}) {
       if (options.page) params.append("page", options.page.toString());
       if (options.limit) params.append("limit", options.limit.toString());
 
-      const response = await fetch(`/api/textures?${params.toString()}`);
+      const response = await fetch(`/api/textures?${params.toString()}`, {
+        signal: controller.signal,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const result: TexturesResponse = await response.json();
 
       if (result.success) {
@@ -84,11 +95,16 @@ export function useTextures(options: UseTexturesOptions = {}) {
         setError("Failed to fetch textures");
       }
     } catch (err) {
+      if (err instanceof Error && err.name === "AbortError") {
+        return; // Ignore aborted requests
+      }
       setError("Network error occurred");
       console.error("Error fetching textures:", err);
     } finally {
       setLoading(false);
     }
+
+    return () => controller.abort();
   }, [
     options.category,
     options.featured,
