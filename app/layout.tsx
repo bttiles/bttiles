@@ -75,6 +75,7 @@ export default function RootLayout({
       </head>
       <body>
         <LocalSEO />
+        <LocalBusinessStructuredData />
         <ReactQueryProvider>
           <TooltipProvider>
             <PerformanceOptimization />
