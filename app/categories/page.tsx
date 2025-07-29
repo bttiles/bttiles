@@ -20,7 +20,7 @@ import Image from "next/image";
 import { useTextures } from "../../hooks/useTextures";
 import { useCategories } from "../../hooks/useCategories";
 import Footer from "../../components/ui/Footer";
-import Header from "@/ui/Header";
+import Header from "../../components/ui/Header";
 
 export default function CategoriesPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
