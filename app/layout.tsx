@@ -11,23 +11,23 @@ import LocalSEO from "../components/LocalSEO";
 import "leaflet/dist/leaflet.css";
 
 export const metadata: Metadata = genMeta({
-  title: "Bismillah Tuff Tiles - Premium Tuff Tiles & Pavers Manufacturer Pakistan",
-  description: "Leading manufacturer of premium tuff tiles, pavers, GRC jali, and construction materials in Pakistan. High-quality ceramic tiles, marble textures, and custom designs for residential and commercial projects. Contact us for wholesale rates.",
+  title: "Tuff Tiles Pakistan | Bismillah Tuff Tiles Karachi | #1 Tuff Tiles Manufacturer",
+  description: "#1 Tuff Tiles in Pakistan! Bismillah Tuff Tiles Karachi - Best tuff tiles manufacturer. Premium quality tuff tiles, pavers & construction materials. Karachi, Lahore, Islamabad delivery. Call +92-317-6697001 for instant quotes on tuff tiles.",
   keywords: [
+    'tuff tiles',
+    'tuff tiles karachi',
+    'bismillah tuff tiles',
     'tuff tiles pakistan',
-    'pavers manufacturer',
-    'tiles supplier pakistan',
-    'grc jali',
-    'construction materials pakistan',
-    'ceramic tiles lahore',
-    'marble textures islamabad',
-    'floor tiles karachi',
-    'wall tiles rawalpindi',
-    'outdoor pavers',
-    'interior tiles',
-    'wholesale tiles',
-    'building materials',
-    'architectural tiles'
+    'best tuff tiles karachi',
+    'tuff tiles manufacturer pakistan',
+    'bt tuff tiles',
+    'tuff tiles lahore',
+    'tuff tiles islamabad',
+    'pavers tuff tiles',
+    'bismillah tuff tiles karachi',
+    'karachi tuff tiles supplier',
+    'premium tuff tiles pakistan',
+    'wholesale tuff tiles karachi'
   ],
   url: "https://bismillahtufftiles.vercel.app/"
 });
