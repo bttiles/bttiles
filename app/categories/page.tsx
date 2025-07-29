@@ -102,12 +102,12 @@ export default function CategoriesPage() {
           {/* Page Header */}
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-white mb-4">
-              Browse by Category
+              Tuff Tiles Categories | Bismillah Tuff Tiles Karachi
             </h1>
             <p className="text-gray-light text-lg">
               {catLoading
-                ? "Loading categories..."
-                : `Discover ${categories.length} categories of premium tiles with advanced filtering and sorting options.`}
+                ? "Loading tuff tiles categories..."
+                : `Discover ${categories.length} premium tuff tiles categories from Bismillah Tuff Tiles Karachi. Best quality tuff tiles with advanced filtering options.`}
             </p>
           </div>
 
