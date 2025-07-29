@@ -25,26 +25,28 @@ export function generateMetadata({
   const defaultImage = `${baseUrl}/placeholder.svg`;
 
   const metadata = {
-    title: title || 'Bismillah Tuff Tiles - Premium Tiles, Pavers & Construction Materials Pakistan',
-    description: description || 'Leading manufacturer of premium tuff tiles, pavers, and construction materials in Pakistan. High-quality ceramic tiles, marble textures, and custom designs for residential and commercial projects.',
+    title: title || 'Tuff Tiles | Bismillah Tuff Tiles Karachi | #1 Tuff Tiles Pakistan',
+    description: description || '#1 Tuff Tiles in Pakistan! Bismillah Tuff Tiles Karachi - Best tuff tiles manufacturer. Premium quality tuff tiles with nationwide delivery. Top choice for tuff tiles Karachi, Lahore, Islamabad.',
     keywords: [
-      'tuff tiles pakistan',
-      'pavers pakistan',
-      'tiles manufacturer pakistan',
-      'construction materials',
-      'ceramic tiles',
-      'marble textures',
+      'tuff tiles',
+      'tuff tiles karachi',
       'bismillah tuff tiles',
-      'flooring solutions',
-      'wall tiles',
-      'outdoor pavers',
-      'interior tiles',
-      'architectural materials',
+      'tuff tiles pakistan',
+      'best tuff tiles karachi',
+      'tuff tiles manufacturer pakistan',
+      'bt tuff tiles',
+      'karachi tuff tiles',
+      'tuff tiles lahore',
+      'tuff tiles islamabad',
+      'premium tuff tiles',
+      'wholesale tuff tiles',
+      'bismillah tuff tiles karachi',
+      'pakistan tuff tiles supplier',
       ...keywords
     ].join(', '),
     openGraph: {
-      title: title || 'Bismillah Tuff Tiles - Premium Tiles & Pavers Pakistan',
-      description: description || 'Leading manufacturer of premium tuff tiles, pavers, and construction materials in Pakistan.',
+      title: title || 'Tuff Tiles Karachi | Bismillah Tuff Tiles | #1 Tuff Tiles Pakistan',
+      description: description || 'Bismillah Tuff Tiles Karachi - Pakistan\'s #1 tuff tiles manufacturer. Best quality tuff tiles with nationwide delivery from Karachi.',
       type,
       url: url || baseUrl,
       images: [
@@ -61,8 +63,8 @@ export function generateMetadata({
     twitter: {
       card: 'summary_large_image',
       site: '@bismillahtiles',
-      title: title || 'Bismillah Tuff Tiles - Premium Tiles Pakistan',
-      description: description || 'Leading manufacturer of premium tuff tiles and pavers in Pakistan.',
+      title: title || 'Tuff Tiles Karachi | Bismillah Tuff Tiles Pakistan',
+      description: description || 'Bismillah Tuff Tiles Karachi - #1 tuff tiles manufacturer in Pakistan. Best quality tuff tiles nationwide delivery.',
       images: [image || defaultImage]
     },
     // robots: {
@@ -109,7 +111,7 @@ export const structuredData = {
     name: 'Bismillah Tuff Tiles',
     url: 'https://bismillahtufftiles.vercel.app/',
     logo: 'https://bismillahtufftiles.vercel.app/Logo.png',
-    description: 'Leading manufacturer of premium tuff tiles, pavers, and construction materials in Pakistan.',
+    description: 'Bismillah Tuff Tiles Karachi - Pakistan\'s #1 tuff tiles manufacturer. Premium quality tuff tiles, pavers, and construction materials with nationwide delivery.',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'Pakistan',
@@ -130,9 +132,9 @@ export const structuredData = {
   website: {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Bismillah Tuff Tiles',
+    name: 'Bismillah Tuff Tiles Karachi - Tuff Tiles Pakistan',
     url: 'https://bismillahtufftiles.vercel.app/',
-    description: 'Premium tiles, pavers, and construction materials manufacturer in Pakistan',
+    description: 'Tuff Tiles Karachi - Bismillah Tuff Tiles Pakistan. #1 tuff tiles manufacturer serving Karachi, Lahore, Islamabad nationwide.',
     publisher: {
       "@type": "Organization",
       name: "Bismillah Tuff Tiles",
