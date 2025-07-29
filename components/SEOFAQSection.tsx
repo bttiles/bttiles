@@ -5,24 +5,24 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const faqs = [
   {
-    question: "What types of tuff tiles do you manufacture in Pakistan?",
-    answer: "We manufacture a comprehensive range of tuff tiles including Standard Pavers, decorative GRC Jali, ceramic tiles, marble textures, hexagonal tiles, and custom patterned designs. All our products are made with high-quality materials and meet international standards for durability and aesthetics."
+    question: "What types of tuff tiles does Bismillah Tuff Tiles Karachi manufacture?",
+    answer: "Bismillah Tuff Tiles Karachi manufactures premium tuff tiles including Standard Pavers, decorative GRC Jali, ceramic tiles, marble textures, hexagonal tuff tiles, and custom patterned designs. Our tuff tiles are made with high-quality materials meeting international standards for durability."
   },
   {
-    question: "Do you provide nationwide delivery across Pakistan?", 
-    answer: "Yes, we provide reliable delivery services across Pakistan including major cities like Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar, Quetta, Sialkot, and Gujranwala. We offer free delivery for bulk orders above minimum quantity."
+    question: "Do you deliver tuff tiles nationwide from Karachi?",
+    answer: "Yes, Bismillah Tuff Tiles provides nationwide tuff tiles delivery from our Karachi facility to all Pakistan cities including Lahore, Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar, Quetta, Sialkot, and Gujranwala. Free tuff tiles delivery for bulk orders."
   },
   {
-    question: "What are your wholesale rates for bulk tile orders?",
-    answer: "We offer competitive wholesale pricing for bulk orders with significant discounts based on quantity. Our rates are among the best in Pakistan's construction materials market. Contact us via WhatsApp at +92-317-6697001 for detailed pricing based on your specific requirements."
+    question: "What are Bismillah Tuff Tiles wholesale rates for bulk tuff tiles?",
+    answer: "Bismillah Tuff Tiles offers Pakistan's most competitive wholesale tuff tiles pricing with significant bulk discounts. Our tuff tiles rates are among the best in Pakistan's market. Contact us at +92-317-6697001 for detailed tuff tiles pricing."
   },
   {
-    question: "Can I get tile samples before placing a large order?",
-    answer: "Absolutely! We encourage customers to inspect quality through samples before bulk orders. You can visit our showroom to see our complete range or contact us to arrange sample delivery to your location. This ensures you make an informed decision about our premium tiles."
+    question: "Can I get tuff tiles samples from Bismillah Tuff Tiles Karachi?",
+    answer: "Absolutely! Bismillah Tuff Tiles encourages customers to inspect our tuff tiles quality through samples before bulk orders. Visit our Karachi showroom to see our complete tuff tiles range or contact us for sample delivery. Make informed decisions about our premium tuff tiles."
   },
   {
-    question: "What makes Bismillah Tuff Tiles different from other manufacturers?",
-    answer: "We combine state-of-the-art manufacturing technology with years of experience in the Pakistani construction industry. Our tiles offer superior durability, aesthetic appeal, and competitive pricing. We also provide excellent customer service, timely delivery, and comprehensive after-sales support."
+    question: "Why choose Bismillah Tuff Tiles Karachi over other tuff tiles manufacturers?",
+    answer: "Bismillah Tuff Tiles Karachi combines state-of-the-art tuff tiles manufacturing with years of Pakistani construction industry experience. Our tuff tiles offer superior durability, aesthetic appeal, and Pakistan's most competitive pricing with excellent customer service."
   },
   {
     question: "Are your tiles suitable for both indoor and outdoor use?",
@@ -50,11 +50,11 @@ export default function SEOFAQSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Frequently Asked Questions About Tuff Tiles Pakistan
+            Tuff Tiles FAQ | Bismillah Tuff Tiles Karachi Pakistan
           </h2>
           <p className="text-gray-light text-lg max-w-3xl mx-auto">
-            Get answers to common questions about our premium tiles, manufacturing process, 
-            delivery options, and services across Pakistan.
+            Get answers about Bismillah Tuff Tiles Karachi - Pakistan's leading tuff tiles manufacturer.
+            Learn about our tuff tiles quality, delivery, and services across Pakistan.
           </p>
         </div>
         
