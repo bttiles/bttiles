@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Toaster } from "@/ui/toaster";
-import { Toaster as Sonner } from "@/ui/sonner";
-import { TooltipProvider } from "@/ui/tooltip";
-import WhatsAppButton from "@/WhatsAppButton";
+import { Toaster } from "../components/ui/toaster";
+import { Toaster as Sonner } from "../components/ui/sonner";
+import { TooltipProvider } from "../components/ui/tooltip";
+import WhatsAppButton from "../components/WhatsAppButton";
 import { ReactQueryProvider } from "./providers";
 import { generateMetadata as genMeta, structuredData } from "../lib/seo";
-import PerformanceOptimization from "@/PerformanceOptimization";
-import LocalSEO from "@/LocalSEO";
+import PerformanceOptimization from "../components/PerformanceOptimization";
+import LocalSEO from "../components/LocalSEO";
 import "leaflet/dist/leaflet.css";
 
 export const metadata: Metadata = genMeta({
