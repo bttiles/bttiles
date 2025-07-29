@@ -6,10 +6,10 @@ import Image from "next/image";
 import Testimonials from "../components/Testimonials";
 import { useTextures } from "../hooks/useTextures";
 import { useCategories } from "../hooks/useCategories";
-import Header from "@/ui/Header";
-import Footer from "@/ui/Footer";
-import SEOFAQSection from "@/SEOFAQSection";
-import { Breadcrumb } from "@/ui/breadcrumb";
+import Header from "../components/ui/Header";
+import Footer from "../components/ui/Footer";
+import SEOFAQSection from "../components/SEOFAQSection";
+import Breadcrumb from "../components/ui/Breadcrumb";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -426,8 +426,8 @@ export default function HomePage() {
         <Testimonials />
       </main>
 
-      {/* SEO Footer */}
-      <SEOFooter />
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
