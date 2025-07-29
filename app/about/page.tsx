@@ -1,11 +1,10 @@
 "use client";
 import { Users, Target, Award, Globe } from "lucide-react";
 import Link from "next/link";
-import Footer from "@/ui/Footer";
-import Header from "@/ui/Header";
+import Footer from "../../components/ui/Footer";
+import Header from "../../components/ui/Header";
 
 export default function AboutPage() {
-
   return (
     <div className="min-h-screen bg-dark text-white">
       {/* Header */}
@@ -43,11 +42,11 @@ export default function AboutPage() {
                   Our Mission
                 </h2>
                 <p className="text-gray-light leading-relaxed mb-4">
-                  At Bismillah Tuff Tiles, we believe that great design starts with
-                  great materials. Our curated collection of tile textures helps
-                  bring architectural visions to life, whether you're designing
-                  a modern kitchen, a traditional bathroom, or a cutting-edge
-                  commercial space.
+                  At Bismillah Tuff Tiles, we believe that great design starts
+                  with great materials. Our curated collection of tile textures
+                  helps bring architectural visions to life, whether you're
+                  designing a modern kitchen, a traditional bathroom, or a
+                  cutting-edge commercial space.
                 </p>
                 <p className="text-gray-light leading-relaxed">
                   We work with professional photographers and texture artists to
@@ -159,8 +158,8 @@ export default function AboutPage() {
                 Ready to Get Started?
               </h2>
               <p className="text-gray-light mb-8 max-w-2xl mx-auto">
-                Join thousands of designers who trust Bismillah Tuff Tiles for their
-                projects. Browse our collection and discover the perfect
+                Join thousands of designers who trust Bismillah Tuff Tiles for
+                their projects. Browse our collection and discover the perfect
                 textures for your next design.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -170,7 +169,10 @@ export default function AboutPage() {
                 >
                   Browse Textures
                 </Link>
-                <Link href="/contact" className="border border-dark text-white px-8 py-3 rounded-lg text-sm font-semibold hover:border-primary-blue transition-colors">
+                <Link
+                  href="/contact"
+                  className="border border-dark text-white px-8 py-3 rounded-lg text-sm font-semibold hover:border-primary-blue transition-colors"
+                >
                   Contact Us
                 </Link>
               </div>

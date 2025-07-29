@@ -1,35 +1,38 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Toaster } from "@/ui/toaster";
-import { Toaster as Sonner } from "@/ui/sonner";
-import { TooltipProvider } from "@/ui/tooltip";
-import WhatsAppButton from "@/WhatsAppButton";
+import { Toaster } from "../components/ui/toaster";
+import { Toaster as Sonner } from "../components/ui/sonner";
+import { TooltipProvider } from "../components/ui/tooltip";
+import WhatsAppButton from "../components/WhatsAppButton";
 import { ReactQueryProvider } from "./providers";
 import { generateMetadata as genMeta, structuredData } from "../lib/seo";
-import PerformanceOptimization from "@/PerformanceOptimization";
-import LocalSEO from "@/LocalSEO";
+import PerformanceOptimization from "../components/PerformanceOptimization";
+import LocalSEO from "../components/LocalSEO";
+import LocalBusinessStructuredData from "../components/LocalBusinessStructuredData";
 import "leaflet/dist/leaflet.css";
 
 export const metadata: Metadata = genMeta({
-  title: "Bismillah Tuff Tiles - Premium Tuff Tiles & Pavers Manufacturer Pakistan",
-  description: "Leading manufacturer of premium tuff tiles, pavers, GRC jali, and construction materials in Pakistan. High-quality ceramic tiles, marble textures, and custom designs for residential and commercial projects. Contact us for wholesale rates.",
+  title:
+    "Tuff Tiles Pakistan | Bismillah Tuff Tiles Karachi | #1 Tuff Tiles Manufacturer",
+  description:
+    "#1 Tuff Tiles in Pakistan! Bismillah Tuff Tiles Karachi - Best tuff tiles manufacturer. Premium quality tuff tiles, pavers & construction materials. Karachi, Lahore, Islamabad delivery. Call +92-317-6697001 for instant quotes on tuff tiles.",
   keywords: [
-    'tuff tiles pakistan',
-    'pavers manufacturer',
-    'tiles supplier pakistan',
-    'grc jali',
-    'construction materials pakistan',
-    'ceramic tiles lahore',
-    'marble textures islamabad',
-    'floor tiles karachi',
-    'wall tiles rawalpindi',
-    'outdoor pavers',
-    'interior tiles',
-    'wholesale tiles',
-    'building materials',
-    'architectural tiles'
+    "tuff tiles",
+    "tuff tiles karachi",
+    "bismillah tuff tiles",
+    "tuff tiles pakistan",
+    "best tuff tiles karachi",
+    "tuff tiles manufacturer pakistan",
+    "bt tuff tiles",
+    "tuff tiles lahore",
+    "tuff tiles islamabad",
+    "pavers tuff tiles",
+    "bismillah tuff tiles karachi",
+    "karachi tuff tiles supplier",
+    "premium tuff tiles pakistan",
+    "wholesale tuff tiles karachi",
   ],
-  url: "https://bismillahtufftiles.vercel.app/"
+  url: "https://bismillahtufftiles.vercel.app/",
 });
 
 export const viewport = {
@@ -68,12 +71,17 @@ export default function RootLayout({
         <meta name="geo.placename" content="Pakistan" />
         <meta name="geo.position" content="30.3753;69.3451" />
         <meta name="ICBM" content="30.3753, 69.3451" />
-        <link rel="alternate" href="https://bismillahtufftiles.vercel.app/" hrefLang="en-pk" />
+        <link
+          rel="alternate"
+          href="https://bismillahtufftiles.vercel.app/"
+          hrefLang="en-pk"
+        />
         <meta name="theme-color" content="#1a1a1a" />
         <meta name="msapplication-TileColor" content="#1a1a1a" />
       </head>
       <body>
         <LocalSEO />
+        <LocalBusinessStructuredData />
         <ReactQueryProvider>
           <TooltipProvider>
             <PerformanceOptimization />

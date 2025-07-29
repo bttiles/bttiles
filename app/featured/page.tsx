@@ -5,9 +5,8 @@ import { Search, Menu, X, Star, TrendingUp, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTextures } from "../../hooks/useTextures";
-import Footer from "@/ui/Footer";
-import Header from "@/ui/Header";
-
+import Footer from "../../components/ui/Footer";
+import Header from "../../components/ui/Header";
 
 export default function BlogPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,9 +15,8 @@ export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const { textures, loading, error } = useTextures({
-    limit: 0, 
+    limit: 0,
   });
-
 
   const featuredTextures = useMemo(() => {
     return textures.filter((texture) => texture.featured);
@@ -27,7 +25,6 @@ export default function BlogPage() {
   const trendingTextures = useMemo(() => {
     return textures.filter((texture) => texture.trending);
   }, [textures]);
-
 
   const filteredTextures = useMemo(() => {
     let filtered = textures;
@@ -39,7 +36,9 @@ export default function BlogPage() {
     } else if (selectedFilter === "all") {
       // Merge featured + trending and remove duplicates by _id
       const all = [...featuredTextures, ...trendingTextures];
-      const unique = Array.from(new Map(all.map(item => [item._id, item])).values());
+      const unique = Array.from(
+        new Map(all.map((item) => [item._id, item])).values(),
+      );
       filtered = unique;
     }
 
@@ -47,17 +46,23 @@ export default function BlogPage() {
       filtered = filtered.filter((texture) =>
         `${texture.name} ${texture.category}`
           .toLowerCase()
-          .includes(searchQuery.toLowerCase())
+          .includes(searchQuery.toLowerCase()),
       );
     }
 
     return filtered;
-  }, [textures, searchQuery, selectedFilter, featuredTextures, trendingTextures]);
+  }, [
+    textures,
+    searchQuery,
+    selectedFilter,
+    featuredTextures,
+    trendingTextures,
+  ]);
 
-
-
-  const totalPages = Math.max(1, Math.ceil(filteredTextures.length / itemsPerPage));
-
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredTextures.length / itemsPerPage),
+  );
 
   const currentPageTextures = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
@@ -67,7 +72,6 @@ export default function BlogPage() {
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, selectedFilter]);
-
 
   useEffect(() => {
     if (currentPage > totalPages) {
@@ -92,8 +96,14 @@ export default function BlogPage() {
     return buttons;
   };
 
-  if (loading) return <p className="text-center py-20 text-gray-light">Loading textures...</p>;
-  if (error) return <p className="text-center py-20 text-red-500">Error loading textures.</p>;
+  if (loading)
+    return (
+      <p className="text-center py-20 text-gray-light">Loading textures...</p>
+    );
+  if (error)
+    return (
+      <p className="text-center py-20 text-red-500">Error loading textures.</p>
+    );
 
   return (
     <div className="min-h-screen bg-dark text-white">
@@ -128,29 +138,32 @@ export default function BlogPage() {
           <div className="flex flex-wrap gap-3 mb-12 justify-center">
             <button
               onClick={() => setSelectedFilter("all")}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedFilter === "all"
-                ? "bg-primary-blue text-white shadow-lg shadow-primary-blue/30"
-                : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
-                }`}
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                selectedFilter === "all"
+                  ? "bg-primary-blue text-white shadow-lg shadow-primary-blue/30"
+                  : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
+              }`}
             >
               All Textures
             </button>
             <button
               onClick={() => setSelectedFilter("featured")}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedFilter === "featured"
-                ? "bg-primary-blue text-white shadow-lg shadow-primary-blue/30"
-                : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
-                }`}
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                selectedFilter === "featured"
+                  ? "bg-primary-blue text-white shadow-lg shadow-primary-blue/30"
+                  : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
+              }`}
             >
               <Star className="w-4 h-4" />
               Featured ({featuredTextures.length})
             </button>
             <button
               onClick={() => setSelectedFilter("trending")}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedFilter === "trending"
-                ? "bg-primary-blue text-white shadow-lg shadow-primary-blue/30"
-                : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
-                }`}
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                selectedFilter === "trending"
+                  ? "bg-primary-blue text-white shadow-lg shadow-primary-blue/30"
+                  : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
+              }`}
             >
               <TrendingUp className="w-4 h-4" />
               Trending ({trendingTextures.length})
@@ -237,7 +250,6 @@ export default function BlogPage() {
                   </div>
                 </Link>
               ))}
-
             </div>
 
             {/* No Results */}
@@ -261,10 +273,11 @@ export default function BlogPage() {
                 <button
                   disabled={currentPage === 1}
                   onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${currentPage === 1
-                    ? "text-gray-500 cursor-not-allowed opacity-50"
-                    : "text-white hover:border-primary-blue cursor-pointer"
-                    } bg-dark-lighter`}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
+                    currentPage === 1
+                      ? "text-gray-500 cursor-not-allowed opacity-50"
+                      : "text-white hover:border-primary-blue cursor-pointer"
+                  } bg-dark-lighter`}
                 >
                   Previous
                 </button>
@@ -273,10 +286,11 @@ export default function BlogPage() {
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${currentPage === page
-                      ? "bg-primary-blue text-white border-primary-blue"
-                      : "bg-dark-lighter text-white hover:border-primary-blue"
-                      }`}
+                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${
+                      currentPage === page
+                        ? "bg-primary-blue text-white border-primary-blue"
+                        : "bg-dark-lighter text-white hover:border-primary-blue"
+                    }`}
                   >
                     {page}
                   </button>
@@ -287,10 +301,11 @@ export default function BlogPage() {
                   onClick={() =>
                     setCurrentPage(Math.min(totalPages, currentPage + 1))
                   }
-                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${currentPage === totalPages
-                    ? "text-gray-500 cursor-not-allowed opacity-50"
-                    : "text-white hover:border-primary-blue cursor-pointer"
-                    } bg-dark-lighter`}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
+                    currentPage === totalPages
+                      ? "text-gray-500 cursor-not-allowed opacity-50"
+                      : "text-white hover:border-primary-blue cursor-pointer"
+                  } bg-dark-lighter`}
                 >
                   Next
                 </button>

@@ -6,10 +6,11 @@ import Image from "next/image";
 import Testimonials from "../components/Testimonials";
 import { useTextures } from "../hooks/useTextures";
 import { useCategories } from "../hooks/useCategories";
-import Header from "@/ui/Header";
-import Footer from "@/ui/Footer";
-import SEOFAQSection from "@/SEOFAQSection";
-import { Breadcrumb } from "@/ui/breadcrumb";
+import Header from "../components/ui/Header";
+import Footer from "../components/ui/Footer";
+import SEOFAQSection from "../components/SEOFAQSection";
+import Breadcrumb from "../components/ui/Breadcrumb";
+import ProductCatalogStructuredData from "../components/ProductCatalogStructuredData";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -50,6 +51,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-dark text-white">
+      <ProductCatalogStructuredData />
       {/* Header */}
       <Header />
 
@@ -75,59 +77,62 @@ export default function HomePage() {
           {/* Page Header */}
           <div className="mb-10">
             <h1 className="text-4xl font-bold text-white mb-4">
-              Tuff Tiles Pakistan - BT Tuff Tiles & Bismillah Tuff Tiles
-              Manufacturer
+              Tuff Tiles | Bismillah Tuff Tiles Karachi | #1 Tuff Tiles Pakistan
             </h1>
             <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-lg p-4 mb-6">
               <h2 className="text-2xl font-bold text-primary-blue mb-2">
-                #1 Tuff Tiles | BT Tuff Tiles | Bismillah Tuff Tiles Pakistan
+                Bismillah Tuff Tiles Karachi | Top Tuff Tiles Manufacturer
+                Pakistan
               </h2>
               <p className="text-white text-lg">
-                <strong>Best tuff tiles in Pakistan</strong> - Factory direct
-                pricing on BT tuff tiles, Bismillah tuff tiles, and premium
-                pavers. Call +92-317-6697001 for instant quotes.
+                <strong>Tuff Tiles Karachi's #1 Choice</strong> - Bismillah Tuff
+                Tiles offers premium quality tuff tiles at factory direct
+                prices. Best tuff tiles in Pakistan with nationwide delivery.
+                Call +92-317-6697001 for tuff tiles quotes.
               </p>
             </div>
             <h3 className="text-xl text-gray-300 mb-4">
-              Bismillah Tuff Tiles - Quality Construction Materials Since Years
+              Tuff Tiles Karachi | Bismillah Tuff Tiles - Pakistan's Leading
+              Tuff Tiles Supplier
             </h3>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl mb-4">
-              Leading <strong>tuff tiles manufacturer in Pakistan</strong>{" "}
-              specializing in premium pavers,{" "}
+              <strong>Bismillah Tuff Tiles</strong> is Karachi's premier{" "}
+              <strong>tuff tiles manufacturer</strong> serving all Pakistan. Our{" "}
+              <strong>tuff tiles Karachi</strong> factory produces premium
+              quality{" "}
               <Link
                 href="/categories"
                 className="text-primary-blue hover:underline"
               >
-                GRC jali designs
-              </Link>
-              , and construction materials. Our high-quality{" "}
+                tuff tiles, pavers, and GRC jali
+              </Link>{" "}
+              designs. Best{" "}
               <Link
                 href="/featured"
                 className="text-primary-blue hover:underline"
               >
-                ceramic tiles
-              </Link>
-              , marble textures, and decorative surfaces are ideal for
-              residential villas, commercial plazas, and industrial projects.
-              Available in multiple styles: square pavers, hexagonal tiles,
-              herringbone patterns, interlocking designs, and custom
-              architectural elements.
+                tuff tiles in Pakistan
+              </Link>{" "}
+              with marble textures, decorative surfaces for residential,
+              commercial projects. Tuff tiles available in square pavers,
+              hexagonal designs, herringbone patterns, interlocking styles from
+              Bismillah Tuff Tiles Karachi.
             </p>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl">
-              <strong>Nationwide delivery across Pakistan</strong> including
-              major cities: <em>Lahore tiles supplier</em>,{" "}
-              <em>Karachi pavers dealer</em>,{" "}
-              <em>Islamabad construction materials</em>, Rawalpindi tuff tiles,
-              Faisalabad ceramic tiles, Multan building materials, Sialkot
-              pavers, and Gujranwala tiles distributor.
+              <strong>Tuff tiles delivery nationwide from Karachi</strong> to
+              all Pakistan cities:
+              <em>Karachi tuff tiles</em> (same day), <em>Lahore tuff tiles</em>{" "}
+              (1-2 days), <em>Islamabad tuff tiles</em> (2-3 days), Rawalpindi,
+              Faisalabad, Multan, Sialkot. Bismillah Tuff Tiles Karachi offers
+              best wholesale rates for bulk orders.{" "}
               <Link
                 href="/contact"
                 className="text-primary-blue hover:underline"
               >
-                Contact us for wholesale rates
+                Contact for tuff tiles pricing
               </Link>{" "}
-              and bulk order discounts. Free delivery for orders above 1000 sq
-              ft.
+              and instant quotes. Free tuff tiles delivery for orders above 1000
+              sq ft.
             </p>
           </div>
 
@@ -426,8 +431,8 @@ export default function HomePage() {
         <Testimonials />
       </main>
 
-      {/* SEO Footer */}
-      <SEOFooter />
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
