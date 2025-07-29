@@ -19,7 +19,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin/', '/api/']
       }
     ],
-    sitemap: 'https://bismillahtufftiles.vercel.app//sitemap.xml',
-    host: 'https://bismillahtufftiles.vercel.app/'
+    sitemap: 'https://bismillahtufftiles.vercel.app/sitemap.xml',
+    host: 'https://bismillahtufftiles.vercel.app'
   }
 }
