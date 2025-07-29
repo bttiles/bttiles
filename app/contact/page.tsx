@@ -2,11 +2,11 @@
 import Footer from "../../components/ui/Footer";
 import Header from "../../components/ui/Header";
 import dynamic from "next/dynamic";
-const MapComponent = dynamic(() => import('../../components/ui/MapComponent'), {
+const MapComponent = dynamic(() => import("../../components/ui/MapComponent"), {
   ssr: false,
   loading: () => <p className="text-center text-white">Loading map...</p>,
 });
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 import {
   Mail,
@@ -28,36 +28,36 @@ export default function Contact() {
     message: "",
   });
 
- const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-
-  // template_s049n3i
-  // service_9i5yssl
-  // vryewsJJafpDWlMcQ
-  emailjs.send(
-    'service_kr3tn84', // ✅ Your service ID
-    'template_c7qzzom', // ✅ Your template ID
-    {
-      from_name: formData.name,
-      from_email: formData.email,
-      subject: formData.subject,
-      message: formData.message,
-    },
-    'vryewsJJafpDWlMcQ' 
-  ).then(
-    (result) => {
-      console.log(result.text);
-      alert('Message sent successfully!');
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    },
-    (error) => {
-      console.error(error.text);
-      alert('Failed to send message. Please try again later.');
-    }
-  );
-};
-
+    // template_s049n3i
+    // service_9i5yssl
+    // vryewsJJafpDWlMcQ
+    emailjs
+      .send(
+        "service_kr3tn84", // ✅ Your service ID
+        "template_c7qzzom", // ✅ Your template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        "vryewsJJafpDWlMcQ",
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert("Message sent successfully!");
+          setFormData({ name: "", email: "", subject: "", message: "" });
+        },
+        (error) => {
+          console.error(error.text);
+          alert("Failed to send message. Please try again later.");
+        },
+      );
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -87,12 +87,14 @@ export default function Contact() {
           {/* Page Header */}
           <div className="mb-16 text-center animate-in fade-in slide-in-from-bottom-6 duration-700">
             <h1 className="text-4xl font-bold text-white mb-6">
-              Contact Bismillah Tuff Tiles Pakistan - Get Expert Tile Consultation
+              Contact Bismillah Tuff Tiles Pakistan - Get Expert Tile
+              Consultation
             </h1>
             <p className="text-lg text-gray-light leading-relaxed max-w-3xl mx-auto">
-              Need expert advice on tuff tiles, pavers, or construction materials? Our experienced team
-              in Pakistan is ready to help you choose the perfect tiles for your project.
-              Contact us for pricing, samples, and technical support.
+              Need expert advice on tuff tiles, pavers, or construction
+              materials? Our experienced team in Pakistan is ready to help you
+              choose the perfect tiles for your project. Contact us for pricing,
+              samples, and technical support.
             </p>
           </div>
 
@@ -272,7 +274,6 @@ export default function Contact() {
               Our Location
             </h2>
             <MapComponent />
-
           </div>
 
           {/* Support Options */}
@@ -282,7 +283,6 @@ export default function Contact() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
               {/* WhatsApp Support */}
               <div className="text-center p-6 bg-dark-lighter rounded-lg border border-dark hover:border-primary-blue transition-all duration-300 hover:-translate-y-1">
                 <div className="w-16 h-16 bg-primary-blue rounded-lg flex items-center justify-center mx-auto mb-4">
@@ -334,13 +334,15 @@ export default function Contact() {
                 <p className="text-sm text-gray-light mb-4">
                   Speak directly with our support specialists
                 </p>
-                <a href="tel:+923176697001" className="text-primary-blue hover:underline text-sm font-medium">
+                <a
+                  href="tel:+923176697001"
+                  className="text-primary-blue hover:underline text-sm font-medium"
+                >
                   Call Now
                 </a>
               </div>
             </div>
           </section>
-
 
           {/* FAQ Preview */}
           <section className="mt-20 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-1000">

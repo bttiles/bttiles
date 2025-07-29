@@ -81,48 +81,58 @@ export default function HomePage() {
             </h1>
             <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-lg p-4 mb-6">
               <h2 className="text-2xl font-bold text-primary-blue mb-2">
-                Bismillah Tuff Tiles Karachi | Top Tuff Tiles Manufacturer Pakistan
+                Bismillah Tuff Tiles Karachi | Top Tuff Tiles Manufacturer
+                Pakistan
               </h2>
               <p className="text-white text-lg">
-                <strong>Tuff Tiles Karachi's #1 Choice</strong> - Bismillah Tuff Tiles offers premium quality tuff tiles at factory direct prices. Best tuff tiles in Pakistan with nationwide delivery. Call +92-317-6697001 for tuff tiles quotes.
+                <strong>Tuff Tiles Karachi's #1 Choice</strong> - Bismillah Tuff
+                Tiles offers premium quality tuff tiles at factory direct
+                prices. Best tuff tiles in Pakistan with nationwide delivery.
+                Call +92-317-6697001 for tuff tiles quotes.
               </p>
             </div>
             <h3 className="text-xl text-gray-300 mb-4">
-              Tuff Tiles Karachi | Bismillah Tuff Tiles - Pakistan's Leading Tuff Tiles Supplier
+              Tuff Tiles Karachi | Bismillah Tuff Tiles - Pakistan's Leading
+              Tuff Tiles Supplier
             </h3>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl mb-4">
               <strong>Bismillah Tuff Tiles</strong> is Karachi's premier{" "}
               <strong>tuff tiles manufacturer</strong> serving all Pakistan. Our{" "}
-              <strong>tuff tiles Karachi</strong> factory produces premium quality{" "}
+              <strong>tuff tiles Karachi</strong> factory produces premium
+              quality{" "}
               <Link
                 href="/categories"
                 className="text-primary-blue hover:underline"
               >
                 tuff tiles, pavers, and GRC jali
-              </Link>
-              {" "}designs. Best{" "}
+              </Link>{" "}
+              designs. Best{" "}
               <Link
                 href="/featured"
                 className="text-primary-blue hover:underline"
               >
                 tuff tiles in Pakistan
-              </Link>
-              {" "}with marble textures, decorative surfaces for residential, commercial projects.
-              Tuff tiles available in square pavers, hexagonal designs, herringbone patterns,
-              interlocking styles from Bismillah Tuff Tiles Karachi.
+              </Link>{" "}
+              with marble textures, decorative surfaces for residential,
+              commercial projects. Tuff tiles available in square pavers,
+              hexagonal designs, herringbone patterns, interlocking styles from
+              Bismillah Tuff Tiles Karachi.
             </p>
             <p className="text-sm text-gray-light leading-relaxed max-w-4xl">
-              <strong>Tuff tiles delivery nationwide from Karachi</strong> to all Pakistan cities:
-              <em>Karachi tuff tiles</em> (same day), <em>Lahore tuff tiles</em> (1-2 days),{" "}
-              <em>Islamabad tuff tiles</em> (2-3 days), Rawalpindi, Faisalabad, Multan, Sialkot.
-              Bismillah Tuff Tiles Karachi offers best wholesale rates for bulk orders.{" "}
+              <strong>Tuff tiles delivery nationwide from Karachi</strong> to
+              all Pakistan cities:
+              <em>Karachi tuff tiles</em> (same day), <em>Lahore tuff tiles</em>{" "}
+              (1-2 days), <em>Islamabad tuff tiles</em> (2-3 days), Rawalpindi,
+              Faisalabad, Multan, Sialkot. Bismillah Tuff Tiles Karachi offers
+              best wholesale rates for bulk orders.{" "}
               <Link
                 href="/contact"
                 className="text-primary-blue hover:underline"
               >
                 Contact for tuff tiles pricing
               </Link>{" "}
-              and instant quotes. Free tuff tiles delivery for orders above 1000 sq ft.
+              and instant quotes. Free tuff tiles delivery for orders above 1000
+              sq ft.
             </p>
           </div>
 

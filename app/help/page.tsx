@@ -80,7 +80,6 @@ const faqs: FAQ[] = [
   },
 ];
 
-
 const categories = [
   "All",
   "Ordering",
@@ -90,7 +89,6 @@ const categories = [
   "Customization",
   "Support",
 ];
-
 
 export default function Help() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -139,7 +137,6 @@ export default function Help() {
           {/* Quick Help Cards */}
           <section className="mb-16 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
               {/* Order Process Guide */}
               <div className="bg-dark-lighter rounded-lg p-6 border border-dark hover:border-primary-blue transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                 <div className="w-12 h-12 bg-primary-blue rounded-lg flex items-center justify-center mb-4">
@@ -149,7 +146,8 @@ export default function Help() {
                   Order Process Guide
                 </h3>
                 <p className="text-sm text-gray-light">
-                  Learn how to place tile and marble orders quickly through WhatsApp.
+                  Learn how to place tile and marble orders quickly through
+                  WhatsApp.
                 </p>
               </div>
 
@@ -162,7 +160,8 @@ export default function Help() {
                   Purchase Terms
                 </h3>
                 <p className="text-sm text-gray-light">
-                  Know what’s included with your order, delivery scope, and limitations.
+                  Know what’s included with your order, delivery scope, and
+                  limitations.
                 </p>
               </div>
 
@@ -175,7 +174,8 @@ export default function Help() {
                   Payment & Delivery
                 </h3>
                 <p className="text-sm text-gray-light">
-                  Get details on accepted payment methods and how delivery works.
+                  Get details on accepted payment methods and how delivery
+                  works.
                 </p>
               </div>
 
@@ -191,10 +191,8 @@ export default function Help() {
                   Get personalized help from our support team
                 </p>
               </div>
-
             </div>
           </section>
-
 
           {/* FAQ Section */}
           <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500">
@@ -208,10 +206,11 @@ export default function Help() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === category
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    selectedCategory === category
                       ? "bg-primary-blue text-white"
                       : "bg-dark-lighter text-gray-light hover:text-white hover:bg-dark border border-dark"
-                    }`}
+                  }`}
                 >
                   {category}
                 </button>
@@ -289,8 +288,8 @@ export default function Help() {
                 Still need help?
               </h2>
               <p className="text-gray-light mb-6 max-w-2xl mx-auto">
-                Can't find what you're looking for? Our team is here to help you with any
-                questions or product inquiries.
+                Can't find what you're looking for? Our team is here to help you
+                with any questions or product inquiries.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -318,7 +317,6 @@ export default function Help() {
               </div>
             </div>
           </section>
-
         </div>
       </main>
 

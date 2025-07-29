@@ -12,25 +12,27 @@ import LocalBusinessStructuredData from "../components/LocalBusinessStructuredDa
 import "leaflet/dist/leaflet.css";
 
 export const metadata: Metadata = genMeta({
-  title: "Tuff Tiles Pakistan | Bismillah Tuff Tiles Karachi | #1 Tuff Tiles Manufacturer",
-  description: "#1 Tuff Tiles in Pakistan! Bismillah Tuff Tiles Karachi - Best tuff tiles manufacturer. Premium quality tuff tiles, pavers & construction materials. Karachi, Lahore, Islamabad delivery. Call +92-317-6697001 for instant quotes on tuff tiles.",
+  title:
+    "Tuff Tiles Pakistan | Bismillah Tuff Tiles Karachi | #1 Tuff Tiles Manufacturer",
+  description:
+    "#1 Tuff Tiles in Pakistan! Bismillah Tuff Tiles Karachi - Best tuff tiles manufacturer. Premium quality tuff tiles, pavers & construction materials. Karachi, Lahore, Islamabad delivery. Call +92-317-6697001 for instant quotes on tuff tiles.",
   keywords: [
-    'tuff tiles',
-    'tuff tiles karachi',
-    'bismillah tuff tiles',
-    'tuff tiles pakistan',
-    'best tuff tiles karachi',
-    'tuff tiles manufacturer pakistan',
-    'bt tuff tiles',
-    'tuff tiles lahore',
-    'tuff tiles islamabad',
-    'pavers tuff tiles',
-    'bismillah tuff tiles karachi',
-    'karachi tuff tiles supplier',
-    'premium tuff tiles pakistan',
-    'wholesale tuff tiles karachi'
+    "tuff tiles",
+    "tuff tiles karachi",
+    "bismillah tuff tiles",
+    "tuff tiles pakistan",
+    "best tuff tiles karachi",
+    "tuff tiles manufacturer pakistan",
+    "bt tuff tiles",
+    "tuff tiles lahore",
+    "tuff tiles islamabad",
+    "pavers tuff tiles",
+    "bismillah tuff tiles karachi",
+    "karachi tuff tiles supplier",
+    "premium tuff tiles pakistan",
+    "wholesale tuff tiles karachi",
   ],
-  url: "https://bismillahtufftiles.vercel.app/"
+  url: "https://bismillahtufftiles.vercel.app/",
 });
 
 export const viewport = {
@@ -69,7 +71,11 @@ export default function RootLayout({
         <meta name="geo.placename" content="Pakistan" />
         <meta name="geo.position" content="30.3753;69.3451" />
         <meta name="ICBM" content="30.3753, 69.3451" />
-        <link rel="alternate" href="https://bismillahtufftiles.vercel.app/" hrefLang="en-pk" />
+        <link
+          rel="alternate"
+          href="https://bismillahtufftiles.vercel.app/"
+          hrefLang="en-pk"
+        />
         <meta name="theme-color" content="#1a1a1a" />
         <meta name="msapplication-TileColor" content="#1a1a1a" />
       </head>

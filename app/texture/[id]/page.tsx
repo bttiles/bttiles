@@ -18,7 +18,11 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { TextureImage, useTexture, useTextures } from "../../../hooks/useTextures";
+import {
+  TextureImage,
+  useTexture,
+  useTextures,
+} from "../../../hooks/useTextures";
 import Header from "../../../components/ui/Header";
 import Footer from "../../../components/ui/Footer";
 import { structuredData } from "../../../lib/seo";
@@ -36,7 +40,6 @@ type ImageObject = {
 //   publicId?: string; // ✅ add this line
 //   _id?: string;
 // }
-
 
 export default function TextureDetailPage() {
   const params = useParams();
@@ -60,24 +63,23 @@ export default function TextureDetailPage() {
   const allImages: TextureImage[] = [
     ...(texture?.image
       ? [
-        {
-          url: texture.image,
-          alt: "Primary",
-          isPrimary: true,
-          _id: "primary",
-        },
-      ]
+          {
+            url: texture.image,
+            alt: "Primary",
+            isPrimary: true,
+            _id: "primary",
+          },
+        ]
       : []),
     ...(Array.isArray(texture?.images)
       ? texture.images.map((img) => ({
-        url: img.url,
-        alt: img.alt || "View",
-        isPrimary: false,
-        _id: img._id || "",
-      }))
+          url: img.url,
+          alt: img.alt || "View",
+          isPrimary: false,
+          _id: img._id || "",
+        }))
       : []),
   ];
-
 
   useEffect(() => {
     if (texture) {
@@ -199,24 +201,40 @@ Thank you!`,
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(structuredData.product({
-                name: texture.name,
-                description: texture.description,
-                image: texture.image,
-                category: texture.category,
-                sku: texture._id
-              })),
+              __html: JSON.stringify(
+                structuredData.product({
+                  name: texture.name,
+                  description: texture.description,
+                  image: texture.image,
+                  category: texture.category,
+                  sku: texture._id,
+                }),
+              ),
             }}
           />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(structuredData.breadcrumb([
-                { name: 'Home', url: 'https://bismillahtufftiles.vercel.app/' },
-                { name: 'Categories', url: 'https://bismillahtufftiles.vercel.app//categories' },
-                { name: texture.category, url: `https://bismillahtufftiles.vercel.app//categories?category=${encodeURIComponent(texture.category)}` },
-                { name: texture.name, url: `https://bismillahtufftiles.vercel.app//texture/${texture._id}` }
-              ])),
+              __html: JSON.stringify(
+                structuredData.breadcrumb([
+                  {
+                    name: "Home",
+                    url: "https://bismillahtufftiles.vercel.app/",
+                  },
+                  {
+                    name: "Categories",
+                    url: "https://bismillahtufftiles.vercel.app//categories",
+                  },
+                  {
+                    name: texture.category,
+                    url: `https://bismillahtufftiles.vercel.app//categories?category=${encodeURIComponent(texture.category)}`,
+                  },
+                  {
+                    name: texture.name,
+                    url: `https://bismillahtufftiles.vercel.app//texture/${texture._id}`,
+                  },
+                ]),
+              ),
             }}
           />
         </>
@@ -290,10 +308,11 @@ Thank you!`,
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`aspect-square rounded border-2 overflow-hidden transition-all ${currentImageIndex === index
-                        ? "border-primary-blue"
-                        : "border-dark hover:border-gray-500"
-                        }`}
+                      className={`aspect-square rounded border-2 overflow-hidden transition-all ${
+                        currentImageIndex === index
+                          ? "border-primary-blue"
+                          : "border-dark hover:border-gray-500"
+                      }`}
                     >
                       <Image
                         src={img.url}
@@ -306,10 +325,7 @@ Thank you!`,
                   ))}
                 </div>
               )}
-
-
             </div>
-
 
             {/* Details */}
             <div>
@@ -405,10 +421,11 @@ Thank you!`,
                 </button>
                 <button
                   onClick={handleLike}
-                  className={`flex-1 border border-dark px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${liked
-                    ? "bg-red-500 text-white border-red-500"
-                    : "text-white hover:border-primary-blue"
-                    }`}
+                  className={`flex-1 border border-dark px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${
+                    liked
+                      ? "bg-red-500 text-white border-red-500"
+                      : "text-white hover:border-primary-blue"
+                  }`}
                 >
                   <Heart className={`w-4 h-4 ${liked ? "fill-current" : ""}`} />
                   {liked ? "Liked" : "Like"}
