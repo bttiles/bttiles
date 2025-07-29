@@ -51,6 +51,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-dark text-white">
+      <ProductCatalogStructuredData />
       {/* Header */}
       <Header />
 
