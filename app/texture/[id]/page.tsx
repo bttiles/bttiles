@@ -19,8 +19,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { TextureImage, useTexture, useTextures } from "../../../hooks/useTextures";
-import Header from "@/ui/Header";
-import Footer from "@/ui/Footer";
+import Header from "../../../components/ui/Header";
+import Footer from "../../../components/ui/Footer";
 import { structuredData } from "../../../lib/seo";
 
 type ImageObject = {
