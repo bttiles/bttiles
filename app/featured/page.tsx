@@ -5,8 +5,8 @@ import { Search, Menu, X, Star, TrendingUp, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTextures } from "../../hooks/useTextures";
-import Footer from "@/ui/Footer";
-import Header from "@/ui/Header";
+import Footer from "../../components/ui/Footer";
+import Header from "../../components/ui/Header";
 
 
 export default function BlogPage() {

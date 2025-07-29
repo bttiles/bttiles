@@ -1,8 +1,8 @@
 "use client";
 import { Users, Target, Award, Globe } from "lucide-react";
 import Link from "next/link";
-import Footer from "@/ui/Footer";
-import Header from "@/ui/Header";
+import Footer from "../../components/ui/Footer";
+import Header from "../../components/ui/Header";
 
 export default function AboutPage() {
 

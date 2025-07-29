@@ -1,8 +1,8 @@
 "use client";
-import Footer from "@/ui/Footer";
-import Header from "@/ui/Header";
+import Footer from "../../components/ui/Footer";
+import Header from "../../components/ui/Header";
 import dynamic from "next/dynamic";
-const MapComponent = dynamic(() => import('@/ui/MapComponent'), {
+const MapComponent = dynamic(() => import('../../components/ui/MapComponent'), {
   ssr: false,
   loading: () => <p className="text-center text-white">Loading map...</p>,
 });

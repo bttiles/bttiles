@@ -12,8 +12,8 @@ import {
   FileText,
   MessageCircle,
 } from "lucide-react";
-import Footer from "@/ui/Footer";
-import Header from "@/ui/Header";
+import Footer from "../../components/ui/Footer";
+import Header from "../../components/ui/Header";
 
 interface FAQ {
   id: number;
