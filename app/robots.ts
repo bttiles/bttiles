@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin/", "/api/admin/", "/_next/", "/admin/login"],
     },
-    sitemap: "https://bismillahtufftiles.vercel.app/sitemap.xml",
+    sitemap: "https://bismillahtufftiles.vercel.app/sitemap.xml", 
     host: "https://bismillahtufftiles.vercel.app",
   };
 }
