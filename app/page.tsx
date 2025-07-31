@@ -88,7 +88,7 @@ export default function HomePage() {
                 <strong>Tuff Tiles Karachi's #1 Choice</strong> - Bismillah Tuff
                 Tiles offers premium quality tuff tiles at factory direct
                 prices. Best tuff tiles in Pakistan with nationwide delivery.
-                Call +92-317-6697001 for tuff tiles quotes.
+                Call +92-317-6697001 for tuff tiles textures.
               </p>
             </div>
             <h3 className="text-xl text-gray-300 mb-4">
