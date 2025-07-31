@@ -8,14 +8,21 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/(sitemap\\.xml|robots\\.txt)",
+        source: "/sitemap.xml",
         headers: [
           { key: "Cache-Control", value: "public, max-age=3600" },
           { key: "Content-Type", value: "application/xml" },
+        ],
+      },
+      {
+        source: "/robots.txt",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=3600" },
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
         ],
       },
     ];
   },
 };
 
-export default nextConfig; 
+export default nextConfig;
