@@ -1,8 +1,9 @@
 // app/robots.txt/route.ts
 export async function GET() {
-  const body = `
+  const content = `
 User-agent: *
 Allow: /
+
 Disallow: /admin/
 Disallow: /api/admin/
 Disallow: /_next/
@@ -10,9 +11,9 @@ Disallow: /admin/login
 
 Sitemap: https://bismillahtufftiles.vercel.app/sitemap.xml
 Host: https://bismillahtufftiles.vercel.app
-  `.trim();
+  `.trim()
 
-  return new Response(body, {
+  return new Response(content, {
     headers: {
       'Content-Type': 'text/plain',
     },
