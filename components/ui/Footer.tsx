@@ -90,7 +90,9 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="https://wa.me/923176697001"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                 >
                   WhatsApp
@@ -98,7 +100,9 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/bt_tuff_tiles_?igsh=MTc2OHh4c2l3ZDZoZw%3D%3D&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                 >
                   Instagram
@@ -106,13 +110,26 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs text-gray-light hover:text-primary-blue transition-colors"
                 >
                   LinkedIn
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61579051533859&mibextid=wwXIfr&rdid=RrSeGlidDCNE0dtL&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1B39xPGgnJ%2F%3Fmibextid%3DwwXIfr#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-gray-light hover:text-primary-blue transition-colors"
+                >
+                  Facebook
+                </a>
+              </li>
             </ul>
+
           </div>
         </div>
 
