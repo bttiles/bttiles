@@ -75,66 +75,37 @@ export default function HomePage() {
           />
 
           {/* Page Header */}
-          <div className="mb-10">
-            <h1 className="text-4xl font-bold text-white mb-4">
-              Tuff Tiles | Bismillah Tuff Tiles Karachi | #1 Tuff Tiles Pakistan
+          <div className="relative mb-16 mt-12 text-center">
+            {/* Gradient background accent */}
+            <div className="absolute inset-0 bg-gradient-to-b from-primary-blue/10 via-transparent to-transparent pointer-events-none"></div>
+
+            <h1 className="relative text-4xl md:text-5xl font-extrabold text-white leading-tight mb-6">
+              Premium <span className="text-primary-blue">Tuff Tiles</span> in Pakistan
             </h1>
-            <div className="bg-primary-blue/10 border border-primary-blue/20 rounded-lg p-4 mb-6">
-              <h2 className="text-2xl font-bold text-primary-blue mb-2">
-                Bismillah Tuff Tiles Karachi | Top Tuff Tiles Manufacturer
-                Pakistan
-              </h2>
-              <p className="text-white text-lg">
-                <strong>Tuff Tiles Karachi's #1 Choice</strong> - Bismillah Tuff
-                Tiles offers premium quality tuff tiles at factory direct
-                prices. Best tuff tiles in Pakistan with nationwide delivery.
-                Call +92-317-6697001 for tuff tiles textures.
-              </p>
-            </div>
-            <h3 className="text-xl text-gray-300 mb-4">
-              Tuff Tiles Karachi | Bismillah Tuff Tiles - Pakistan's Leading
-              Tuff Tiles Supplier
-            </h3>
-            <p className="text-sm text-gray-light leading-relaxed max-w-4xl mb-4">
-              <strong>Bismillah Tuff Tiles</strong> is Karachi's premier{" "}
-              <strong>tuff tiles manufacturer</strong> serving all Pakistan. Our{" "}
-              <strong>tuff tiles Karachi</strong> factory produces premium
-              quality{" "}
+
+            <p className="relative text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+              Factory-direct <strong>tuff tiles, pavers & GRC jali</strong> with
+              <span className="text-primary-blue font-medium"> nationwide delivery</span>.
+              Trusted by homeowners & contractors across Pakistan.
+            </p>
+
+            {/* CTA buttons */}
+            <div className="relative flex flex-wrap justify-center gap-4">
               <Link
                 href="/categories"
-                className="text-primary-blue hover:underline"
+                className="px-6 py-3 rounded-xl bg-primary-blue text-white font-semibold shadow-lg hover:bg-primary-blue/90 transition"
               >
-                tuff tiles, pavers, and GRC jali
-              </Link>{" "}
-              designs. Best{" "}
-              <Link
-                href="/featured"
-                className="text-primary-blue hover:underline"
-              >
-                tuff tiles in Pakistan
-              </Link>{" "}
-              with marble textures, decorative surfaces for residential,
-              commercial projects. Tuff tiles available in square pavers,
-              hexagonal designs, herringbone patterns, interlocking styles from
-              Bismillah Tuff Tiles Karachi.
-            </p>
-            <p className="text-sm text-gray-light leading-relaxed max-w-4xl">
-              <strong>Tuff tiles delivery nationwide from Karachi</strong> to
-              all Pakistan cities:
-              <em>Karachi tuff tiles</em> (same day), <em>Lahore tuff tiles</em>{" "}
-              (1-2 days), <em>Islamabad tuff tiles</em> (2-3 days), Rawalpindi,
-              Faisalabad, Multan, Sialkot. Bismillah Tuff Tiles Karachi offers
-              best wholesale rates for bulk orders.{" "}
+                Explore Tile Collection
+              </Link>
               <Link
                 href="/contact"
-                className="text-primary-blue hover:underline"
+                className="px-6 py-3 rounded-xl bg-dark-lighter border border-gray-700 text-gray-200 hover:border-primary-blue hover:text-white transition"
               >
-                Contact for tuff tiles pricing
-              </Link>{" "}
-              and instant quotes. Free tuff tiles delivery for orders above 1000
-              sq ft.
-            </p>
+                Get a Free Quote
+              </Link>
+            </div>
           </div>
+
 
           {/* Categories Section */}
           <section className="mb-10">
@@ -145,11 +116,10 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-6">
               <button
                 onClick={() => setSelectedCategory("all")}
-                className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${
-                  selectedCategory === "all"
-                    ? "bg-primary-blue text-white"
-                    : "bg-dark-lighter text-white"
-                }`}
+                className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${selectedCategory === "all"
+                  ? "bg-primary-blue text-white"
+                  : "bg-dark-lighter text-white"
+                  }`}
               >
                 All Categories
               </button>
@@ -157,11 +127,10 @@ export default function HomePage() {
                 <button
                   key={category._id}
                   onClick={() => setSelectedCategory(category.name)}
-                  className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${
-                    selectedCategory === category.name
-                      ? "bg-primary-blue text-white"
-                      : "bg-dark-lighter text-white"
-                  }`}
+                  className={`border border-dark rounded-lg px-4 py-3 text-sm text-left transition-all hover:border-primary-blue ${selectedCategory === category.name
+                    ? "bg-primary-blue text-white"
+                    : "bg-dark-lighter text-white"
+                    }`}
                 >
                   {category.name}
                 </button>
@@ -242,11 +211,10 @@ export default function HomePage() {
                 <button
                   disabled={currentPage === 1}
                   onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
-                    currentPage === 1
-                      ? "text-gray-500 cursor-not-allowed opacity-50"
-                      : "text-white hover:border-primary-blue cursor-pointer"
-                  } bg-dark-lighter`}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${currentPage === 1
+                    ? "text-gray-500 cursor-not-allowed opacity-50"
+                    : "text-white hover:border-primary-blue cursor-pointer"
+                    } bg-dark-lighter`}
                 >
                   Previous
                 </button>
@@ -255,11 +223,10 @@ export default function HomePage() {
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${
-                      currentPage === page
-                        ? "bg-primary-blue text-white border-primary-blue"
-                        : "bg-dark-lighter text-white hover:border-primary-blue"
-                    }`}
+                    className={`px-3 py-2 text-sm border border-dark rounded-lg min-w-[40px] transition-colors ${currentPage === page
+                      ? "bg-primary-blue text-white border-primary-blue"
+                      : "bg-dark-lighter text-white hover:border-primary-blue"
+                      }`}
                   >
                     {page}
                   </button>
@@ -270,11 +237,10 @@ export default function HomePage() {
                   onClick={() =>
                     setCurrentPage(Math.min(totalPages, currentPage + 1))
                   }
-                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${
-                    currentPage === totalPages
-                      ? "text-gray-500 cursor-not-allowed opacity-50"
-                      : "text-white hover:border-primary-blue cursor-pointer"
-                  } bg-dark-lighter`}
+                  className={`px-3 py-2 text-sm border border-dark rounded-lg transition-colors ${currentPage === totalPages
+                    ? "text-gray-500 cursor-not-allowed opacity-50"
+                    : "text-white hover:border-primary-blue cursor-pointer"
+                    } bg-dark-lighter`}
                 >
                   Next
                 </button>

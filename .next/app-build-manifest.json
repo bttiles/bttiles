@@ -16,15 +16,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/categories/page.js"
     ],
-    "/contact/page": [
+    "/texture/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/contact/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/texture/[id]/page.js"
     ]
   }
 }
